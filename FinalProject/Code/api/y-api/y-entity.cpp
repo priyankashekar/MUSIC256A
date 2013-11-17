@@ -1425,6 +1425,7 @@ void YCubeOutline::update( YTimeInterval dt )
 //-----------------------------------------------------------------------------
 void YSphere::render()
 {
+    glTranslatef( xPos, yPos, zPos ); //MOD
     // render
     glutSolidSphere( size.value, slices, stacks );
 }
@@ -1444,6 +1445,12 @@ void YSphere::update( YTimeInterval dt )
 }
 
 
+void YSphere::setPosition(GLfloat x, GLfloat y, GLfloat z){
+    xPos = x;
+    yPos = y;
+    zPos = z;
+    
+}
 
 
 //-----------------------------------------------------------------------------

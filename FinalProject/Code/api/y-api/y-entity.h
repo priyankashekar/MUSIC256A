@@ -263,16 +263,19 @@ public:
 class YSphere : public YEntity
 {
 public:
-    YSphere() : size( 1, 1, 1.0f ), stacks(10), slices(10) { }
-    
+    YSphere() : size( 0.1, 0.1, 0.1 ), stacks(10), slices(10) { } //MOD: size( 1, 1, 1.0f )
 public:
     virtual void update( YTimeInterval dt );
     virtual void render();
+    virtual void setPosition(GLfloat x, GLfloat y, GLfloat z); //MOD
     
 public:
     Vector3D size;
     GLint slices;
     GLint stacks;
+    GLfloat xPos; //MOD
+    GLfloat yPos;
+    GLfloat zPos;
 };
 
 

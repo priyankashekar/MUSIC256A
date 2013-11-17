@@ -300,7 +300,7 @@ void initialize_simulation()
 //    bokeh->setBokehParams(0, 1, 10, Vector3D(0,0,0), Vector3D(1, 1, .5 ) );
 //    Globals::sim->root().addChild( bokeh );
     
-    for( int i = 0; i < 2000; i++ )
+    /*for( int i = 0; i < 2000; i++ )
     {
         // create a spark
         YBokeh * bokeh = new YBokeh();
@@ -323,11 +323,25 @@ void initialize_simulation()
         // add to simulation
         Globals::sim->root().addChild( bokeh );
         g_bokehs.push_back( bokeh );
+    }*/
+    
+    //SKYsphere * sky = new SKYsphere();
+    //Globals::sim->root().addChild(sky);
+    
+    //MOD: GRID OF DOTS TO TEST NAVIGATION
+    for( int i = -50; i <= 50; i+=10 ){
+        for( int j = -50; j <= 50; j+=10 ){
+            for( int k = -50; k <= 50; k+=10 ){
+                
+                YSphere * gridSphere = new YSphere();
+                gridSphere->setPosition(i, j, k);
+                Globals::sim->root().addChild( gridSphere );
+            }
+        }
     }
+
     
-    SKYsphere * sky = new SKYsphere();
     
-     Globals::sim->root().addChild(sky);
 }
 
 
@@ -520,7 +534,7 @@ void look( )
               0.0f, 0.0f, 0.0f,
               0.0f, ( cos( Globals::viewEyeY.x ) < 0 ? -1.0f : 1.0f ), 0.0f );*/
     
-    gluLookAt(0, 0, -100, 0, 0, 0, 0, 1, 0);
+    gluLookAt(0, 0, -9.5, 0, 0, 0, 0, 1, 0);
     
     // set the position of the lights
     glLightfv( GL_LIGHT0, GL_POSITION, Globals::light0_pos );
