@@ -172,3 +172,101 @@ void RAKATeapot::render()
     // disable lighting
     glDisable( GL_LIGHTING );
 }
+
+//-------------------------------------------------------------------------------
+// name: update()
+// desc: ...
+//-------------------------------------------------------------------------------
+void SKYhemi::update(YTimeInterval dt)
+{
+    
+    time_t t = time(0);   // get time now
+    struct tm * now = localtime( & t );
+    clock_t t2 = clock();
+    
+    int prevColorIndex = now->tm_hour;
+    int secsAfterHour = now->tm_min * 60 + now->tm_sec;
+    
+    Vector3D interpHSL;
+    Vector3D prevHSL;
+    Vector3D nextHSL;
+    int interpR;
+    int interpG;
+    int interpB;
+    
+    rgb_to_hsl(palette[prevColorIndex].x * 255, palette[prevColorIndex].y * 255, palette[prevColorIndex].z * 255, prevHSL.x, prevHSL.y, prevHSL.z);
+    rgb_to_hsl(palette[(prevColorIndex+1) % 24].x * 255, palette[(prevColorIndex+1) % 24].y * 255, palette[(prevColorIndex+1) % 24].z * 255, nextHSL.x, nextHSL.y, nextHSL.z);
+    
+    interpHSL = prevHSL + (nextHSL - prevHSL) * ((GLfloat)secsAfterHour / (60 * 60));
+
+    hsl_to_rgb( interpHSL.x, interpHSL.y, interpHSL.z, interpR, interpG, interpB);
+    
+    Globals::bgColor.updateSet(Vector3D(interpR / 255.0, interpG / 255.0, interpB / 255.0));
+    
+    //angle = ((float)t2 / CLOCKS_PER_SEC) / (60 * 60) * M_PI * 2;
+    angle = M_PI;
+    
+}
+
+
+//-------------------------------------------------------------------------------
+// name: render()
+// desc: ...
+//-------------------------------------------------------------------------------
+void SKYhemi::render()
+{
+    
+    
+    // enable lighting
+    //glEnable( GL_LIGHTING );
+    
+    //DrawArc(0, 0, 10, M_PI_2, angle, 100, 1, 1);
+    //glColor4f( col.x, col.y, col.z, alpha );
+    //glutSolidSphere(50, 100, 100);
+    
+    //glDisable( GL_LIGHTING );
+}
+
+//-----------------------------------------------------------------------------
+// name: set()
+// desc:
+//-----------------------------------------------------------------------------
+void SKYhemi::init()
+{
+    
+    palette[0] = Globals::MidnightBlue;
+    palette[1] = Globals::Plum2;
+    palette[2] = Globals::LightSteelBlue3;
+    palette[3] = Globals::MediumPurple3;
+    palette[4] = Globals::Lavender;
+    palette[5] = Globals::Turquoise;
+    palette[6] = Globals::RosyBrown;
+    palette[7] = Globals::Wheat;
+    palette[8] = Globals::LemonChiffon1;
+    palette[9] = Globals::Honeydew3;
+    palette[10] = Globals::Sienna1;
+    palette[11] = Globals::DarkSlateBlue;
+    palette[12] = Globals::MidnightBlue;
+    palette[13] = Globals::Plum2;
+    palette[14] = Globals::LightSteelBlue3;
+    palette[15] = Globals::MediumPurple3;
+    palette[16] = Globals::Lavender;
+    palette[17] = Globals::Turquoise;
+    palette[18] = Globals::RosyBrown;
+    palette[19] = Globals::Wheat;
+    palette[20] = Globals::LemonChiffon1;
+    palette[21] = Globals::Honeydew3;
+    palette[22] = Globals::Sienna1;
+    palette[23] = Globals::DarkSlateBlue;
+    
+    angle = 0.00001;
+    
+   /* for (int i = 0; i < sizeof(stars); i++){
+        stars[i].yPos = RAND_FLOAT * Globals::hemiRadius;
+        stars[i].startingAngle = RAND_FLOAT * M_PI * 2;
+        stars[i].alpha =  RAND_FLOAT * 0.8 + 0.2;
+        stars[i].lineWidth = RAND_FLOAT * 2 + 0.2;
+    }*/
+    
+}
+

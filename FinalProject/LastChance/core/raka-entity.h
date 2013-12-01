@@ -69,6 +69,31 @@ public:
 };
 
 
+//-----------------------------------------------------------------------------
+// name: class SKYsphere
+// desc: for testing
+//-----------------------------------------------------------------------------
+class SKYhemi : public YEntity
+{
+public:
+    // update
+    void update(YTimeInterval dt);
+    // render
+    void render();
+    void init();
+    
+protected:
+    //void DrawArc(float cx, float cz, float r, float start_angle, float arc_angle, int num_segments, float alpha, float lineWidth);
+    
+protected:
+    Vector3D palette[23];
+    GLfloat angle;
+    //SKYtrail stars[10];
+    
+    
+};
+
+
 
 
 

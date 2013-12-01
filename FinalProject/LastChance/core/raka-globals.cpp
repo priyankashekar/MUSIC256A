@@ -69,3 +69,19 @@ std::string Globals::path = "";
 std::string Globals::relpath = "data/texture/";
 std::string Globals::datapath = "";
 std::string Globals::version = DEFAULT_VERSION;
+
+Vector3D Globals::LightSteelBlue3(162.0/255, 181.0/255, 205.0/255);
+Vector3D Globals::MediumPurple3(137.0/255, 104.0/255, 205.0/255);
+Vector3D Globals::MidnightBlue(25.0/255, 25.0/255, 112.0/255);
+Vector3D Globals::Plum2(238.0/255, 174.0/255, 238.0/255);
+Vector3D Globals::Lavender(230.0/255, 230.0/255, 230.0/255);
+Vector3D Globals::Turquoise(64.0/255, 224.0/255, 208.0/255);
+Vector3D Globals::RosyBrown(188.0/255, 143.0/255, 143.0/255);
+Vector3D Globals::Wheat(245.0/255, 222.0/255, 179.0/255);
+Vector3D Globals::LemonChiffon1(255.0/255, 250.0/255, 205.0/255);
+Vector3D Globals::Honeydew3(193.0/255, 205.0/255, 193.0/255);
+Vector3D Globals::Sienna1(255.0/255, 130.0/255, 71.0/255);
+Vector3D Globals::DarkSlateBlue(72.0/255, 61.0/255, 139.0/255);
+
+float Globals::hemiRadius = 50;
+

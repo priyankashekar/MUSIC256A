@@ -26,6 +26,8 @@ RAKAJellyFish * g_jellyfish = NULL;
 // bokehs
 vector<YBokeh *> g_bokehs;
 
+SKYhemi *g_sky;
+
 
 //-----------------------------------------------------------------------------
 // function prototypes
@@ -282,12 +284,12 @@ void initialize_simulation()
 //    // add to simulation
 //    Globals::sim->root().addChild( teapot );
 
-    // create a spark
-    g_jellyfish = new RAKAJellyFish();
-    // set attributes
-    g_jellyfish->set( RAKA_TEX_JELLY_BODY, 1.0f, 1.0f );
-    // add to simulation
-    Globals::sim->root().addChild( g_jellyfish );
+//    // create a spark
+//    g_jellyfish = new RAKAJellyFish();
+//    // set attributes
+//    g_jellyfish->set( RAKA_TEX_JELLY_BODY, 1.0f, 1.0f );
+//    // add to simulation
+//    Globals::sim->root().addChild( g_jellyfish );
 //
 //    // create a spark
 //    spark = new RAKASpark();
@@ -327,6 +329,10 @@ void initialize_simulation()
 //        Globals::sim->root().addChild( bokeh );
 //        g_bokehs.push_back( bokeh );
 //    }
+    
+    g_sky = new SKYhemi();
+    g_sky->init();
+    Globals::sim->root().addChild(g_sky);
 }
 
 

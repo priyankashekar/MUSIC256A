@@ -133,6 +133,23 @@ public:
     static Vector3D ourYellow;
     static Vector3D ourSoftYellow;
     static Vector3D ourPurple;
+    
+    //color chart from http://gucky.uni-muenster.de/cgi-bin/rgbtab-en
+    static Vector3D LightSteelBlue3;
+    static Vector3D MediumPurple3;
+    static Vector3D MidnightBlue;
+    static Vector3D Plum2;
+    static Vector3D Lavender;
+    static Vector3D Turquoise;
+    static Vector3D RosyBrown;
+    static Vector3D Wheat;
+    static Vector3D LemonChiffon1;
+    static Vector3D Honeydew3;
+    static Vector3D Sienna1;
+    static Vector3D DarkSlateBlue;
+    
+    static float hemiRadius;
+
 };
 
 
