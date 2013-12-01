@@ -8,9 +8,9 @@
 #include "raka-entity.h"
 #include "raka-globals.h"
 #include "x-fun.h"
+#include "rgb_hsv_hsl.hpp"
 using namespace std;
 
-static int blah = 0;
 
 
 // texture coordinates

@@ -158,6 +158,8 @@
 		9980E93A184BCE9900581841 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		9980E93E184BCE9900581841 /* fluidsynth.1 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.man; path = fluidsynth.1; sourceTree = "<group>"; };
 		9980E93F184BCE9900581841 /* TODO */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TODO; sourceTree = "<group>"; };
+		9980E943184BDA4700581841 /* rgb_hsv_hsl.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = rgb_hsv_hsl.hpp; sourceTree = "<group>"; };
+		9980E944184BDAE700581841 /* CImg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CImg.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -212,6 +214,8 @@
 		86A7FA1F1831A4EC00E7FBC9 /* api */ = {
 			isa = PBXGroup;
 			children = (
+				9980E944184BDAE700581841 /* CImg.h */,
+				9980E943184BDA4700581841 /* rgb_hsv_hsl.hpp */,
 				9980E918184BCE9900581841 /* fsynth */,
 				86A7FA201831A4EC00E7FBC9 /* rtaudio */,
 				86A7FA241831A4EC00E7FBC9 /* stk */,
@@ -589,10 +593,10 @@
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					/opt/local/include/,
+					/opt/X11/include,
 				);
 				LIBRARY_SEARCH_PATHS = (
 					/opt/local/lib,
-					/Users/Priyanka/Dropbox/Stanford/MUSIC256A/FinalProject/Nebula/api/fsynth/lib,
 					/Users/Priyanka/Dropbox/Stanford/MUSIC256A/FinalProject/LastChance/api/fsynth/lib,
 				);
 				OTHER_CFLAGS = "-D__MACOSX_CORE__";
@@ -608,10 +612,10 @@
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					/opt/local/include/,
+					/opt/X11/include,
 				);
 				LIBRARY_SEARCH_PATHS = (
 					/opt/local/lib,
-					/Users/Priyanka/Dropbox/Stanford/MUSIC256A/FinalProject/Nebula/api/fsynth/lib,
 					/Users/Priyanka/Dropbox/Stanford/MUSIC256A/FinalProject/LastChance/api/fsynth/lib,
 				);
 				OTHER_CFLAGS = "-D__MACOSX_CORE__";
