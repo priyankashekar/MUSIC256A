@@ -12,7 +12,12 @@
 #include "x-buffer.h"
 #include <vector>
 
-
+struct SKYtrail{
+    float yPos;
+    float startingAngle;
+    float alpha;
+    float lineWidth;
+};
 
 
 //-----------------------------------------------------------------------------
@@ -83,12 +88,12 @@ public:
     void init();
     
 protected:
-    //void DrawArc(float cx, float cz, float r, float start_angle, float arc_angle, int num_segments, float alpha, float lineWidth);
+    void DrawArc(float cx, float cz, float r, float start_angle, float arc_angle, int num_segments, float alpha, float lineWidth);
     
 protected:
     Vector3D palette[23];
-    GLfloat angle;
-    //SKYtrail stars[10];
+    GLfloat trailAngle;
+    SKYtrail stars[10];
     
     
 };

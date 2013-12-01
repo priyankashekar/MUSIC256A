@@ -9,6 +9,9 @@
 #include "raka-globals.h"
 #include "x-fun.h"
 #include "rgb_hsv_hsl.hpp"
+
+#define RAND_FLOAT ((float)rand()) / RAND_MAX
+
 using namespace std;
 
 
@@ -204,7 +207,7 @@ void SKYhemi::update(YTimeInterval dt)
     Globals::bgColor.updateSet(Vector3D(interpR / 255.0, interpG / 255.0, interpB / 255.0));
     
     //angle = ((float)t2 / CLOCKS_PER_SEC) / (60 * 60) * M_PI * 2;
-    angle = M_PI;
+    trailAngle = M_PI;
     
 }
 
@@ -218,13 +221,13 @@ void SKYhemi::render()
     
     
     // enable lighting
-    //glEnable( GL_LIGHTING );
+    glEnable( GL_LIGHTING );
     
-    //DrawArc(0, 0, 10, M_PI_2, angle, 100, 1, 1);
+    DrawArc(0, 0, 10, M_PI_2, trailAngle, 100, 1, 1);
     //glColor4f( col.x, col.y, col.z, alpha );
     //glutSolidSphere(50, 100, 100);
     
-    //glDisable( GL_LIGHTING );
+    glDisable( GL_LIGHTING );
 }
 
 //-----------------------------------------------------------------------------
@@ -259,14 +262,58 @@ void SKYhemi::init()
     palette[22] = Globals::Sienna1;
     palette[23] = Globals::DarkSlateBlue;
     
-    angle = 0.00001;
+    trailAngle = 0.00001;
     
-   /* for (int i = 0; i < sizeof(stars); i++){
-        stars[i].yPos = RAND_FLOAT * Globals::hemiRadius;
-        stars[i].startingAngle = RAND_FLOAT * M_PI * 2;
-        stars[i].alpha =  RAND_FLOAT * 0.8 + 0.2;
-        stars[i].lineWidth = RAND_FLOAT * 2 + 0.2;
-    }*/
+    for (int i = 0; i < sizeof(stars) / sizeof(*stars); i++){
+        stars[0].yPos = RAND_FLOAT * Globals::hemiRadius;
+        stars[0].startingAngle = RAND_FLOAT * M_PI * 2;
+        stars[0].alpha =  RAND_FLOAT * 0.8 + 0.2;
+        stars[0].lineWidth = RAND_FLOAT * 2 + 0.2;
+    }
+    
     
 }
+
+void SKYhemi::DrawArc(float cx, float cz, float r, float start_angle, float arc_angle, int num_segments,  float alpha, float lineWidth)
+{
+	float theta = arc_angle / float(num_segments - 1);//theta is now calculated from the arc angle instead, the - 1 bit comes from the fact that the arc is open
+    
+	float tangetial_factor = tanf(theta);
+    
+	float radial_factor = cosf(theta);
+    
+	
+	float x = r * cosf(start_angle);//we now start at the start angle
+	float z = r * sinf(start_angle);
+    
+    glEnable(GL_LINE_SMOOTH);
+	
+    glEnable (GL_BLEND);
+    glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    
+    glTranslatef(0, 10, 0);
+    glBegin(GL_LINE_STRIP);//since the arc is not a closed curve, this is a strip now
+    
+    glLineWidth(lineWidth);
+	for(int ii = 0; ii < num_segments; ii++)
+	{
+        
+        glColor4f(1, 1, 1, alpha);
+		glVertex3f(x + cx, 0, z + cz);
+        
+		float tx = -z;
+		float tz = x;
+        
+		x += tx * tangetial_factor;
+		z += tz * tangetial_factor;
+        
+		x *= radial_factor;
+		z *= radial_factor;
+	}
+	glEnd();
+    
+    glDisable(GL_LINE_SMOOTH);
+    glDisable( GL_BLEND );
+}
+
 
