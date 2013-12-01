@@ -42,9 +42,9 @@
 		86A7FA811831A69100E7FBC9 /* raka-globals.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 86A7FA7B1831A69100E7FBC9 /* raka-globals.cpp */; };
 		86A7FA821831A69100E7FBC9 /* raka-sim.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 86A7FA7D1831A69100E7FBC9 /* raka-sim.cpp */; };
 		86A7FA851831A91300E7FBC9 /* raka-entity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 86A7FA831831A91300E7FBC9 /* raka-entity.cpp */; };
-		9980E8E9184BC2DE00581841 /* libfluidsynth.1.5.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9980E8DD184BC2DE00581841 /* libfluidsynth.1.5.2.dylib */; };
-		9980E8EA184BC2DE00581841 /* libfluidsynth.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9980E8DE184BC2DE00581841 /* libfluidsynth.1.dylib */; };
-		9980E8EB184BC2DE00581841 /* libfluidsynth.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9980E8DF184BC2DE00581841 /* libfluidsynth.dylib */; };
+		9980E940184BCE9900581841 /* libfluidsynth.1.5.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9980E934184BCE9900581841 /* libfluidsynth.1.5.2.dylib */; };
+		9980E941184BCE9900581841 /* libfluidsynth.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9980E935184BCE9900581841 /* libfluidsynth.1.dylib */; };
+		9980E942184BCE9900581841 /* libfluidsynth.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9980E936184BCE9900581841 /* libfluidsynth.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -127,37 +127,37 @@
 		86A7FA7E1831A69100E7FBC9 /* raka-sim.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "raka-sim.h"; path = "core/raka-sim.h"; sourceTree = "<group>"; };
 		86A7FA831831A91300E7FBC9 /* raka-entity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "raka-entity.cpp"; path = "core/raka-entity.cpp"; sourceTree = "<group>"; };
 		86A7FA841831A91300E7FBC9 /* raka-entity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "raka-entity.h"; path = "core/raka-entity.h"; sourceTree = "<group>"; };
-		9980E8C2184BC2DE00581841 /* AUTHORS */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AUTHORS; sourceTree = "<group>"; };
-		9980E8C4184BC2DE00581841 /* fluidsynth */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = fluidsynth; sourceTree = "<group>"; };
-		9980E8C5184BC2DE00581841 /* ChangeLog */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ChangeLog; sourceTree = "<group>"; };
-		9980E8C6184BC2DE00581841 /* COPYING */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = COPYING; sourceTree = "<group>"; };
-		9980E8C9184BC2DE00581841 /* audio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = audio.h; sourceTree = "<group>"; };
-		9980E8CA184BC2DE00581841 /* event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = event.h; sourceTree = "<group>"; };
-		9980E8CB184BC2DE00581841 /* gen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gen.h; sourceTree = "<group>"; };
-		9980E8CC184BC2DE00581841 /* log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = log.h; sourceTree = "<group>"; };
-		9980E8CD184BC2DE00581841 /* midi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = midi.h; sourceTree = "<group>"; };
-		9980E8CE184BC2DE00581841 /* misc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = misc.h; sourceTree = "<group>"; };
-		9980E8CF184BC2DE00581841 /* mod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mod.h; sourceTree = "<group>"; };
-		9980E8D0184BC2DE00581841 /* ramsfont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ramsfont.h; sourceTree = "<group>"; };
-		9980E8D1184BC2DE00581841 /* seq.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = seq.h; sourceTree = "<group>"; };
-		9980E8D2184BC2DE00581841 /* seqbind.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = seqbind.h; sourceTree = "<group>"; };
-		9980E8D3184BC2DE00581841 /* settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = settings.h; sourceTree = "<group>"; };
-		9980E8D4184BC2DE00581841 /* sfont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sfont.h; sourceTree = "<group>"; };
-		9980E8D5184BC2DE00581841 /* shell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = shell.h; sourceTree = "<group>"; };
-		9980E8D6184BC2DE00581841 /* synth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = synth.h; sourceTree = "<group>"; };
-		9980E8D7184BC2DE00581841 /* types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = types.h; sourceTree = "<group>"; };
-		9980E8D8184BC2DE00581841 /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = version.h; sourceTree = "<group>"; };
-		9980E8D9184BC2DE00581841 /* voice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = voice.h; sourceTree = "<group>"; };
-		9980E8DA184BC2DE00581841 /* fluidsynth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fluidsynth.h; sourceTree = "<group>"; };
-		9980E8DB184BC2DE00581841 /* INSTALL_RECEIPT.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = INSTALL_RECEIPT.json; sourceTree = "<group>"; };
-		9980E8DD184BC2DE00581841 /* libfluidsynth.1.5.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libfluidsynth.1.5.2.dylib; sourceTree = "<group>"; };
-		9980E8DE184BC2DE00581841 /* libfluidsynth.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libfluidsynth.1.dylib; sourceTree = "<group>"; };
-		9980E8DF184BC2DE00581841 /* libfluidsynth.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libfluidsynth.dylib; sourceTree = "<group>"; };
-		9980E8E1184BC2DE00581841 /* fluidsynth.pc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fluidsynth.pc; sourceTree = "<group>"; };
-		9980E8E2184BC2DE00581841 /* NEWS */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NEWS; sourceTree = "<group>"; };
-		9980E8E3184BC2DE00581841 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
-		9980E8E7184BC2DE00581841 /* fluidsynth.1 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.man; path = fluidsynth.1; sourceTree = "<group>"; };
-		9980E8E8184BC2DE00581841 /* TODO */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TODO; sourceTree = "<group>"; };
+		9980E919184BCE9900581841 /* AUTHORS */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AUTHORS; sourceTree = "<group>"; };
+		9980E91B184BCE9900581841 /* fluidsynth */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = fluidsynth; sourceTree = "<group>"; };
+		9980E91C184BCE9900581841 /* ChangeLog */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ChangeLog; sourceTree = "<group>"; };
+		9980E91D184BCE9900581841 /* COPYING */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = COPYING; sourceTree = "<group>"; };
+		9980E920184BCE9900581841 /* audio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = audio.h; sourceTree = "<group>"; };
+		9980E921184BCE9900581841 /* event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = event.h; sourceTree = "<group>"; };
+		9980E922184BCE9900581841 /* gen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gen.h; sourceTree = "<group>"; };
+		9980E923184BCE9900581841 /* log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = log.h; sourceTree = "<group>"; };
+		9980E924184BCE9900581841 /* midi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = midi.h; sourceTree = "<group>"; };
+		9980E925184BCE9900581841 /* misc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = misc.h; sourceTree = "<group>"; };
+		9980E926184BCE9900581841 /* mod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mod.h; sourceTree = "<group>"; };
+		9980E927184BCE9900581841 /* ramsfont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ramsfont.h; sourceTree = "<group>"; };
+		9980E928184BCE9900581841 /* seq.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = seq.h; sourceTree = "<group>"; };
+		9980E929184BCE9900581841 /* seqbind.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = seqbind.h; sourceTree = "<group>"; };
+		9980E92A184BCE9900581841 /* settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = settings.h; sourceTree = "<group>"; };
+		9980E92B184BCE9900581841 /* sfont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sfont.h; sourceTree = "<group>"; };
+		9980E92C184BCE9900581841 /* shell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = shell.h; sourceTree = "<group>"; };
+		9980E92D184BCE9900581841 /* synth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = synth.h; sourceTree = "<group>"; };
+		9980E92E184BCE9900581841 /* types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = types.h; sourceTree = "<group>"; };
+		9980E92F184BCE9900581841 /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = version.h; sourceTree = "<group>"; };
+		9980E930184BCE9900581841 /* voice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = voice.h; sourceTree = "<group>"; };
+		9980E931184BCE9900581841 /* fluidsynth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fluidsynth.h; sourceTree = "<group>"; };
+		9980E932184BCE9900581841 /* INSTALL_RECEIPT.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = INSTALL_RECEIPT.json; sourceTree = "<group>"; };
+		9980E934184BCE9900581841 /* libfluidsynth.1.5.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libfluidsynth.1.5.2.dylib; sourceTree = "<group>"; };
+		9980E935184BCE9900581841 /* libfluidsynth.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libfluidsynth.1.dylib; sourceTree = "<group>"; };
+		9980E936184BCE9900581841 /* libfluidsynth.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libfluidsynth.dylib; sourceTree = "<group>"; };
+		9980E938184BCE9900581841 /* fluidsynth.pc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fluidsynth.pc; sourceTree = "<group>"; };
+		9980E939184BCE9900581841 /* NEWS */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NEWS; sourceTree = "<group>"; };
+		9980E93A184BCE9900581841 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
+		9980E93E184BCE9900581841 /* fluidsynth.1 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.man; path = fluidsynth.1; sourceTree = "<group>"; };
+		9980E93F184BCE9900581841 /* TODO */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TODO; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,16 +165,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9980E8EB184BC2DE00581841 /* libfluidsynth.dylib in Frameworks */,
+				9980E942184BCE9900581841 /* libfluidsynth.dylib in Frameworks */,
 				8642B3E8183448B400CF7375 /* CoreAudio.framework in Frameworks */,
 				86A7FA741831A5A500E7FBC9 /* AppKit.framework in Frameworks */,
 				86A7FA721831A58F00E7FBC9 /* ApplicationServices.framework in Frameworks */,
 				86A7FA701831A57F00E7FBC9 /* GLUT.framework in Frameworks */,
 				86A7FA6E1831A57200E7FBC9 /* OpenGL.framework in Frameworks */,
 				86A7FA6C1831A55F00E7FBC9 /* CoreGraphics.framework in Frameworks */,
-				9980E8E9184BC2DE00581841 /* libfluidsynth.1.5.2.dylib in Frameworks */,
+				9980E940184BCE9900581841 /* libfluidsynth.1.5.2.dylib in Frameworks */,
 				86A7FA6A1831A54C00E7FBC9 /* CFNetwork.framework in Frameworks */,
-				9980E8EA184BC2DE00581841 /* libfluidsynth.1.dylib in Frameworks */,
+				9980E941184BCE9900581841 /* libfluidsynth.1.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -212,7 +212,7 @@
 		86A7FA1F1831A4EC00E7FBC9 /* api */ = {
 			isa = PBXGroup;
 			children = (
-				9980E8C1184BC2DE00581841 /* fsynth */,
+				9980E918184BCE9900581841 /* fsynth */,
 				86A7FA201831A4EC00E7FBC9 /* rtaudio */,
 				86A7FA241831A4EC00E7FBC9 /* stk */,
 				86A7FA2E1831A4EC00E7FBC9 /* x-api */,
@@ -327,105 +327,104 @@
 			name = core;
 			sourceTree = "<group>";
 		};
-		9980E8C1184BC2DE00581841 /* fsynth */ = {
+		9980E918184BCE9900581841 /* fsynth */ = {
 			isa = PBXGroup;
 			children = (
-				9980E8C2184BC2DE00581841 /* AUTHORS */,
-				9980E8C3184BC2DE00581841 /* bin */,
-				9980E8C5184BC2DE00581841 /* ChangeLog */,
-				9980E8C6184BC2DE00581841 /* COPYING */,
-				9980E8C7184BC2DE00581841 /* include */,
-				9980E8DB184BC2DE00581841 /* INSTALL_RECEIPT.json */,
-				9980E8DC184BC2DE00581841 /* lib */,
-				9980E8E2184BC2DE00581841 /* NEWS */,
-				9980E8E3184BC2DE00581841 /* README */,
-				9980E8E4184BC2DE00581841 /* share */,
-				9980E8E8184BC2DE00581841 /* TODO */,
+				9980E919184BCE9900581841 /* AUTHORS */,
+				9980E91A184BCE9900581841 /* bin */,
+				9980E91C184BCE9900581841 /* ChangeLog */,
+				9980E91D184BCE9900581841 /* COPYING */,
+				9980E91E184BCE9900581841 /* include */,
+				9980E932184BCE9900581841 /* INSTALL_RECEIPT.json */,
+				9980E933184BCE9900581841 /* lib */,
+				9980E939184BCE9900581841 /* NEWS */,
+				9980E93A184BCE9900581841 /* README */,
+				9980E93B184BCE9900581841 /* share */,
+				9980E93F184BCE9900581841 /* TODO */,
 			);
-			name = fsynth;
-			path = ../../Nebula/api/fsynth;
+			path = fsynth;
 			sourceTree = "<group>";
 		};
-		9980E8C3184BC2DE00581841 /* bin */ = {
+		9980E91A184BCE9900581841 /* bin */ = {
 			isa = PBXGroup;
 			children = (
-				9980E8C4184BC2DE00581841 /* fluidsynth */,
+				9980E91B184BCE9900581841 /* fluidsynth */,
 			);
 			path = bin;
 			sourceTree = "<group>";
 		};
-		9980E8C7184BC2DE00581841 /* include */ = {
+		9980E91E184BCE9900581841 /* include */ = {
 			isa = PBXGroup;
 			children = (
-				9980E8C8184BC2DE00581841 /* fluidsynth */,
-				9980E8DA184BC2DE00581841 /* fluidsynth.h */,
+				9980E91F184BCE9900581841 /* fluidsynth */,
+				9980E931184BCE9900581841 /* fluidsynth.h */,
 			);
 			path = include;
 			sourceTree = "<group>";
 		};
-		9980E8C8184BC2DE00581841 /* fluidsynth */ = {
+		9980E91F184BCE9900581841 /* fluidsynth */ = {
 			isa = PBXGroup;
 			children = (
-				9980E8C9184BC2DE00581841 /* audio.h */,
-				9980E8CA184BC2DE00581841 /* event.h */,
-				9980E8CB184BC2DE00581841 /* gen.h */,
-				9980E8CC184BC2DE00581841 /* log.h */,
-				9980E8CD184BC2DE00581841 /* midi.h */,
-				9980E8CE184BC2DE00581841 /* misc.h */,
-				9980E8CF184BC2DE00581841 /* mod.h */,
-				9980E8D0184BC2DE00581841 /* ramsfont.h */,
-				9980E8D1184BC2DE00581841 /* seq.h */,
-				9980E8D2184BC2DE00581841 /* seqbind.h */,
-				9980E8D3184BC2DE00581841 /* settings.h */,
-				9980E8D4184BC2DE00581841 /* sfont.h */,
-				9980E8D5184BC2DE00581841 /* shell.h */,
-				9980E8D6184BC2DE00581841 /* synth.h */,
-				9980E8D7184BC2DE00581841 /* types.h */,
-				9980E8D8184BC2DE00581841 /* version.h */,
-				9980E8D9184BC2DE00581841 /* voice.h */,
+				9980E920184BCE9900581841 /* audio.h */,
+				9980E921184BCE9900581841 /* event.h */,
+				9980E922184BCE9900581841 /* gen.h */,
+				9980E923184BCE9900581841 /* log.h */,
+				9980E924184BCE9900581841 /* midi.h */,
+				9980E925184BCE9900581841 /* misc.h */,
+				9980E926184BCE9900581841 /* mod.h */,
+				9980E927184BCE9900581841 /* ramsfont.h */,
+				9980E928184BCE9900581841 /* seq.h */,
+				9980E929184BCE9900581841 /* seqbind.h */,
+				9980E92A184BCE9900581841 /* settings.h */,
+				9980E92B184BCE9900581841 /* sfont.h */,
+				9980E92C184BCE9900581841 /* shell.h */,
+				9980E92D184BCE9900581841 /* synth.h */,
+				9980E92E184BCE9900581841 /* types.h */,
+				9980E92F184BCE9900581841 /* version.h */,
+				9980E930184BCE9900581841 /* voice.h */,
 			);
 			path = fluidsynth;
 			sourceTree = "<group>";
 		};
-		9980E8DC184BC2DE00581841 /* lib */ = {
+		9980E933184BCE9900581841 /* lib */ = {
 			isa = PBXGroup;
 			children = (
-				9980E8DD184BC2DE00581841 /* libfluidsynth.1.5.2.dylib */,
-				9980E8DE184BC2DE00581841 /* libfluidsynth.1.dylib */,
-				9980E8DF184BC2DE00581841 /* libfluidsynth.dylib */,
-				9980E8E0184BC2DE00581841 /* pkgconfig */,
+				9980E934184BCE9900581841 /* libfluidsynth.1.5.2.dylib */,
+				9980E935184BCE9900581841 /* libfluidsynth.1.dylib */,
+				9980E936184BCE9900581841 /* libfluidsynth.dylib */,
+				9980E937184BCE9900581841 /* pkgconfig */,
 			);
 			path = lib;
 			sourceTree = "<group>";
 		};
-		9980E8E0184BC2DE00581841 /* pkgconfig */ = {
+		9980E937184BCE9900581841 /* pkgconfig */ = {
 			isa = PBXGroup;
 			children = (
-				9980E8E1184BC2DE00581841 /* fluidsynth.pc */,
+				9980E938184BCE9900581841 /* fluidsynth.pc */,
 			);
 			path = pkgconfig;
 			sourceTree = "<group>";
 		};
-		9980E8E4184BC2DE00581841 /* share */ = {
+		9980E93B184BCE9900581841 /* share */ = {
 			isa = PBXGroup;
 			children = (
-				9980E8E5184BC2DE00581841 /* man */,
+				9980E93C184BCE9900581841 /* man */,
 			);
 			path = share;
 			sourceTree = "<group>";
 		};
-		9980E8E5184BC2DE00581841 /* man */ = {
+		9980E93C184BCE9900581841 /* man */ = {
 			isa = PBXGroup;
 			children = (
-				9980E8E6184BC2DE00581841 /* man1 */,
+				9980E93D184BCE9900581841 /* man1 */,
 			);
 			path = man;
 			sourceTree = "<group>";
 		};
-		9980E8E6184BC2DE00581841 /* man1 */ = {
+		9980E93D184BCE9900581841 /* man1 */ = {
 			isa = PBXGroup;
 			children = (
-				9980E8E7184BC2DE00581841 /* fluidsynth.1 */,
+				9980E93E184BCE9900581841 /* fluidsynth.1 */,
 			);
 			path = man1;
 			sourceTree = "<group>";
@@ -594,6 +593,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					/opt/local/lib,
 					/Users/Priyanka/Dropbox/Stanford/MUSIC256A/FinalProject/Nebula/api/fsynth/lib,
+					/Users/Priyanka/Dropbox/Stanford/MUSIC256A/FinalProject/LastChance/api/fsynth/lib,
 				);
 				OTHER_CFLAGS = "-D__MACOSX_CORE__";
 				OTHER_LDFLAGS = "-lfluidsynth";
@@ -612,6 +612,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					/opt/local/lib,
 					/Users/Priyanka/Dropbox/Stanford/MUSIC256A/FinalProject/Nebula/api/fsynth/lib,
+					/Users/Priyanka/Dropbox/Stanford/MUSIC256A/FinalProject/LastChance/api/fsynth/lib,
 				);
 				OTHER_CFLAGS = "-D__MACOSX_CORE__";
 				OTHER_LDFLAGS = "-lfluidsynth";
