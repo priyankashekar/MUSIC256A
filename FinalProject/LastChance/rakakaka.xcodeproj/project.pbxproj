@@ -11,10 +11,6 @@
 		8642B3E8183448B400CF7375 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8642B3E7183448B400CF7375 /* CoreAudio.framework */; };
 		86A7FA1E1831A46B00E7FBC9 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 86A7FA1C1831A46B00E7FBC9 /* main.cpp */; };
 		86A7FA531831A4EC00E7FBC9 /* RtAudio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 86A7FA211831A4EC00E7FBC9 /* RtAudio.cpp */; };
-		86A7FA541831A4EC00E7FBC9 /* Delay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 86A7FA251831A4EC00E7FBC9 /* Delay.cpp */; };
-		86A7FA551831A4EC00E7FBC9 /* DelayL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 86A7FA271831A4EC00E7FBC9 /* DelayL.cpp */; };
-		86A7FA561831A4EC00E7FBC9 /* MidiFileIn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 86A7FA2A1831A4EC00E7FBC9 /* MidiFileIn.cpp */; };
-		86A7FA571831A4EC00E7FBC9 /* Stk.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 86A7FA2C1831A4EC00E7FBC9 /* Stk.cpp */; };
 		86A7FA581831A4EC00E7FBC9 /* x-audio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 86A7FA2F1831A4EC00E7FBC9 /* x-audio.cpp */; };
 		86A7FA591831A4EC00E7FBC9 /* x-buffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 86A7FA311831A4EC00E7FBC9 /* x-buffer.cpp */; };
 		86A7FA5A1831A4EC00E7FBC9 /* x-fun.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 86A7FA341831A4EC00E7FBC9 /* x-fun.cpp */; };
@@ -45,6 +41,13 @@
 		9980E940184BCE9900581841 /* libfluidsynth.1.5.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9980E934184BCE9900581841 /* libfluidsynth.1.5.2.dylib */; };
 		9980E941184BCE9900581841 /* libfluidsynth.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9980E935184BCE9900581841 /* libfluidsynth.1.dylib */; };
 		9980E942184BCE9900581841 /* libfluidsynth.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9980E936184BCE9900581841 /* libfluidsynth.dylib */; };
+		9980E949184C1E4F00581841 /* Envelope.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9980E945184C1E4F00581841 /* Envelope.cpp */; };
+		9980E94A184C1E4F00581841 /* FileWvIn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9980E947184C1E4F00581841 /* FileWvIn.cpp */; };
+		9980E94F184C206400581841 /* FileRead.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9980E94E184C206400581841 /* FileRead.cpp */; };
+		9994E60C184D2C20007354D4 /* Stk.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9994E60A184D2C20007354D4 /* Stk.cpp */; };
+		9994E613184D2CFE007354D4 /* Delay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9994E60D184D2CFE007354D4 /* Delay.cpp */; };
+		9994E614184D2CFE007354D4 /* DelayL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9994E60F184D2CFE007354D4 /* DelayL.cpp */; };
+		9994E615184D2CFE007354D4 /* MidiFileIn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9994E611184D2CFE007354D4 /* MidiFileIn.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -69,15 +72,7 @@
 		86A7FA211831A4EC00E7FBC9 /* RtAudio.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RtAudio.cpp; sourceTree = "<group>"; };
 		86A7FA221831A4EC00E7FBC9 /* RtAudio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RtAudio.h; sourceTree = "<group>"; };
 		86A7FA231831A4EC00E7FBC9 /* RtError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RtError.h; sourceTree = "<group>"; };
-		86A7FA251831A4EC00E7FBC9 /* Delay.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Delay.cpp; sourceTree = "<group>"; };
-		86A7FA261831A4EC00E7FBC9 /* Delay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Delay.h; sourceTree = "<group>"; };
-		86A7FA271831A4EC00E7FBC9 /* DelayL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DelayL.cpp; sourceTree = "<group>"; };
-		86A7FA281831A4EC00E7FBC9 /* DelayL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DelayL.h; sourceTree = "<group>"; };
 		86A7FA291831A4EC00E7FBC9 /* Filter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Filter.h; sourceTree = "<group>"; };
-		86A7FA2A1831A4EC00E7FBC9 /* MidiFileIn.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MidiFileIn.cpp; sourceTree = "<group>"; };
-		86A7FA2B1831A4EC00E7FBC9 /* MidiFileIn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MidiFileIn.h; sourceTree = "<group>"; };
-		86A7FA2C1831A4EC00E7FBC9 /* Stk.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Stk.cpp; sourceTree = "<group>"; };
-		86A7FA2D1831A4EC00E7FBC9 /* Stk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stk.h; sourceTree = "<group>"; };
 		86A7FA2F1831A4EC00E7FBC9 /* x-audio.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "x-audio.cpp"; sourceTree = "<group>"; };
 		86A7FA301831A4EC00E7FBC9 /* x-audio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "x-audio.h"; sourceTree = "<group>"; };
 		86A7FA311831A4EC00E7FBC9 /* x-buffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "x-buffer.cpp"; sourceTree = "<group>"; };
@@ -160,6 +155,22 @@
 		9980E93F184BCE9900581841 /* TODO */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TODO; sourceTree = "<group>"; };
 		9980E943184BDA4700581841 /* rgb_hsv_hsl.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = rgb_hsv_hsl.hpp; sourceTree = "<group>"; };
 		9980E944184BDAE700581841 /* CImg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CImg.h; sourceTree = "<group>"; };
+		9980E945184C1E4F00581841 /* Envelope.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Envelope.cpp; sourceTree = "<group>"; };
+		9980E946184C1E4F00581841 /* Envelope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Envelope.h; sourceTree = "<group>"; };
+		9980E947184C1E4F00581841 /* FileWvIn.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FileWvIn.cpp; sourceTree = "<group>"; };
+		9980E948184C1E4F00581841 /* FileWvIn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileWvIn.h; sourceTree = "<group>"; };
+		9980E94B184C1ED800581841 /* Generator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Generator.h; sourceTree = "<group>"; };
+		9980E94C184C1ED800581841 /* WvIn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WvIn.h; sourceTree = "<group>"; };
+		9980E94D184C1FC800581841 /* FileRead.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileRead.h; sourceTree = "<group>"; };
+		9980E94E184C206400581841 /* FileRead.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FileRead.cpp; sourceTree = "<group>"; };
+		9994E60A184D2C20007354D4 /* Stk.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Stk.cpp; sourceTree = "<group>"; };
+		9994E60B184D2C20007354D4 /* Stk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stk.h; sourceTree = "<group>"; };
+		9994E60D184D2CFE007354D4 /* Delay.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Delay.cpp; sourceTree = "<group>"; };
+		9994E60E184D2CFE007354D4 /* Delay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Delay.h; sourceTree = "<group>"; };
+		9994E60F184D2CFE007354D4 /* DelayL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DelayL.cpp; sourceTree = "<group>"; };
+		9994E610184D2CFE007354D4 /* DelayL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DelayL.h; sourceTree = "<group>"; };
+		9994E611184D2CFE007354D4 /* MidiFileIn.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MidiFileIn.cpp; sourceTree = "<group>"; };
+		9994E612184D2CFE007354D4 /* MidiFileIn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MidiFileIn.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -238,15 +249,23 @@
 		86A7FA241831A4EC00E7FBC9 /* stk */ = {
 			isa = PBXGroup;
 			children = (
-				86A7FA251831A4EC00E7FBC9 /* Delay.cpp */,
-				86A7FA261831A4EC00E7FBC9 /* Delay.h */,
-				86A7FA271831A4EC00E7FBC9 /* DelayL.cpp */,
-				86A7FA281831A4EC00E7FBC9 /* DelayL.h */,
+				9994E60D184D2CFE007354D4 /* Delay.cpp */,
+				9994E60E184D2CFE007354D4 /* Delay.h */,
+				9994E60F184D2CFE007354D4 /* DelayL.cpp */,
+				9994E610184D2CFE007354D4 /* DelayL.h */,
+				9994E611184D2CFE007354D4 /* MidiFileIn.cpp */,
+				9994E612184D2CFE007354D4 /* MidiFileIn.h */,
+				9994E60A184D2C20007354D4 /* Stk.cpp */,
+				9994E60B184D2C20007354D4 /* Stk.h */,
+				9980E94E184C206400581841 /* FileRead.cpp */,
+				9980E94D184C1FC800581841 /* FileRead.h */,
+				9980E94B184C1ED800581841 /* Generator.h */,
+				9980E94C184C1ED800581841 /* WvIn.h */,
+				9980E945184C1E4F00581841 /* Envelope.cpp */,
+				9980E946184C1E4F00581841 /* Envelope.h */,
+				9980E947184C1E4F00581841 /* FileWvIn.cpp */,
+				9980E948184C1E4F00581841 /* FileWvIn.h */,
 				86A7FA291831A4EC00E7FBC9 /* Filter.h */,
-				86A7FA2A1831A4EC00E7FBC9 /* MidiFileIn.cpp */,
-				86A7FA2B1831A4EC00E7FBC9 /* MidiFileIn.h */,
-				86A7FA2C1831A4EC00E7FBC9 /* Stk.cpp */,
-				86A7FA2D1831A4EC00E7FBC9 /* Stk.h */,
 			);
 			path = stk;
 			sourceTree = "<group>";
@@ -484,34 +503,37 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9994E613184D2CFE007354D4 /* Delay.cpp in Sources */,
 				86A7FA661831A4EC00E7FBC9 /* y-particle.cpp in Sources */,
 				86A7FA671831A4EC00E7FBC9 /* y-score-reader.cpp in Sources */,
 				86A7FA601831A4EC00E7FBC9 /* x-vector3d.cpp in Sources */,
 				86A7FA681831A4EC00E7FBC9 /* y-waveform.cpp in Sources */,
 				86A7FA5B1831A4EC00E7FBC9 /* x-gfx.mm in Sources */,
-				86A7FA571831A4EC00E7FBC9 /* Stk.cpp in Sources */,
+				9994E614184D2CFE007354D4 /* DelayL.cpp in Sources */,
 				86A7FA801831A69100E7FBC9 /* raka-gfx.cpp in Sources */,
 				86A7FA5D1831A4EC00E7FBC9 /* x-loadrgb.cpp in Sources */,
 				86A7FA5E1831A4EC00E7FBC9 /* x-network.mm in Sources */,
+				9980E949184C1E4F00581841 /* Envelope.cpp in Sources */,
 				86A7FA851831A91300E7FBC9 /* raka-entity.cpp in Sources */,
 				86A7FA641831A4EC00E7FBC9 /* y-fft.cpp in Sources */,
 				86A7FA611831A4EC00E7FBC9 /* y-charting.cpp in Sources */,
 				86A7FA531831A4EC00E7FBC9 /* RtAudio.cpp in Sources */,
 				86A7FA581831A4EC00E7FBC9 /* x-audio.cpp in Sources */,
-				86A7FA561831A4EC00E7FBC9 /* MidiFileIn.cpp in Sources */,
 				86A7FA5C1831A4EC00E7FBC9 /* x-loadlum.cpp in Sources */,
 				86A7FA631831A4EC00E7FBC9 /* y-entity.cpp in Sources */,
 				86A7FA591831A4EC00E7FBC9 /* x-buffer.cpp in Sources */,
 				86A7FA1E1831A46B00E7FBC9 /* main.cpp in Sources */,
 				86A7FA5F1831A4EC00E7FBC9 /* x-thread.cpp in Sources */,
+				9994E615184D2CFE007354D4 /* MidiFileIn.cpp in Sources */,
+				9980E94A184C1E4F00581841 /* FileWvIn.cpp in Sources */,
 				86A7FA811831A69100E7FBC9 /* raka-globals.cpp in Sources */,
-				86A7FA551831A4EC00E7FBC9 /* DelayL.cpp in Sources */,
 				86A7FA7F1831A69100E7FBC9 /* raka-audio.cpp in Sources */,
+				9994E60C184D2C20007354D4 /* Stk.cpp in Sources */,
 				86A7FA5A1831A4EC00E7FBC9 /* x-fun.cpp in Sources */,
-				86A7FA541831A4EC00E7FBC9 /* Delay.cpp in Sources */,
 				8642B3E61834471600CF7375 /* y-fluidsynth.cpp in Sources */,
 				86A7FA821831A69100E7FBC9 /* raka-sim.cpp in Sources */,
 				86A7FA621831A4EC00E7FBC9 /* y-echo.cpp in Sources */,
+				9980E94F184C206400581841 /* FileRead.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

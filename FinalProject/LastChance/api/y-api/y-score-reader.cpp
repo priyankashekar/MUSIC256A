@@ -207,7 +207,7 @@ bool YScoreReader::load( const char * path, float velScale )
         std::cerr << "[score-reader]:   | format = " << m_midiFile->getFileFormat() << std::endl;
         std::cerr << "[score-reader]:   | tracks = " << m_midiFile->getNumberOfTracks() << std::endl;
         std::cerr << "[score-reader]:   | seconds / ticks = " << m_midiFile->getTickSeconds() << std::endl;
-        std::cerr << "[score-reader]:   | BPM = " << m_midiFile->getBPM() << std::endl;
+        //std::cerr << "[score-reader]:   | BPM = " << m_midiFile->getBPM() << std::endl;
     }
     catch ( StkError & e )
     {
@@ -298,15 +298,15 @@ const std::vector<long> & YScoreReader::getTracksNonZero() const
 
 
 
-
+//MOD: REMOVED DUE TO STK UPDATEs
 //-----------------------------------------------------------------------------
 // name: getBPM()
 // desc: get BPM
 //-----------------------------------------------------------------------------
 double YScoreReader::getBPM() const
 {
-    if( m_midiFile == NULL ) return 0;
-    return m_midiFile->getBPM();
+    /*if( m_midiFile == NULL )*/ return 0;
+    //return m_midiFile->getBPM();
 }
 
 

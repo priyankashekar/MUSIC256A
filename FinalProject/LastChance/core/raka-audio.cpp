@@ -227,6 +227,10 @@ bool raka_audio_init( unsigned int srate, unsigned int frameSize, unsigned chann
     // add to sim
     Globals::sim->root().addChild( Globals::waveform );
     
+    
+    //REMOVE FROM HERE
+    
+    
     return true;
 }
 
