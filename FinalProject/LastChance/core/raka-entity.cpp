@@ -10,7 +10,7 @@
 #include "x-fun.h"
 #include "rgb_hsv_hsl.hpp"
 
-#define RAND_FLOAT ((float)rand()) / RAND_MAX
+
 
 using namespace std;
 
@@ -223,7 +223,10 @@ void SKYhemi::render()
     // enable lighting
     glEnable( GL_LIGHTING );
     
-    DrawArc(0, 0, 10, M_PI_2, trailAngle, 100, 1, 1);
+    for (int i = 0; i < sizeof(stars) / sizeof(*stars); i++){
+        DrawArc(0, 0, stars[i].radius, stars[i].startingAngle, trailAngle, 500, stars[i].yPos, stars[i].alpha, stars[i].lineWidth);
+    }
+    
     //glColor4f( col.x, col.y, col.z, alpha );
     //glutSolidSphere(50, 100, 100);
     
@@ -265,16 +268,22 @@ void SKYhemi::init()
     trailAngle = 0.00001;
     
     for (int i = 0; i < sizeof(stars) / sizeof(*stars); i++){
-        stars[0].yPos = RAND_FLOAT * Globals::hemiRadius;
-        stars[0].startingAngle = RAND_FLOAT * M_PI * 2;
-        stars[0].alpha =  RAND_FLOAT * 0.8 + 0.2;
-        stars[0].lineWidth = RAND_FLOAT * 2 + 0.2;
+        
+
+    
+        stars[i].yPos = XFun::rand2f(0, 1) * Globals::hemiRadius;
+        stars[i].startingAngle = XFun::rand2f(0, 1) * M_PI * 2;
+        
+        //formula from http://en.wikipedia.org/wiki/Spherical_cap
+        stars[i].radius = pow(Globals::hemiRadius * 2 * (Globals::hemiRadius - stars[i].yPos) - pow(Globals::hemiRadius - stars[i].yPos, 2), 0.5);
+        stars[i].alpha = XFun::rand2f(0, 1) * 0.8 + 0.2;
+        stars[i].lineWidth = XFun::rand2f(0, 1) * 20 + 0.2;
     }
     
     
 }
 
-void SKYhemi::DrawArc(float cx, float cz, float r, float start_angle, float arc_angle, int num_segments,  float alpha, float lineWidth)
+void SKYhemi::DrawArc(float cx, float cz, float r, float start_angle, float arc_angle, int num_segments,  float y, float alpha, float lineWidth)
 {
 	float theta = arc_angle / float(num_segments - 1);//theta is now calculated from the arc angle instead, the - 1 bit comes from the fact that the arc is open
     
@@ -291,14 +300,14 @@ void SKYhemi::DrawArc(float cx, float cz, float r, float start_angle, float arc_
     glEnable (GL_BLEND);
     glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     
-    glTranslatef(0, 10, 0);
+    glTranslatef(0, y, 0);
     glBegin(GL_LINE_STRIP);//since the arc is not a closed curve, this is a strip now
     
     glLineWidth(lineWidth);
 	for(int ii = 0; ii < num_segments; ii++)
 	{
         
-        glColor4f(1, 1, 1, alpha);
+        glColor4f(0, 0, 0, 1);
 		glVertex3f(x + cx, 0, z + cz);
         
 		float tx = -z;

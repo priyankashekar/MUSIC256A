@@ -14,6 +14,7 @@
 
 struct SKYtrail{
     float yPos;
+    float radius;
     float startingAngle;
     float alpha;
     float lineWidth;
@@ -88,7 +89,7 @@ public:
     void init();
     
 protected:
-    void DrawArc(float cx, float cz, float r, float start_angle, float arc_angle, int num_segments, float alpha, float lineWidth);
+    void DrawArc(float cx, float cz, float r, float start_angle, float arc_angle, int num_segments, float y, float alpha, float lineWidth);
     
 protected:
     Vector3D palette[23];

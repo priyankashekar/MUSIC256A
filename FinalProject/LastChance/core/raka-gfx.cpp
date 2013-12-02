@@ -482,7 +482,7 @@ void reshapeFunc( int w, int h )
 void look( )
 {
     // go
-    Globals::fov.interp( XGfx::delta() );
+    //Globals::fov.interp( XGfx::delta() );
     // set the matrix mode to project
     glMatrixMode( GL_PROJECTION );
     // load the identity matrix
@@ -496,11 +496,17 @@ void look( )
     // load the identity matrix
     glLoadIdentity();
     // position the view point
-    gluLookAt( 0.0f,
+    /*gluLookAt( 0.0f,
               Globals::viewRadius.x * sin( Globals::viewEyeY.x ),
               Globals::viewRadius.x * cos( Globals::viewEyeY.x ),
               0.0f, 0.0f, 0.0f,
-              0.0f, ( cos( Globals::viewEyeY.x ) < 0 ? -1.0f : 1.0f ), 0.0f );
+              0.0f, ( cos( Globals::viewEyeY.x ) < 0 ? -1.0f : 1.0f ), 0.0f );*/
+    
+    //gluLookAt(0, 500, 500, 0, 0, 0, 0, 1, 0);
+    
+    gluLookAt(0, 0, 0, 0, 10, 1, 0, 1, 0);
+    
+    //gluLookAt(0, 200, 200, 0, 200, 0, 0, 1, 0);
     
     // set the position of the lights
     glLightfv( GL_LIGHT0, GL_POSITION, Globals::light0_pos );
