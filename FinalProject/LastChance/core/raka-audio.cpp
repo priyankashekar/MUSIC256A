@@ -14,6 +14,7 @@
 #include "y-fluidsynth.h"
 #include "y-echo.h"
 #include <iostream>
+#include "FileWvIn.h"
 using namespace std;
 
 
@@ -25,7 +26,7 @@ double g_now;
 double g_nextTime;
 int g_prog = 0;
 
-
+stk::FileWvIn * g_wvIn;
 
 
 // basic note struct
@@ -155,9 +156,13 @@ static void audio_callback( SAMPLE * buffer, unsigned int numFrames, void * user
     Globals::waveform->set( Globals::lastAudioBufferMono, numFrames );
     
     // synthesize it
-    g_synth->synthesize2( buffer, numFrames );
+    //g_synth->synthesize2( buffer, numFrames );
     // echo it
-    g_echo->synthesize2( buffer, numFrames );
+    //g_echo->synthesize2( buffer, numFrames );
+    
+    for (int i = 0; i < numFrames; i++){
+        buffer[2*i] = buffer[2*i+1]  = g_wvIn->tick();
+    }
 }
 
 
@@ -228,8 +233,7 @@ bool raka_audio_init( unsigned int srate, unsigned int frameSize, unsigned chann
     Globals::sim->root().addChild( Globals::waveform );
     
     
-    //REMOVE FROM HERE
-    
+    g_wvIn = new stk::FileWvIn("data/sound/ThinkinBoutYouVariation.wav");
     
     return true;
 }
