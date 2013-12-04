@@ -31,6 +31,7 @@ int g_prog = 0;
 stk::FileWvIn *g_wvIn;
 stk::Envelope *g_env;
 
+NEBClusterSound *g_neb;
 
 // basic note struct
 struct Note
@@ -167,7 +168,8 @@ static void audio_callback( SAMPLE * buffer, unsigned int numFrames, void * user
     g_now += numFrames;
     
     for (int i = 0; i < numFrames; i++){
-        buffer[2*i] = buffer[2*i+1]  = g_env-> tick() * g_wvIn->tick();
+        //buffer[2*i] = buffer[2*i+1]  = g_env-> tick() * g_wvIn->tick();
+        //buffer[2*i] = buffer[2*i+1] = g_neb->play();
     }
 }
 
@@ -238,10 +240,16 @@ bool raka_audio_init( unsigned int srate, unsigned int frameSize, unsigned chann
     // add to sim
     Globals::sim->root().addChild( Globals::waveform );
     
-    g_wvIn = new stk::FileWvIn("data/sound/ThinkinBoutYouVariation.wav");
-    g_env = new stk::Envelope();
-    g_env->setTime(6);
-    g_env->keyOn();
+//    g_wvIn = new stk::FileWvIn("data/sound/ThinkinBoutYouVariation.wav");
+//    g_env = new stk::Envelope();
+//    g_env->setTime(6);
+//    g_env->keyOn();
+    
+//    g_neb = new NEBClusterSound();
+//    g_neb->addStars(20);
+//    g_neb->setGrainLength(1);
+//    
+//    g_neb->startOneStar(10);
     
     return true;
 }
@@ -273,32 +281,31 @@ bool raka_audio_start()
 NEBClusterSound::NEBClusterSound(){
     
     g_wvIn = new stk::FileWvIn("data/sound/ThinkinBoutYouVariation.wav");
+    g_wvIn->setRate(0);
     m_fileLength = g_wvIn->getSize();
 
 }
 
-void NEBClusterSound::setGrainLength(int grainLength){
+void NEBClusterSound::setGrainLength(int grainLengthSecs){
     
-    m_grainLength = grainLength;
+    m_grainLength = grainLengthSecs * RAKA_SRATE;
 }
 
-void NEBClusterSound::addStars(){
+void NEBClusterSound::addStars(int numStars){
     
-    for (int i = 0; i < 20; i++){
-        m_stars[i] = new NEBStarSound(m_grainLength, m_fileLength);
+    for (int i = 0; i < numStars; i++){
+        m_stars[i] = new NEBStarSound(m_fileLength, m_grainLength);
     }
-}
-
-
-SAMPLE NEBClusterSound::playStar(int starIndex){
     
-    return m_stars[starIndex]->play();
+    m_numStars = numStars;
 }
+
 
 
 NEBStarSound::NEBStarSound(int fileLength, int grainLength){
 
-    m_grainStart = XFun::rand2i(0, fileLength - grainLength);
+    m_grainStart = XFun::map(((double)rand()), 0, RAND_MAX, 0, fileLength - grainLength);
+
 }
 
 
@@ -308,3 +315,51 @@ SAMPLE NEBStarSound::play(){
     return g_wvIn->tick();
 }
 
+void NEBStarSound::starOn(){
+    
+    g_wvIn->addTime(m_grainStart);
+    g_wvIn->setRate(1);
+}
+
+void NEBStarSound::starOff(){
+    
+    g_wvIn->reset();
+    g_wvIn->setRate(0);
+}
+
+
+void NEBClusterSound::startOneStar(int starIndex){
+    
+    //DO WE NEED TO STOP OTHER STARS?
+//    for (int i = 0; i < m_numStars; i++){
+//        m_stars[starIndex]->starOff();
+//    }
+    
+        m_stars[starIndex]->starOn();
+    
+}
+
+void NEBClusterSound::stopOneStar(int starIndex){
+    
+    m_stars[starIndex]->starOff();
+}
+
+void NEBClusterSound::startStepSynth(){
+    
+}
+
+void NEBClusterSound::stopStepSynth(){
+    
+}
+
+
+SAMPLE NEBClusterSound::play(){
+    
+    SAMPLE sumSounds = 0;
+    
+    for (int i = 0; i < m_numStars; i++){
+        sumSounds += m_stars[i]->play();
+    }
+    
+    return sumSounds;
+}

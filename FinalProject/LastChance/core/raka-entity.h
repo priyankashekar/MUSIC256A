@@ -100,15 +100,39 @@ protected:
 };
 
 
+class NEBStarSee : public YEntity //MAY NOT NEED TO INHERIT
+{
+public:
+    NEBStarSee(Vector3D location, Vector3D color);
+    ~NEBStarSee();
+public:
+    void select();
+    void play();
+    void update(YTimeInterval dt);
+    void render();
+protected:
+    //XPoint3D m_location;
+    Vector3D m_color;
+    YBokeh *m_star;
+
+    
+};
+
+class NEBClusterSee
+{
+public:
+    NEBClusterSee(int numStars, Vector3D center, float spreadRadius);
+    ~NEBClusterSee();
+protected:
+    Vector3D m_center; //may not need to store?
+    int m_numStars;
+    std::vector<NEBStarSee *> m_stars;
+    
+};
 
 
 
 #endif
-
-
-
-
-
 
 
 

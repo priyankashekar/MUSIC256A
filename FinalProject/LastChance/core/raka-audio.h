@@ -34,6 +34,8 @@ public:
     
 public:
     SAMPLE play();
+    void starOn();
+    void starOff();
     
 protected:
     int m_grainStart;
@@ -52,13 +54,25 @@ public:
     NEBClusterSound();
     ~NEBClusterSound();
 public:
-    SAMPLE playStar(int starIndex);
-    void addStars();
-    void setGrainLength(int grainLength);
+    //SAMPLE playStar(int starIndex);
+    void addStars(int numStars);
+    void setGrainLength(int grainLengthSecs);
+    
+    void startOneStar(int starIndex);
+    void stopOneStar(int starIndex);
+    
+    void startStepSynth();
+    void stopStepSynth();
+    
+    
+    SAMPLE play();
+    
+    
 protected:
     int m_fileLength;
     int m_grainLength;
     NEBStarSound **m_stars;
+    int m_numStars;
     
 };
 

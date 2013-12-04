@@ -28,6 +28,7 @@ vector<YBokeh *> g_bokehs;
 
 SKYhemi *g_sky;
 
+NEBClusterSee *g_nebStar;
 
 //-----------------------------------------------------------------------------
 // function prototypes
@@ -292,12 +293,13 @@ void initialize_simulation()
 //    Globals::sim->root().addChild( g_jellyfish );
 //
 //    // create a spark
-//    spark = new RAKASpark();
+   // spark = new RAKASpark();
+
 //    // set attributes
-//    spark->set( RAKA_TEX_FLARE_TNG_1, .5f, 1.0f );
-//    spark->loc.set( .1, 0, 0 );
+  //  spark->set( RAKA_TEX_FLARE_TNG_1, .5f, 1.0f );
+ //   spark->loc.set( .1, 0, 0 );
 //    // add to simulation
-//    Globals::sim->root().addChild( spark );
+  //  Globals::sim->root().addChild( spark );
     
 //    // bokeh
 //    YBokeh * bokeh = new YBokeh();
@@ -333,6 +335,10 @@ void initialize_simulation()
     g_sky = new SKYhemi();
     g_sky->init();
     Globals::sim->root().addChild(g_sky);
+    
+    g_nebStar = new NEBClusterSee(10, Vector3D(0,0,-10), 10);
+    //Globals::sim->root().addChild(g_neb);
+    
 }
 
 
@@ -504,7 +510,7 @@ void look( )
     
     //gluLookAt(0, 500, 500, 0, 0, 0, 0, 1, 0);
     
-    gluLookAt(0, 0, 0, 0, 10, 1, 0, 1, 0);
+    gluLookAt(0, 0, 0, 0, 0, -10, 0, 1, 0);
     
     //gluLookAt(0, 200, 200, 0, 200, 0, 0, 1, 0);
     

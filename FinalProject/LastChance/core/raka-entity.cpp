@@ -7,6 +7,7 @@
 //-----------------------------------------------------------------------------
 #include "raka-entity.h"
 #include "raka-globals.h"
+#include "raka-sim.h"
 #include "x-fun.h"
 #include "rgb_hsv_hsl.hpp"
 
@@ -325,4 +326,66 @@ void SKYhemi::DrawArc(float cx, float cz, float r, float start_angle, float arc_
     glDisable( GL_BLEND );
 }
 
+NEBStarSee::NEBStarSee(Vector3D location, Vector3D color){
+    
+
+    m_color = color;
+    
+    m_star = new YBokeh();
+    m_star->set( 1.0f, 1.0f, 1.0f, 1.0f, RAKA_TEX_FLARE_TNG_5 );
+            m_star->sca.set( 10, 10, 10 );
+    //        // set bokeh
+    m_star->setBokehParams( // initial time
+                                  XFun::rand2f(0,10),
+    //                              // freq
+                                  XFun::rand2f(1,3),
+    //                              // time step
+                                  50,
+    //                              // location
+                                  location,
+    //                              // color
+                                  color);
+    //        // alpha
+            m_star->setAlpha( 1 );
+    //        // add to simulation
+            Globals::sim->root().addChild(m_star);
+    
+    
+ 
+}
+
+void NEBStarSee::select(){
+    
+    
+}
+
+void NEBStarSee::play(){
+    
+}
+
+
+void NEBStarSee::update(YTimeInterval dt){
+    
+    //m_star->update(dt);
+}
+
+void NEBStarSee::render(){
+    
+    //m_star->render();
+    
+}
+
+NEBClusterSee::NEBClusterSee(int numStars, Vector3D center, float spreadRadius){
+    
+    m_numStars = numStars;
+    m_center = center;
+
+    
+    for (int i = 0; i < numStars; i++){
+        NEBStarSee *addStar;
+        addStar = new NEBStarSee(Vector3D(XFun::rand2f(center.x - spreadRadius, center.x + spreadRadius), XFun::rand2f(center.y - spreadRadius, center.y + spreadRadius), center.z), Vector3D(1,0,0));
+        m_stars.push_back(addStar);
+    }
+  
+}
 
