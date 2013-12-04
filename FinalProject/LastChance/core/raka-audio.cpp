@@ -15,6 +15,8 @@
 #include "y-echo.h"
 #include <iostream>
 #include "FileWvIn.h"
+#include "Envelope.h"
+#include "x-fun.h"
 using namespace std;
 
 
@@ -26,7 +28,8 @@ double g_now;
 double g_nextTime;
 int g_prog = 0;
 
-stk::FileWvIn * g_wvIn;
+stk::FileWvIn *g_wvIn;
+stk::Envelope *g_env;
 
 
 // basic note struct
@@ -82,6 +85,7 @@ void raka_playNotes( float pitch, float velocity )
 
 
 
+
 //-----------------------------------------------------------------------------
 // name: audio_callback
 // desc: audio callback
@@ -89,79 +93,81 @@ void raka_playNotes( float pitch, float velocity )
 static void audio_callback( SAMPLE * buffer, unsigned int numFrames, void * userData )
 {
     // keep track of current time in samples
-    g_now += numFrames;
+//    g_now += numFrames;
     
     // HACK: rough time keeping for next notes - this logic really should be
     // somewhere else: e.g., in its own class and not directly in the audio callback!
-    if( g_now > g_nextTime )
-    {
-        // lock (to protect vector)
-        g_mutex.acquire();
-        // move down the vector
-        if( g_noteIndex < g_notes.size() )
-        {
-            // temporary note pointer
-            Note * n = &g_notes[g_noteIndex];
-            // note on!
-            g_synth->noteOn( n->channel, n->pitch, n->velocity * 120 );
-            // HACK: with a major 3rd above!
-            g_synth->noteOn( n->channel, n->pitch + 4, n->velocity * 80 );
-            // check to see next time
-            g_nextTime += n->duration * RAKA_SRATE;
-            // move to next note for next time
-            g_noteIndex++;
-        }
-        // release lock
-        g_mutex.release();
-    }
+//    if( g_now > g_nextTime )
+//    {
+//        // lock (to protect vector)
+//        g_mutex.acquire();
+//        // move down the vector
+//        if( g_noteIndex < g_notes.size() )
+//        {
+//            // temporary note pointer
+//            Note * n = &g_notes[g_noteIndex];
+//            // note on!
+//            g_synth->noteOn( n->channel, n->pitch, n->velocity * 120 );
+//            // HACK: with a major 3rd above!
+//            g_synth->noteOn( n->channel, n->pitch + 4, n->velocity * 80 );
+//            // check to see next time
+//            g_nextTime += n->duration * RAKA_SRATE;
+//            // move to next note for next time
+//            g_noteIndex++;
+//        }
+//        // release lock
+//        g_mutex.release();
+//    }
     
-    // sum
-    SAMPLE sum = 0;
-    // num channels
-    unsigned int channels = Globals::lastAudioBufferChannels;
-    
-    // zero out
-    memset( Globals::lastAudioBuffer, 0,
-           sizeof(SAMPLE)*Globals::lastAudioBufferFrames*channels );
-    memset( Globals::lastAudioBufferMono, 0,
-           sizeof(SAMPLE)*Globals::lastAudioBufferFrames );
-    
-    // copy to global buffer
-    memcpy( Globals::lastAudioBuffer, buffer,
-           sizeof(SAMPLE)*numFrames*channels );
-    
-    // copy to mono buffer
-    for( int i = 0; i < numFrames; i++ )
-    {
-        // zero out
-        sum = 0;
-        // loop over channels
-        for( int j = 0; j < channels; j++ )
-        {
-            // sum
-            sum += buffer[i*channels + j];
-        }
-        // set
-        Globals::lastAudioBufferMono[i] = sum / channels;
-    }
-    
-    // window it for taper in visuals
-    for( int i = 0; i < numFrames; i++ )
-    {
-        // multiply
-        Globals::lastAudioBufferMono[i] *= Globals::audioBufferWindow[i];
-    }
-
-    // set in the wave
-    Globals::waveform->set( Globals::lastAudioBufferMono, numFrames );
+//    // sum
+//    SAMPLE sum = 0;
+//    // num channels
+//    unsigned int channels = Globals::lastAudioBufferChannels;
+//    
+//    // zero out
+//    memset( Globals::lastAudioBuffer, 0,
+//           sizeof(SAMPLE)*Globals::lastAudioBufferFrames*channels );
+//    memset( Globals::lastAudioBufferMono, 0,
+//           sizeof(SAMPLE)*Globals::lastAudioBufferFrames );
+//    
+//    // copy to global buffer
+//    memcpy( Globals::lastAudioBuffer, buffer,
+//           sizeof(SAMPLE)*numFrames*channels );
+//    
+//    // copy to mono buffer
+//    for( int i = 0; i < numFrames; i++ )
+//    {
+//        // zero out
+//        sum = 0;
+//        // loop over channels
+//        for( int j = 0; j < channels; j++ )
+//        {
+//            // sum
+//            sum += buffer[i*channels + j];
+//        }
+//        // set
+//        Globals::lastAudioBufferMono[i] = sum / channels;
+//    }
+//    
+//    // window it for taper in visuals
+//    for( int i = 0; i < numFrames; i++ )
+//    {
+//        // multiply
+//        Globals::lastAudioBufferMono[i] *= Globals::audioBufferWindow[i];
+//    }
+//
+//    // set in the wave
+//    Globals::waveform->set( Globals::lastAudioBufferMono, numFrames );
     
     // synthesize it
     //g_synth->synthesize2( buffer, numFrames );
     // echo it
     //g_echo->synthesize2( buffer, numFrames );
     
+    g_now += numFrames;
+    
     for (int i = 0; i < numFrames; i++){
-        buffer[2*i] = buffer[2*i+1]  = g_wvIn->tick();
+        buffer[2*i] = buffer[2*i+1]  = g_env-> tick() * g_wvIn->tick();
     }
 }
 
@@ -232,8 +238,10 @@ bool raka_audio_init( unsigned int srate, unsigned int frameSize, unsigned chann
     // add to sim
     Globals::sim->root().addChild( Globals::waveform );
     
-    
     g_wvIn = new stk::FileWvIn("data/sound/ThinkinBoutYouVariation.wav");
+    g_env = new stk::Envelope();
+    g_env->setTime(6);
+    g_env->keyOn();
     
     return true;
 }
@@ -256,3 +264,47 @@ bool raka_audio_start()
     
     return true;
 }
+
+
+//-----------------------------------------------------------------------------
+// name: vq_audio_start()
+// desc: start audio system
+//-----------------------------------------------------------------------------
+NEBClusterSound::NEBClusterSound(){
+    
+    g_wvIn = new stk::FileWvIn("data/sound/ThinkinBoutYouVariation.wav");
+    m_fileLength = g_wvIn->getSize();
+
+}
+
+void NEBClusterSound::setGrainLength(int grainLength){
+    
+    m_grainLength = grainLength;
+}
+
+void NEBClusterSound::addStars(){
+    
+    for (int i = 0; i < 20; i++){
+        m_stars[i] = new NEBStarSound(m_grainLength, m_fileLength);
+    }
+}
+
+
+SAMPLE NEBClusterSound::playStar(int starIndex){
+    
+    return m_stars[starIndex]->play();
+}
+
+
+NEBStarSound::NEBStarSound(int fileLength, int grainLength){
+
+    m_grainStart = XFun::rand2i(0, fileLength - grainLength);
+}
+
+
+
+SAMPLE NEBStarSound::play(){
+    
+    return g_wvIn->tick();
+}
+

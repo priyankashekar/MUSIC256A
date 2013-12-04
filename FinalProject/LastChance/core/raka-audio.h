@@ -8,6 +8,7 @@
 #ifndef __RAKA_AUDIO_H__
 #define __RAKA_AUDIO_H__
 
+#include "x-audio.h"
 
 
 
@@ -18,6 +19,51 @@ bool raka_audio_start();
 
 // play some notes
 void raka_playNotes( float pitch, float velocity );
+
+
+//-----------------------------------------------------------------------------
+// name: class NEBStarSound
+// desc: for testing
+//-----------------------------------------------------------------------------
+class NEBStarSound
+{
+    
+public:
+    NEBStarSound(int fileLength, int grainLength);
+    ~NEBStarSound();
+    
+public:
+    SAMPLE play();
+    
+protected:
+    int m_grainStart;
+
+    
+};
+
+
+//-----------------------------------------------------------------------------
+// name: class NEBClusterSound
+// desc: for testing
+//-----------------------------------------------------------------------------
+class NEBClusterSound
+{
+public:
+    NEBClusterSound();
+    ~NEBClusterSound();
+public:
+    SAMPLE playStar(int starIndex);
+    void addStars();
+    void setGrainLength(int grainLength);
+protected:
+    int m_fileLength;
+    int m_grainLength;
+    NEBStarSound **m_stars;
+    
+};
+
+
+
 
 
 #endif
