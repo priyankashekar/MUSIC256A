@@ -41,6 +41,12 @@ Vector3D Globals::viewRadius( 5, 2, 1 );
 Vector3D Globals::viewEyeY( 2, 0, 1.5f );
 Vector3D Globals::fov( 80, 100, .2f );
 
+Vector3D Globals::lookFrom(0, 0, 0);
+Vector3D Globals::lookTo(0, 0, -hemiRadius);
+const Vector3D Globals::upVector(0, 1, 0);
+Vector3D Globals::lastLookTo(0, 0, 0);
+
+
 GLuint Globals::textures[RAKA_MAX_TEXTURES];
 
 GLfloat Globals::light0_pos[4] = { 2.0f, 1.2f, 4.0f, 1.0f };

@@ -14,6 +14,7 @@
 #include "x-gfx.h"
 #include "x-loadlum.h"
 #include "x-vector3d.h"
+#include "raka-navigation.h"
 
 #include <iostream>
 #include <vector>
@@ -336,7 +337,7 @@ void initialize_simulation()
     g_sky->init();
     Globals::sim->root().addChild(g_sky);
     
-    g_nebStar = new NEBClusterSee(10, Vector3D(0,0,-10), 10);
+    g_nebStar = new NEBClusterSee(10, Vector3D(0,0,-50), 40);
     //Globals::sim->root().addChild(g_neb);
     
 }
@@ -508,11 +509,7 @@ void look( )
               0.0f, 0.0f, 0.0f,
               0.0f, ( cos( Globals::viewEyeY.x ) < 0 ? -1.0f : 1.0f ), 0.0f );*/
     
-    //gluLookAt(0, 500, 500, 0, 0, 0, 0, 1, 0);
-    
-    gluLookAt(0, 0, 0, 0, 0, -10, 0, 1, 0);
-    
-    //gluLookAt(0, 200, 200, 0, 200, 0, 0, 1, 0);
+    gluLookAt(Globals::lookFrom.x, Globals::lookFrom.y, Globals::lookFrom.z, Globals::lookTo.x, Globals::lookTo.y, Globals::lookTo.z, Globals::upVector.x, Globals::upVector.y, Globals::upVector.z);
     
     // set the position of the lights
     glLightfv( GL_LIGHT0, GL_POSITION, Globals::light0_pos );
@@ -811,8 +808,10 @@ void specialFunc( int key, int x, int y )
             case GLUT_KEY_RIGHT:
                 break;
             case GLUT_KEY_UP:
+                turnUp();
                 break;
             case GLUT_KEY_DOWN:
+                turnDown();
                 break;
         }
     }

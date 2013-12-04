@@ -9,7 +9,7 @@
 #define __RAKA_AUDIO_H__
 
 #include "x-audio.h"
-
+#include <vector>
 
 
 // init audio
@@ -71,7 +71,7 @@ public:
 protected:
     int m_fileLength;
     int m_grainLength;
-    NEBStarSound **m_stars;
+    std::vector<NEBStarSound *> m_stars;
     int m_numStars;
     
 };

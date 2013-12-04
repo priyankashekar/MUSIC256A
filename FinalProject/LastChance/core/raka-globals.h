@@ -103,6 +103,12 @@ public:
     // view stuff
     static Vector3D viewRadius;
     static Vector3D viewEyeY;
+    
+    static Vector3D lookFrom;
+    static Vector3D lookTo;
+    static const Vector3D upVector;
+    static Vector3D lastLookTo;
+    
     static Vector3D fov;
     
     // textures

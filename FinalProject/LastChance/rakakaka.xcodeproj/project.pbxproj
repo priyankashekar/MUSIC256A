@@ -38,6 +38,7 @@
 		86A7FA811831A69100E7FBC9 /* raka-globals.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 86A7FA7B1831A69100E7FBC9 /* raka-globals.cpp */; };
 		86A7FA821831A69100E7FBC9 /* raka-sim.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 86A7FA7D1831A69100E7FBC9 /* raka-sim.cpp */; };
 		86A7FA851831A91300E7FBC9 /* raka-entity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 86A7FA831831A91300E7FBC9 /* raka-entity.cpp */; };
+		992BF59F184FEBF2007946E6 /* raka-navigation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 992BF59D184FEBF2007946E6 /* raka-navigation.cpp */; };
 		9980E940184BCE9900581841 /* libfluidsynth.1.5.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9980E934184BCE9900581841 /* libfluidsynth.1.5.2.dylib */; };
 		9980E941184BCE9900581841 /* libfluidsynth.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9980E935184BCE9900581841 /* libfluidsynth.1.dylib */; };
 		9980E942184BCE9900581841 /* libfluidsynth.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9980E936184BCE9900581841 /* libfluidsynth.dylib */; };
@@ -122,6 +123,8 @@
 		86A7FA7E1831A69100E7FBC9 /* raka-sim.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "raka-sim.h"; path = "core/raka-sim.h"; sourceTree = "<group>"; };
 		86A7FA831831A91300E7FBC9 /* raka-entity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "raka-entity.cpp"; path = "core/raka-entity.cpp"; sourceTree = "<group>"; };
 		86A7FA841831A91300E7FBC9 /* raka-entity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "raka-entity.h"; path = "core/raka-entity.h"; sourceTree = "<group>"; };
+		992BF59D184FEBF2007946E6 /* raka-navigation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "raka-navigation.cpp"; sourceTree = "<group>"; };
+		992BF59E184FEBF2007946E6 /* raka-navigation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "raka-navigation.h"; sourceTree = "<group>"; };
 		9980E919184BCE9900581841 /* AUTHORS */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AUTHORS; sourceTree = "<group>"; };
 		9980E91B184BCE9900581841 /* fluidsynth */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = fluidsynth; sourceTree = "<group>"; };
 		9980E91C184BCE9900581841 /* ChangeLog */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ChangeLog; sourceTree = "<group>"; };
@@ -346,6 +349,8 @@
 				86A7FA7C1831A69100E7FBC9 /* raka-globals.h */,
 				86A7FA7D1831A69100E7FBC9 /* raka-sim.cpp */,
 				86A7FA7E1831A69100E7FBC9 /* raka-sim.h */,
+				992BF59D184FEBF2007946E6 /* raka-navigation.cpp */,
+				992BF59E184FEBF2007946E6 /* raka-navigation.h */,
 			);
 			name = core;
 			sourceTree = "<group>";
@@ -503,6 +508,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				992BF59F184FEBF2007946E6 /* raka-navigation.cpp in Sources */,
 				9994E613184D2CFE007354D4 /* Delay.cpp in Sources */,
 				86A7FA661831A4EC00E7FBC9 /* y-particle.cpp in Sources */,
 				86A7FA671831A4EC00E7FBC9 /* y-score-reader.cpp in Sources */,

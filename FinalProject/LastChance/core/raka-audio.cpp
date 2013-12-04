@@ -64,23 +64,27 @@ XMutex g_mutex;
 // play some notes
 void raka_playNotes( float pitch, float velocity )
 {
-    // lock
-    g_mutex.acquire();
-    // clear notes
-    g_notes.clear();
-    for( int i = 0; i < 24; i++ )
-    {
-        // next notes
-        g_notes.push_back( Note( 0, pitch + i*2, (1 - i/24.0), .05 + .15*(1 - i/24.0) ) );
-    }
-    // unlock
-    g_mutex.release();
-
-    // reset the index
-    g_noteIndex = 0;
+//    // lock
+//    g_mutex.acquire();
+//    // clear notes
+//    g_notes.clear();
+//    for( int i = 0; i < 24; i++ )
+//    {
+//        // next notes
+//        g_notes.push_back( Note( 0, pitch + i*2, (1 - i/24.0), .05 + .15*(1 - i/24.0) ) );
+//    }
+//    // unlock
+//    g_mutex.release();
+//
+//    // reset the index
+//    g_noteIndex = 0;
+//    
+//    // play now!
+//    g_nextTime = g_now;
     
-    // play now!
-    g_nextTime = g_now;
+    g_neb->startOneStar((int)XFun::rand2f(0, 20));
+
+    
 }
 
 
@@ -169,7 +173,7 @@ static void audio_callback( SAMPLE * buffer, unsigned int numFrames, void * user
     
     for (int i = 0; i < numFrames; i++){
         //buffer[2*i] = buffer[2*i+1]  = g_env-> tick() * g_wvIn->tick();
-        //buffer[2*i] = buffer[2*i+1] = g_neb->play();
+        buffer[2*i] = buffer[2*i+1] = g_neb->play();
     }
 }
 
@@ -245,11 +249,12 @@ bool raka_audio_init( unsigned int srate, unsigned int frameSize, unsigned chann
 //    g_env->setTime(6);
 //    g_env->keyOn();
     
-//    g_neb = new NEBClusterSound();
-//    g_neb->addStars(20);
-//    g_neb->setGrainLength(1);
-//    
-//    g_neb->startOneStar(10);
+    g_neb = new NEBClusterSound();
+    g_neb->setGrainLength(1);
+    g_neb->addStars(20);
+
+    
+
     
     return true;
 }
@@ -294,7 +299,9 @@ void NEBClusterSound::setGrainLength(int grainLengthSecs){
 void NEBClusterSound::addStars(int numStars){
     
     for (int i = 0; i < numStars; i++){
-        m_stars[i] = new NEBStarSound(m_fileLength, m_grainLength);
+        NEBStarSound *addStar = new NEBStarSound(m_fileLength, m_grainLength);
+        m_stars.push_back(addStar);
+        
     }
     
     m_numStars = numStars;
@@ -331,9 +338,9 @@ void NEBStarSound::starOff(){
 void NEBClusterSound::startOneStar(int starIndex){
     
     //DO WE NEED TO STOP OTHER STARS?
-//    for (int i = 0; i < m_numStars; i++){
-//        m_stars[starIndex]->starOff();
-//    }
+    for (int i = 0; i < m_numStars; i++){
+        m_stars[starIndex]->starOff();
+    }
     
         m_stars[starIndex]->starOn();
     
