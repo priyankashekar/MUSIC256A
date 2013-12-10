@@ -86,8 +86,10 @@ void raka_playNotes( float pitch, float velocity )
     
 }
 
+void playStar(int starIndex){
 
-
+    g_neb->starOn(starIndex);
+}
 
 
 //-----------------------------------------------------------------------------
@@ -173,6 +175,7 @@ static void audio_callback( SAMPLE * buffer, unsigned int numFrames, void * user
     for (int i = 0; i < numFrames; i++){
         //buffer[2*i] = buffer[2*i+1]  = g_env-> tick() * g_wvIn->tick();
         buffer[2*i] = buffer[2*i+1] = g_neb->play();
+        g_neb->tickStarTimer();
     }
 }
 
@@ -253,9 +256,9 @@ bool raka_audio_init( unsigned int srate, unsigned int frameSize, unsigned chann
     g_neb->setGrainLength(1);
     g_neb->addStars(20);
 
-    //g_neb->startOneStar(0);
 
-    g_neb->starOn(0);
+
+
     
     return true;
 }
@@ -291,8 +294,11 @@ NEBClusterSound::NEBClusterSound(){
     m_fileLength = wvIn->getSize();
     
     env = new stk::Envelope();
-    env->setTime(0.1);
+    env->setTime(0.2);
     env->keyOff();
+    
+    m_timeNow = 0;
+    m_timerOn = false;
     
 }
 
@@ -334,15 +340,18 @@ int NEBStarSound::getGrainStart(){
 
 void NEBClusterSound::starOn(int starIndex){
     
+    wvIn->reset();
     wvIn->addTime(m_stars[starIndex]->getGrainStart());
     //wvIn->setRate(1);
     
     env->keyOn();
+    
+    startStarTimer();
 }
 
-void NEBClusterSound::starOff(int starIndex){
+void NEBClusterSound::starOff(){
     
-    wvIn->reset();
+   
     //wvIn->setRate(0);
     
     env->keyOff();
@@ -386,4 +395,23 @@ SAMPLE NEBClusterSound::play(){
     
      return wvIn->tick() * env->tick();
     
+}
+
+void NEBClusterSound::startStarTimer(){
+    
+    m_timeNow = 0;
+    m_timerOn = true;
+}
+
+void NEBClusterSound::tickStarTimer(){
+    
+    if (m_timerOn){
+    
+        if (m_timeNow > m_grainLength){
+            starOff();
+            m_timerOn = false;
+        }
+        
+        m_timeNow++;
+    }
 }

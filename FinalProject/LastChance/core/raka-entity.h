@@ -125,7 +125,7 @@ class NEBClusterSee
 public:
     NEBClusterSee(int numStars, Vector3D center, float spreadRadius);
     ~NEBClusterSee();
-    void clickStar(int xMouse, int yMouse, int starMode);
+    int clickStar(int xMouse, int yMouse, int starMode);
 protected:
     Vector3D m_center;
     int m_numStars;

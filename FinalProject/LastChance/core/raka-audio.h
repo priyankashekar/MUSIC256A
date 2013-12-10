@@ -21,6 +21,7 @@ bool raka_audio_start();
 
 // play some notes
 void raka_playNotes( float pitch, float velocity );
+void playStar(int starIndex);
 
 
 //-----------------------------------------------------------------------------
@@ -62,13 +63,15 @@ public:
     void setGrainLength(int grainLengthSecs);
     
     void starOn(int starIndex);
-    void starOff(int starIndex);
+    void starOff();
     
     void startStepSynth();
     void stopStepSynth();
     
-    
     SAMPLE play();
+    
+    void startStarTimer();
+    void tickStarTimer();
     
     
 protected:
@@ -78,6 +81,8 @@ protected:
     int m_numStars;
     stk::FileWvIn *wvIn;
     stk::Envelope *env;
+    double m_timeNow;
+    bool m_timerOn;
     
 };
 

@@ -204,7 +204,10 @@ void SKYhemi::update(YTimeInterval dt)
 
     hsl_to_rgb( interpHSL.x, interpHSL.y, interpHSL.z, interpR, interpG, interpB);
     
-    Globals::bgColor.updateSet(Vector3D(interpR / 255.0, interpG / 255.0, interpB / 255.0));
+    //Globals::bgColor.updateSet(Vector3D(interpR / 255.0, interpG / 255.0, interpB / 255.0));
+    
+    Globals::bgColor.updateSet(Vector3D(0, 0, 0));
+    
     
     //angle = ((float)t2 / CLOCKS_PER_SEC) / (60 * 60) * M_PI * 2;
     trailAngle = M_PI;
@@ -263,7 +266,7 @@ void SKYhemi::init()
     palette[20] = Globals::LemonChiffon1;
     palette[21] = Globals::Honeydew3;
     palette[22] = Globals::Sienna1;
-    palette[23] = Globals::DarkSlateBlue;
+    palette[23] = Globals::MediumPurple3;
     
     trailAngle = 0.00001;
     
@@ -387,7 +390,7 @@ NEBClusterSee::NEBClusterSee(int numStars, Vector3D center, float spreadRadius){
 }
 
 
-void NEBClusterSee::clickStar(int xMouse, int yMouse, int starMode){
+int NEBClusterSee::clickStar(int xMouse, int yMouse, int starMode){
     
     double xWorld;
     double yWorld;
@@ -406,10 +409,13 @@ void NEBClusterSee::clickStar(int xMouse, int yMouse, int starMode){
             } else if (starMode == PLAY_STAR) {
                 m_stars[i]->play();
             }
-            break;
+            
+            return i;
         }
         
     }
+    
+    return -1;
 }
 
 void recoverClick(int iX, int iY, double z_distance, double &oX, double &oY){

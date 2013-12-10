@@ -771,11 +771,15 @@ void mouseFunc( int button, int state, int x, int y )
             // down
             if( state == 0 )
             {
-                g_nebStar->clickStar(x, y, SELECT_STAR);
+                int starIndex = g_nebStar->clickStar(x, y, SELECT_STAR);
                 
-                float pitch = 48 + (x/1280.0)*48;
-                float velocity = .5+y/2000.0;
-//                
+                if (starIndex > -1){
+                    playStar(starIndex);
+                }
+                
+//                float pitch = 48 + (x/1280.0)*48;
+//                float velocity = .5+y/2000.0;
+//
 //                float x1 = (x - Globals::windowWidth/2.0) / Globals::windowWidth * 7;
 //                float y1 = (-y + Globals::windowHeight/2.0) / Globals::windowHeight * 7;
 //
@@ -783,7 +787,7 @@ void mouseFunc( int button, int state, int x, int y )
 //                     << " x: " << x << " x1: " << x1 << " y " << y << " y1: " << y1 << endl;
 //
 //                addBokeh( x1, y1 );
-                raka_playNotes( pitch, velocity );
+                //raka_playNotes( pitch, velocity );
                 
  
                 //recoverClick(x, y, -50, xW, yW);
