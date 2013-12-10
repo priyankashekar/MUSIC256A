@@ -14,8 +14,8 @@
 #include "y-fluidsynth.h"
 #include "y-echo.h"
 #include <iostream>
-#include "FileWvIn.h"
-#include "Envelope.h"
+
+
 #include "x-fun.h"
 using namespace std;
 
@@ -28,8 +28,7 @@ double g_now;
 double g_nextTime;
 int g_prog = 0;
 
-stk::FileWvIn *g_wvIn;
-stk::Envelope *g_env;
+
 
 NEBClusterSound *g_neb;
 
@@ -82,7 +81,7 @@ void raka_playNotes( float pitch, float velocity )
 //    // play now!
 //    g_nextTime = g_now;
     
-    g_neb->startOneStar((int)XFun::rand2f(0, 20));
+
 
     
 }
@@ -249,12 +248,14 @@ bool raka_audio_init( unsigned int srate, unsigned int frameSize, unsigned chann
 //    g_env->setTime(6);
 //    g_env->keyOn();
     
+    
     g_neb = new NEBClusterSound();
     g_neb->setGrainLength(1);
     g_neb->addStars(20);
 
-    
+    //g_neb->startOneStar(0);
 
+    g_neb->starOn(0);
     
     return true;
 }
@@ -285,10 +286,14 @@ bool raka_audio_start()
 //-----------------------------------------------------------------------------
 NEBClusterSound::NEBClusterSound(){
     
-    g_wvIn = new stk::FileWvIn("data/sound/ThinkinBoutYouVariation.wav");
-    g_wvIn->setRate(0);
-    m_fileLength = g_wvIn->getSize();
-
+    wvIn = new stk::FileWvIn("data/sound/ThinkinBoutYouVariation.wav");
+    wvIn->setRate(1);
+    m_fileLength = wvIn->getSize();
+    
+    env = new stk::Envelope();
+    env->setTime(0.1);
+    env->keyOff();
+    
 }
 
 void NEBClusterSound::setGrainLength(int grainLengthSecs){
@@ -316,40 +321,49 @@ NEBStarSound::NEBStarSound(int fileLength, int grainLength){
 }
 
 
-
-SAMPLE NEBStarSound::play(){
+int NEBStarSound::getGrainStart(){
     
-    return g_wvIn->tick();
-}
-
-void NEBStarSound::starOn(){
-    
-    g_wvIn->addTime(m_grainStart);
-    g_wvIn->setRate(1);
-}
-
-void NEBStarSound::starOff(){
-    
-    g_wvIn->reset();
-    g_wvIn->setRate(0);
+    return m_grainStart;
 }
 
 
-void NEBClusterSound::startOneStar(int starIndex){
+//SAMPLE NEBStarSound::play(){
+//    
+//   
+//}
+
+void NEBClusterSound::starOn(int starIndex){
     
-    //DO WE NEED TO STOP OTHER STARS?
-    for (int i = 0; i < m_numStars; i++){
-        m_stars[starIndex]->starOff();
-    }
+    wvIn->addTime(m_stars[starIndex]->getGrainStart());
+    //wvIn->setRate(1);
     
-        m_stars[starIndex]->starOn();
-    
+    env->keyOn();
 }
 
-void NEBClusterSound::stopOneStar(int starIndex){
+void NEBClusterSound::starOff(int starIndex){
     
-    m_stars[starIndex]->starOff();
+    wvIn->reset();
+    //wvIn->setRate(0);
+    
+    env->keyOff();
 }
+
+
+//void NEBClusterSound::startOneStar(int starIndex){
+//    
+//    //DO WE NEED TO STOP OTHER STARS?
+////    for (int i = 0; i < m_numStars; i++){
+////        m_stars[starIndex]->starOff();
+////    }
+//    
+//        m_stars[starIndex]->starOn();
+//    
+//}
+//
+//void NEBClusterSound::stopOneStar(int starIndex){
+//    
+//    m_stars[starIndex]->starOff();
+//}
 
 void NEBClusterSound::startStepSynth(){
     
@@ -362,11 +376,14 @@ void NEBClusterSound::stopStepSynth(){
 
 SAMPLE NEBClusterSound::play(){
     
-    SAMPLE sumSounds = 0;
+//    SAMPLE sumSounds = 0;
+//    
+//    for (int i = 0; i < m_numStars; i++){
+//        sumSounds += m_stars[i]->play();
+//    }
+//    
+//    return sumSounds;
     
-    for (int i = 0; i < m_numStars; i++){
-        sumSounds += m_stars[i]->play();
-    }
+     return wvIn->tick() * env->tick();
     
-    return sumSounds;
 }

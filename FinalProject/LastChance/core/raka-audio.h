@@ -9,6 +9,8 @@
 #define __RAKA_AUDIO_H__
 
 #include "x-audio.h"
+#include "FileWvIn.h"
+#include "Envelope.h"
 #include <vector>
 
 
@@ -33,9 +35,10 @@ public:
     ~NEBStarSound();
     
 public:
-    SAMPLE play();
-    void starOn();
-    void starOff();
+//    SAMPLE play();
+//    void starOn();
+//    void starOff();
+    int getGrainStart();
     
 protected:
     int m_grainStart;
@@ -58,8 +61,8 @@ public:
     void addStars(int numStars);
     void setGrainLength(int grainLengthSecs);
     
-    void startOneStar(int starIndex);
-    void stopOneStar(int starIndex);
+    void starOn(int starIndex);
+    void starOff(int starIndex);
     
     void startStepSynth();
     void stopStepSynth();
@@ -73,6 +76,8 @@ protected:
     int m_grainLength;
     std::vector<NEBStarSound *> m_stars;
     int m_numStars;
+    stk::FileWvIn *wvIn;
+    stk::Envelope *env;
     
 };
 

@@ -332,15 +332,15 @@ NEBStarSee::NEBStarSee(Vector3D location, Vector3D color){
     m_location = location;
     
     m_star = new YBokeh();
-    m_star->set( 1.0f, 0.5f, 1.0f, 1.0f, RAKA_TEX_FLARE_TNG_3 );
+    m_star->set( 1.0f, 1.0f, 1.0f, 1.0f, RAKA_TEX_FLARE_TNG_1 );
             m_star->sca.set( 10, 10, 10 );
     //        // set bokeh
     m_star->setBokehParams( // initial time
-                                  0,
+                                  20,
     //                              // freq
-                                  0,
+                                  20,
     //                              // time step
-                                  0,
+                                  5,
     //                              // location
                                   location,
     //                              // color
@@ -366,16 +366,6 @@ void NEBStarSee::play(){
 }
 
 
-void NEBStarSee::update(YTimeInterval dt){
-    
-    //m_star->update(dt);
-}
-
-void NEBStarSee::render(){
-    
-    //m_star->render();
-    
-}
 
 Vector3D NEBStarSee::getLocation(){
     return m_location;

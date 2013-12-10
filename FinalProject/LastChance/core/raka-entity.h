@@ -101,7 +101,7 @@ protected:
 };
 
 
-class NEBStarSee : public YEntity //MAY NOT NEED TO INHERIT!?
+class NEBStarSee
 {
 public:
     NEBStarSee(Vector3D location, Vector3D color);

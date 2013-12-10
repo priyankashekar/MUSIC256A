@@ -32,6 +32,7 @@ SKYhemi *g_sky;
 
 NEBClusterSee *g_nebStar;
 
+
 //-----------------------------------------------------------------------------
 // function prototypes
 //-----------------------------------------------------------------------------
@@ -295,13 +296,13 @@ void initialize_simulation()
 //    Globals::sim->root().addChild( g_jellyfish );
 //
 //    // create a spark
-   // spark = new RAKASpark();
-
-//    // set attributes
-  //  spark->set( RAKA_TEX_FLARE_TNG_1, .5f, 1.0f );
- //   spark->loc.set( .1, 0, 0 );
-//    // add to simulation
-  //  Globals::sim->root().addChild( spark );
+//   spark = new RAKASpark();
+//
+////    // set attributes
+//    spark->set( RAKA_TEX_FLARE_TNG_1, .5f, 1.0f );
+//    spark->loc.set( .1, 0, 0 );
+////    // add to simulation
+//Globals::sim->root().addChild( spark );
     
 //    // bokeh
 //    YBokeh * bokeh = new YBokeh();
@@ -338,7 +339,7 @@ void initialize_simulation()
     g_sky->init();
     Globals::sim->root().addChild(g_sky);
     
-    g_nebStar = new NEBClusterSee(1, Vector3D(0,0,-50), 40);
+    g_nebStar = new NEBClusterSee(10, Vector3D(0,0,-50), 40);
     //Globals::sim->root().addChild(g_neb);
     
 }
@@ -772,8 +773,8 @@ void mouseFunc( int button, int state, int x, int y )
             {
                 g_nebStar->clickStar(x, y, SELECT_STAR);
                 
-//                float pitch = 48 + (x/1280.0)*48;
-//                float velocity = .5+y/2000.0;
+                float pitch = 48 + (x/1280.0)*48;
+                float velocity = .5+y/2000.0;
 //                
 //                float x1 = (x - Globals::windowWidth/2.0) / Globals::windowWidth * 7;
 //                float y1 = (-y + Globals::windowHeight/2.0) / Globals::windowHeight * 7;
@@ -782,7 +783,7 @@ void mouseFunc( int button, int state, int x, int y )
 //                     << " x: " << x << " x1: " << x1 << " y " << y << " y1: " << y1 << endl;
 //
 //                addBokeh( x1, y1 );
-                //raka_playNotes( pitch, velocity );
+                raka_playNotes( pitch, velocity );
                 
  
                 //recoverClick(x, y, -50, xW, yW);
