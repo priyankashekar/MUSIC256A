@@ -16,7 +16,6 @@
 using namespace std;
 
 
-
 // texture coordinates
 static const GLshort g_coord[ ] = { 0, 0, 1, 0, 0, 1, 1, 1 };
 
@@ -330,6 +329,7 @@ NEBStarSee::NEBStarSee(Vector3D location, Vector3D color){
     
 
     m_color = color;
+    m_location = location;
     
     m_star = new YBokeh();
     m_star->set( 1.0f, 0.5f, 1.0f, 1.0f, RAKA_TEX_FLARE_TNG_3 );
@@ -357,6 +357,7 @@ NEBStarSee::NEBStarSee(Vector3D location, Vector3D color){
 
 void NEBStarSee::select(){
     
+    m_star->sca.set( 5, 5, 5 );
     
 }
 
@@ -376,6 +377,10 @@ void NEBStarSee::render(){
     
 }
 
+Vector3D NEBStarSee::getLocation(){
+    return m_location;
+}
+
 NEBClusterSee::NEBClusterSee(int numStars, Vector3D center, float spreadRadius){
     
     m_numStars = numStars;
@@ -385,13 +390,57 @@ NEBClusterSee::NEBClusterSee(int numStars, Vector3D center, float spreadRadius){
     for (int i = 0; i < numStars; i++){
         NEBStarSee *addStar;
         
-        double x = XFun::rand2f(center.x - spreadRadius, center.x + spreadRadius);
-        double y = XFun::rand2f(center.y - spreadRadius, center.y + spreadRadius);
-        
-        
-        addStar = new NEBStarSee(Vector3D(x, y, center.z), Vector3D(0,0,1));
+        addStar = new NEBStarSee(Vector3D(XFun::rand2f(center.x - spreadRadius, center.x + spreadRadius), XFun::rand2f(center.y - spreadRadius, center.y + spreadRadius), center.z), Vector3D(0,0,1));
         m_stars.push_back(addStar);
     }
   
+}
+
+
+void NEBClusterSee::clickStar(int xMouse, int yMouse, int starMode){
+    
+    double xWorld;
+    double yWorld;
+    
+    recoverClick(xMouse, yMouse, m_center.z, xWorld, yWorld); //CHANGE m_center.z later!
+    
+    for (int i = 0; i < m_numStars; i++){
+        Vector3D starLocation = m_stars[i]->getLocation();
+        
+        double blah = (starLocation - Vector3D(xWorld, yWorld, m_center.z)).magnitude();
+        
+        if (blah < 5){
+            
+            if (starMode == SELECT_STAR){
+                m_stars[i]->select();
+            } else if (starMode == PLAY_STAR) {
+                m_stars[i]->play();
+            }
+            break;
+        }
+        
+    }
+}
+
+void recoverClick(int iX, int iY, double z_distance, double &oX, double &oY){
+    // http://www.3dbuzz.com/forum/threads/191296-OpenGL-gluUnProject-ScreenCoords-to-WorldCoords-problem
+    GLdouble posX1, posY1, posZ1, posX2, posY2, posZ2, modelview[16], projection[16];
+    GLint viewport[4];
+    
+    // Get matrices
+    glGetDoublev(GL_MODELVIEW_MATRIX, modelview);
+    glGetDoublev(GL_PROJECTION_MATRIX, projection);
+    glGetIntegerv(GL_VIEWPORT, viewport);
+    
+    // Create ray
+    gluUnProject(iX, viewport[1] + viewport[3] - iY, 0, modelview, projection, viewport, &posX1, &posY1, &posZ1);  // Near plane
+    gluUnProject(iX, viewport[1] + viewport[3] - iY, 1, modelview, projection, viewport, &posX2, &posY2, &posZ2);  // Far plane
+    
+    
+    GLfloat t = (posZ1 - z_distance) / (posZ1 - posZ2);
+    
+    // so here are the desired (x, y) coordinates
+    oX = (posX1 + (posX2 - posX1) * t);
+    oY = (posY1 + (posY2 - posY1) * t);
 }
 

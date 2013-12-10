@@ -20,6 +20,7 @@ struct SKYtrail{
     float lineWidth;
 };
 
+void recoverClick(int iX, int iY, double z_distance, double &oX, double &oY);
 
 //-----------------------------------------------------------------------------
 // name: class RAKAJellyFish
@@ -100,7 +101,7 @@ protected:
 };
 
 
-class NEBStarSee : public YEntity //MAY NOT NEED TO INHERIT
+class NEBStarSee : public YEntity //MAY NOT NEED TO INHERIT!?
 {
 public:
     NEBStarSee(Vector3D location, Vector3D color);
@@ -110,8 +111,9 @@ public:
     void play();
     void update(YTimeInterval dt);
     void render();
+    Vector3D getLocation();
 protected:
-    //XPoint3D m_location;
+    Vector3D m_location;
     Vector3D m_color;
     YBokeh *m_star;
 
@@ -123,8 +125,9 @@ class NEBClusterSee
 public:
     NEBClusterSee(int numStars, Vector3D center, float spreadRadius);
     ~NEBClusterSee();
+    void clickStar(int xMouse, int yMouse, int starMode);
 protected:
-    Vector3D m_center; //may not need to store?
+    Vector3D m_center;
     int m_numStars;
     std::vector<NEBStarSee *> m_stars;
     

@@ -21,6 +21,7 @@
 using namespace std;
 
 
+
 // jellyfish
 RAKAJellyFish * g_jellyfish = NULL;
 
@@ -55,7 +56,7 @@ void blendPane();
 void updateNodeEntities();
 void renderNodeEntities();
 
-void recoverClick(int iX, int iY, double z_distance, double &oX, double &oY);
+
 
 
 //-----------------------------------------------------------------------------
@@ -769,21 +770,22 @@ void mouseFunc( int button, int state, int x, int y )
             // down
             if( state == 0 )
             {
-                float pitch = 48 + (x/1280.0)*48;
-                float velocity = .5+y/2000.0;
+                g_nebStar->clickStar(x, y, SELECT_STAR);
                 
-                float x1 = (x - Globals::windowWidth/2.0) / Globals::windowWidth * 7;
-                float y1 = (-y + Globals::windowHeight/2.0) / Globals::windowHeight * 7;
-
-                cerr << "pitch: " << pitch << " velocity: " << velocity
-                     << " x: " << x << " x1: " << x1 << " y " << y << " y1: " << y1 << endl;
-
-                addBokeh( x1, y1 );
+//                float pitch = 48 + (x/1280.0)*48;
+//                float velocity = .5+y/2000.0;
+//                
+//                float x1 = (x - Globals::windowWidth/2.0) / Globals::windowWidth * 7;
+//                float y1 = (-y + Globals::windowHeight/2.0) / Globals::windowHeight * 7;
+//
+//                cerr << "pitch: " << pitch << " velocity: " << velocity
+//                     << " x: " << x << " x1: " << x1 << " y " << y << " y1: " << y1 << endl;
+//
+//                addBokeh( x1, y1 );
                 //raka_playNotes( pitch, velocity );
-                double x2 = 10;
-                double y2 = 10;
                 
-                recoverClick(x, y, -50, x2, y2);
+ 
+                //recoverClick(x, y, -50, xW, yW);
                 
             }
             break;
@@ -1109,24 +1111,3 @@ bool checkTexDim( int dim )
     return count == 1;
 }
 
-void recoverClick(int iX, int iY, double z_distance, double &oX, double &oY){
-    // http://www.3dbuzz.com/forum/threads/191296-OpenGL-gluUnProject-ScreenCoords-to-WorldCoords-problem
-    GLdouble posX1, posY1, posZ1, posX2, posY2, posZ2, modelview[16], projection[16];
-    GLint viewport[4];
-    
-    // Get matrices
-    glGetDoublev(GL_MODELVIEW_MATRIX, modelview);
-    glGetDoublev(GL_PROJECTION_MATRIX, projection);
-    glGetIntegerv(GL_VIEWPORT, viewport);
-    
-    // Create ray
-    gluUnProject(iX, viewport[1] + viewport[3] - iY, 0, modelview, projection, viewport, &posX1, &posY1, &posZ1);  // Near plane
-    gluUnProject(iX, viewport[1] + viewport[3] - iY, 1, modelview, projection, viewport, &posX2, &posY2, &posZ2);  // Far plane
-    
-    
-    GLfloat t = (posZ1 - z_distance) / (posZ1 - posZ2);
-    
-    // so here are the desired (x, y) coordinates
-    oX = (posX1 + (posX2 - posX1) * t);
-    oY = (posY1 + (posY2 - posY1) * t);
-}

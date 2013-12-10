@@ -46,6 +46,11 @@ enum BokehTextureNames
 };
 
 
+enum starMode {
+    PLAY_STAR = 0,
+    SELECT_STAR = 1,
+};
+
 
 
 // forward reference
