@@ -110,9 +110,13 @@ public:
     static Vector3D viewEyeY;
     
     static Vector3D lookFrom;
-    static Vector3D lookTo;
+    static iSlew3D lookTo;
     static const Vector3D upVector;
     static Vector3D lastLookTo;
+    
+    static int numTracks;
+    static GLfloat viewAngle;
+    
     
     static Vector3D fov;
     

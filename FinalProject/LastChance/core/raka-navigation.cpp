@@ -10,18 +10,22 @@
 #include "raka-globals.h"
 
 void turnUp(){
-    Globals::lastLookTo = Globals::lookTo;
-    Globals::lookTo.set(0, Globals::hemiRadius, 1);
+    Globals::lastLookTo = Globals::lookTo.actual();
+    Globals::lookTo.update(Vector3D(0, Globals::hemiRadius, 1)); //NOTE 1 HERE!
 }
 
 void turnDown(){
-    Globals::lookTo = Globals::lastLookTo;
+    Globals::lookTo.update(Globals::lastLookTo);
 }
 
 void turnLeft(){
-    // Globals::lookTo.set(<#GLfloat _x#>, <#GLfloat _y#>, <#GLfloat _z#>);
+    
+    Globals::viewAngle -= (2 * M_PI) / Globals::numTracks;
+    Globals::lookTo.update(Vector3D(Globals::hemiRadius * sin(Globals::viewAngle), 0, Globals::hemiRadius * -cos(Globals::viewAngle)));
 }
 
 void turnRight(){
-    // Globals::lookTo.set(<#GLfloat _x#>, <#GLfloat _y#>, <#GLfloat _z#>);
+    
+    Globals::viewAngle += (2 * M_PI) / Globals::numTracks;
+    Globals::lookTo.update(Vector3D(Globals::hemiRadius * sin(Globals::viewAngle), 0, Globals::hemiRadius * -cos(Globals::viewAngle)));
 }

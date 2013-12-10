@@ -42,10 +42,12 @@ Vector3D Globals::viewEyeY( 2, 0, 1.5f );
 Vector3D Globals::fov( 80, 100, .2f );
 
 Vector3D Globals::lookFrom(0, 0, 0);
-Vector3D Globals::lookTo(0, 0, -hemiRadius);
+iSlew3D Globals::lookTo(0, 0, -hemiRadius);
 const Vector3D Globals::upVector(0, 1, 0);
 Vector3D Globals::lastLookTo(0, 0, 0);
 
+int Globals::numTracks = 4;
+GLfloat Globals::viewAngle = 0;
 
 GLuint Globals::textures[RAKA_MAX_TEXTURES];
 

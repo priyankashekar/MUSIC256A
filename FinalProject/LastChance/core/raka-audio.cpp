@@ -289,7 +289,7 @@ bool raka_audio_start()
 //-----------------------------------------------------------------------------
 NEBClusterSound::NEBClusterSound(){
     
-    wvIn = new stk::FileWvIn("data/sound/ThinkinBoutYouVariation.wav");
+    wvIn = new stk::FileWvIn("data/sound/skins.wav");
     wvIn->setRate(1);
     m_fileLength = wvIn->getSize();
     

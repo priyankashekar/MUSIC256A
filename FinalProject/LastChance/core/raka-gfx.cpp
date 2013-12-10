@@ -511,7 +511,7 @@ void look( )
               0.0f, 0.0f, 0.0f,
               0.0f, ( cos( Globals::viewEyeY.x ) < 0 ? -1.0f : 1.0f ), 0.0f );*/
     
-    gluLookAt(Globals::lookFrom.x, Globals::lookFrom.y, Globals::lookFrom.z, Globals::lookTo.x, Globals::lookTo.y, Globals::lookTo.z, Globals::upVector.x, Globals::upVector.y, Globals::upVector.z);
+    gluLookAt(Globals::lookFrom.x, Globals::lookFrom.y, Globals::lookFrom.z, Globals::lookTo.actual().x, Globals::lookTo.actual().y, Globals::lookTo.actual().z, Globals::upVector.x, Globals::upVector.y, Globals::upVector.z);
     
     // set the position of the lights
     glLightfv( GL_LIGHT0, GL_POSITION, Globals::light0_pos );
@@ -816,8 +816,10 @@ void specialFunc( int key, int x, int y )
         switch( key )
         {
             case GLUT_KEY_LEFT:
+                turnLeft();
                 break;
             case GLUT_KEY_RIGHT:
+                turnRight();
                 break;
             case GLUT_KEY_UP:
                 turnUp();
@@ -883,6 +885,8 @@ void displayFunc( )
     // slew
     Globals::viewEyeY.interp( XGfx::delta());
     Globals::viewRadius.interp( XGfx::delta() );
+    
+    Globals::lookTo.interp(XGfx::delta());
     look();
     
     // cascade simulation
