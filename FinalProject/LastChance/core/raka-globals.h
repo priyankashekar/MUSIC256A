@@ -165,6 +165,7 @@ public:
     
     static float hemiRadius;
 
+    static bool tabHold;
 };
 
 

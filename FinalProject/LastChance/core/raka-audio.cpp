@@ -91,6 +91,23 @@ void playStar(int starIndex){
     g_neb->starOn(starIndex);
 }
 
+void toggleSynth(){
+
+    //boool
+    g_neb->playSynth();
+}
+
+void addStarToSynth(int starIndex){
+    
+    g_neb->addStarToSynth(starIndex);
+}
+
+void resetSynth(){
+    
+    g_neb->resetSynth();
+}
+
+
 
 //-----------------------------------------------------------------------------
 // name: audio_callback
@@ -170,13 +187,21 @@ static void audio_callback( SAMPLE * buffer, unsigned int numFrames, void * user
     // echo it
     //g_echo->synthesize2( buffer, numFrames );
     
-    g_now += numFrames;
+    //g_now += numFrames;
+    
+    
+    
+    // lock (to protect vector)
+        g_mutex.acquire();
     
     for (int i = 0; i < numFrames; i++){
         //buffer[2*i] = buffer[2*i+1]  = g_env-> tick() * g_wvIn->tick();
         buffer[2*i] = buffer[2*i+1] = g_neb->play();
         g_neb->tickStarTimer();
     }
+    
+    // release lock
+        g_mutex.release();
 }
 
 
@@ -357,6 +382,20 @@ void NEBClusterSound::starOff(){
     env->keyOff();
 }
 
+void NEBClusterSound::playSynth(){
+    
+    for (int i = 0; i < m_synth.size(); i++){
+        g_neb->starOn(i);
+    }
+    
+}
+
+void NEBClusterSound::pauseSynth(){
+    
+    
+}
+
+
 
 //void NEBClusterSound::startOneStar(int starIndex){
 //    
@@ -374,13 +413,19 @@ void NEBClusterSound::starOff(){
 //    m_stars[starIndex]->starOff();
 //}
 
-void NEBClusterSound::startStepSynth(){
-    
+
+void NEBClusterSound::addStarToSynth(int starIndex){
+   
+    m_synth.push_back(starIndex);
 }
 
-void NEBClusterSound::stopStepSynth(){
+
+void NEBClusterSound::resetSynth(){
     
+    m_synth.clear();
 }
+
+
 
 
 SAMPLE NEBClusterSound::play(){

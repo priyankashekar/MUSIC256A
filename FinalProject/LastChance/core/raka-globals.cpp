@@ -46,7 +46,7 @@ iSlew3D Globals::lookTo(0, 0, -hemiRadius);
 const Vector3D Globals::upVector(0, 1, 0);
 Vector3D Globals::lastLookTo(0, 0, 0);
 
-int Globals::numTracks = 4;
+int Globals::numTracks = 8;
 GLfloat Globals::viewAngle = 0;
 
 GLuint Globals::textures[RAKA_MAX_TEXTURES];
@@ -92,4 +92,6 @@ Vector3D Globals::Sienna1(255.0/255, 130.0/255, 71.0/255);
 Vector3D Globals::DarkSlateBlue(72.0/255, 61.0/255, 139.0/255);
 
 float Globals::hemiRadius = 50;
+
+bool Globals::tabHold = false;
 

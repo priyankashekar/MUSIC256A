@@ -49,6 +49,7 @@
 		9994E613184D2CFE007354D4 /* Delay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9994E60D184D2CFE007354D4 /* Delay.cpp */; };
 		9994E614184D2CFE007354D4 /* DelayL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9994E60F184D2CFE007354D4 /* DelayL.cpp */; };
 		9994E615184D2CFE007354D4 /* MidiFileIn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9994E611184D2CFE007354D4 /* MidiFileIn.cpp */; };
+		99964C4218578A90008B5159 /* filter_table.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 99964C3D18578A90008B5159 /* filter_table.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -174,6 +175,10 @@
 		9994E610184D2CFE007354D4 /* DelayL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DelayL.h; sourceTree = "<group>"; };
 		9994E611184D2CFE007354D4 /* MidiFileIn.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MidiFileIn.cpp; sourceTree = "<group>"; };
 		9994E612184D2CFE007354D4 /* MidiFileIn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MidiFileIn.h; sourceTree = "<group>"; };
+		99964C3B18578A90008B5159 /* Binaural.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Binaural.h; sourceTree = "<group>"; };
+		99964C3D18578A90008B5159 /* filter_table.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = filter_table.cpp; sourceTree = "<group>"; };
+		99964C3F18578A90008B5159 /* SoundObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundObject.h; sourceTree = "<group>"; };
+		99964C4418578B17008B5159 /* global.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = global.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -228,6 +233,7 @@
 		86A7FA1F1831A4EC00E7FBC9 /* api */ = {
 			isa = PBXGroup;
 			children = (
+				99964C3918578A90008B5159 /* threedee */,
 				9980E944184BDAE700581841 /* CImg.h */,
 				9980E943184BDA4700581841 /* rgb_hsv_hsl.hpp */,
 				9980E918184BCE9900581841 /* fsynth */,
@@ -457,6 +463,17 @@
 			path = man1;
 			sourceTree = "<group>";
 		};
+		99964C3918578A90008B5159 /* threedee */ = {
+			isa = PBXGroup;
+			children = (
+				99964C4418578B17008B5159 /* global.h */,
+				99964C3B18578A90008B5159 /* Binaural.h */,
+				99964C3D18578A90008B5159 /* filter_table.cpp */,
+				99964C3F18578A90008B5159 /* SoundObject.h */,
+			);
+			path = threedee;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -525,6 +542,7 @@
 				86A7FA611831A4EC00E7FBC9 /* y-charting.cpp in Sources */,
 				86A7FA531831A4EC00E7FBC9 /* RtAudio.cpp in Sources */,
 				86A7FA581831A4EC00E7FBC9 /* x-audio.cpp in Sources */,
+				99964C4218578A90008B5159 /* filter_table.cpp in Sources */,
 				86A7FA5C1831A4EC00E7FBC9 /* x-loadlum.cpp in Sources */,
 				86A7FA631831A4EC00E7FBC9 /* y-entity.cpp in Sources */,
 				86A7FA591831A4EC00E7FBC9 /* x-buffer.cpp in Sources */,
@@ -626,6 +644,8 @@
 				LIBRARY_SEARCH_PATHS = (
 					/opt/local/lib,
 					/Users/Priyanka/Dropbox/Stanford/MUSIC256A/FinalProject/LastChance/api/fsynth/lib,
+					/usr/local/Cellar/libsndfile/1.0.25/lib,
+					/usr/local/Cellar/fftw/3.3.3/lib,
 				);
 				OTHER_CFLAGS = "-D__MACOSX_CORE__";
 				OTHER_LDFLAGS = "-lfluidsynth";
@@ -645,6 +665,8 @@
 				LIBRARY_SEARCH_PATHS = (
 					/opt/local/lib,
 					/Users/Priyanka/Dropbox/Stanford/MUSIC256A/FinalProject/LastChance/api/fsynth/lib,
+					/usr/local/Cellar/libsndfile/1.0.25/lib,
+					/usr/local/Cellar/fftw/3.3.3/lib,
 				);
 				OTHER_CFLAGS = "-D__MACOSX_CORE__";
 				OTHER_LDFLAGS = "-lfluidsynth";

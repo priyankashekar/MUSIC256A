@@ -22,6 +22,9 @@ bool raka_audio_start();
 // play some notes
 void raka_playNotes( float pitch, float velocity );
 void playStar(int starIndex);
+void toggleSynth();
+void addStarToSynth(int starIndex);
+void resetSynth();
 
 
 //-----------------------------------------------------------------------------
@@ -65,8 +68,10 @@ public:
     void starOn(int starIndex);
     void starOff();
     
-    void startStepSynth();
-    void stopStepSynth();
+    void addStarToSynth(int starIndex);
+    void resetSynth();
+    void playSynth();
+    void pauseSynth();
     
     SAMPLE play();
     
@@ -83,6 +88,7 @@ protected:
     stk::Envelope *env;
     double m_timeNow;
     bool m_timerOn;
+    std::vector<int> m_synth;
     
 };
 
