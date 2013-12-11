@@ -212,6 +212,8 @@ void SoundObject::setEle(float ele)
   }
 }
 
+
+
 void SoundObject::moveClockwise()
 {
   setAzi(m_azi + m_moveStep);

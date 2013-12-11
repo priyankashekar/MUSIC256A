@@ -587,20 +587,9 @@ void keyboardFunc( unsigned char key, int x, int y )
             break;
         }
         case 'b':
+        case 'B':
         {
-            static GLfloat blendAlpha = 0.15f;
-            Globals::blendScreen = !Globals::blendScreen;
-            if( Globals::blendScreen )
-            {
-                Globals::blendAlpha.goal = blendAlpha;
-                Globals::blendAlpha.slew = .5f;
-            }
-            else
-            {
-                blendAlpha = Globals::blendAlpha.goal;
-                Globals::blendAlpha.goal = 1;
-            }
-            fprintf( stderr, "[bokeh]: blendscreen:%s\n", Globals::blendScreen ? "ON" : "OFF" );
+            Globals::binauralOn = true;
             break;
         }
         case 'f':
@@ -627,12 +616,12 @@ void keyboardFunc( unsigned char key, int x, int y )
             break;
         }
         case 'm':
-            if( Globals::blendScreen )
-            {
-                Globals::blendAlpha.goal -= .005;
-                if( Globals::blendAlpha.goal < 0 ) Globals::blendAlpha.goal = 0;
-            }
+        case 'M':
+        {
+            Globals::binauralOn = false;
             break;
+        }
+         
         case 'n':
             if( Globals::blendScreen )
             {
@@ -640,7 +629,7 @@ void keyboardFunc( unsigned char key, int x, int y )
                 if( Globals::blendAlpha.goal > 1 ) Globals::blendAlpha.goal = 1;
             }
             break;
-        case 'M':
+
         case 'N':
             if( Globals::blendScreen )
             {

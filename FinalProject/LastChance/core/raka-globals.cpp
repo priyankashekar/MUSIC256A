@@ -98,8 +98,11 @@ float Globals::spreadRadius = 40;
 
 bool Globals::tabHold = false;
 bool Globals::synthOn = false;
+bool Globals::binauralOn = false;
 
 int Globals::activeNeb = 0;
 
 int Globals::numStarsPerNeb = 2;
+
+
 

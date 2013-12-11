@@ -205,35 +205,34 @@ static void audio_callback( SAMPLE * buffer, unsigned int numFrames, void * user
     // lock (to protect vector)
         g_mutex.acquire();
     
+    float azi, ele, r;
+    g_3DObject.setAzi(90);
+    azi = g_3DObject.getAzi();
+    ele = g_3DObject.getEle();
+    r = g_3DObject.getDistance();
+
+    
+    g_3DBinaural.setPosition(r, azi, ele);
+    
     for (int i = 0; i < numFrames; i++){ //numFrames = 1024
 
-        Globals::lastAudioBufferMono[i] = g_nebSound[Globals::activeNeb]->play();
-        
-        //Globals::lastAudioBufferMono[i] = 1;
+        if (Globals::binauralOn){
+            Globals::lastAudioBufferMono[i] = g_nebSound[Globals::activeNeb]->play();
+        } else {
+            buffer[2*i] = buffer[2*i+1] = g_nebSound[Globals::activeNeb]->play();
+        }
 
-        //buffer[2*i] = buffer[2*i+1] = g_nebSound[Globals::activeNeb]->play(); //stereo buffer
-  
         g_nebSound[Globals::activeNeb]->tickStarTimer();
         g_nebSound[Globals::activeNeb]->tickSynthTimer();
     }
     
-  
-    
-    float azi, ele, r;
-    azi = g_3DObject.getAzi();
-    ele = g_3DObject.getEle();
-    r = g_3DObject.getDistance();
-    g_3DObject.updatePos();
-    
-    g_3DBinaural.setPosition(r, azi, ele);
-    
-    //memset(buffer, 0, 2 * numFrames * sizeof(SAMPLE));
-    
-    
-    g_3DBinaural.process(Globals::lastAudioBuffer, numFrames, Globals::lastAudioBufferMono, numFrames);
-    
-    for (int i = 0; i < 2 * numFrames; i++){
-        buffer[i] = (SAMPLE)Globals::lastAudioBuffer[i];
+    if (Globals::binauralOn){
+        
+        g_3DBinaural.process(Globals::lastAudioBuffer, numFrames, Globals::lastAudioBufferMono, numFrames);
+        
+        for (int i = 0; i < 2 * numFrames; i++){
+            buffer[i] = (SAMPLE)Globals::lastAudioBuffer[i];
+        }
     }
     // release lock
     g_mutex.release();

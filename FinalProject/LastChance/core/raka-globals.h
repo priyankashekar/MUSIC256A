@@ -170,9 +170,12 @@ public:
 
     static bool tabHold;
     static bool synthOn;
+    static bool binauralOn;
     
     static int activeNeb;
     static int numStarsPerNeb;
+    
+
 };
 
 
