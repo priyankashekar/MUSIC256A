@@ -342,14 +342,21 @@ void initialize_simulation()
     g_sky->init();
     Globals::sim->root().addChild(g_sky);
     
-    for (int i = 0; i < Globals::numTracks; i++){
-        NEBClusterSee *nextNeb = new NEBClusterSee(Globals::numStarsPerNeb, Vector3D(0,0,-50), 40);
-        g_nebSee.push_back(nextNeb);
-    }
+    //for (int i = 0; i < Globals::numTracks; i++){
+    NEBClusterSee *nextNeb = new NEBClusterSee(Globals::numStarsPerNeb, Vector3D(0,0,-Globals::hemiRadius), Globals::spreadRadius, 0);
+    g_nebSee.push_back(nextNeb);
+    
+    nextNeb = new NEBClusterSee(Globals::numStarsPerNeb, Vector3D(Globals::hemiRadius,0,0), Globals::spreadRadius, 90);
+    g_nebSee.push_back(nextNeb);
+    
+    nextNeb = new NEBClusterSee(Globals::numStarsPerNeb, Vector3D(0,0,Globals::hemiRadius), Globals::spreadRadius, 0);
+    g_nebSee.push_back(nextNeb);
+    
+    nextNeb = new NEBClusterSee(Globals::numStarsPerNeb, Vector3D(-Globals::hemiRadius,0,0), Globals::spreadRadius, 90);
+    g_nebSee.push_back(nextNeb);
     
     initA2G(g_nebSee);
 
-    
     //Globals::sim->root().addChild(g_neb);
     
 }

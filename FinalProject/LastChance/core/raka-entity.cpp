@@ -328,7 +328,7 @@ void SKYhemi::DrawArc(float cx, float cz, float r, float start_angle, float arc_
     glDisable( GL_BLEND );
 }
 
-NEBStarSee::NEBStarSee(Vector3D location, Vector3D color){
+NEBStarSee::NEBStarSee(Vector3D location, Vector3D color, float rotation){
     
 
     m_color = color;
@@ -350,6 +350,7 @@ NEBStarSee::NEBStarSee(Vector3D location, Vector3D color){
                                   color);
     //        // alpha
             m_star->setAlpha( 1 );
+    m_star->setRotation(rotation);
     //        // add to simulation
             Globals::sim->root().addChild(m_star);
     
@@ -379,18 +380,39 @@ YBokeh * NEBStarSee::getStar(){
     return m_star;
 }
 
-NEBClusterSee::NEBClusterSee(int numStars, Vector3D center, float spreadRadius){
+NEBClusterSee::NEBClusterSee(int numStars, Vector3D center, float spreadRadius, float rotation){
     
     m_numStars = numStars;
     m_center = center;
-
+    NEBStarSee *addStar;
     
-    for (int i = 0; i < numStars; i++){
-        NEBStarSee *addStar;
+    if (center.x){
+        for (int i = 0; i < numStars; i++){
         
-        addStar = new NEBStarSee(Vector3D(XFun::rand2f(center.x - spreadRadius, center.x + spreadRadius), XFun::rand2f(center.y - spreadRadius, center.y + spreadRadius), center.z), Vector3D(0,0,1));
+            
+            
+            addStar = new NEBStarSee(Vector3D(center.x, XFun::rand2f(center.y - spreadRadius, center.y + spreadRadius), XFun::rand2f(center.z - spreadRadius, center.z + spreadRadius)), Vector3D(0,0,1), rotation);
+
+        }
+        
+        
+        m_stars.push_back(addStar);
+
+
+    } else if (center.z){
+        
+        
+        for (int i = 0; i < numStars; i++){
+
+            
+            addStar = new NEBStarSee(Vector3D(XFun::rand2f(center.x - spreadRadius, center.x + spreadRadius), XFun::rand2f(center.y - spreadRadius, center.y + spreadRadius), center.z), Vector3D(0,0,1), rotation);
+        }
+        
+        
         m_stars.push_back(addStar);
     }
+    
+
   
 }
 

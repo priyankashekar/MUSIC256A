@@ -677,6 +677,10 @@ void YBokeh::setBokehParams( GLfloat time, GLfloat freq, GLfloat time_step,
 }
 
 
+void YBokeh::setRotation(float rotation){
+    
+    rotAngle = rotation;
+}
 
 
 //-----------------------------------------------------------------------------
@@ -757,6 +761,11 @@ void YBokeh::render()
     
     // scale
     glScalef( scale_actual, scale_actual, scale_actual );
+    
+    
+    //PRIYA'S ROTATE HACK
+    glRotatef(rotAngle, 0, 1, 0);
+    
     // alpha
     alpha *= alpha_factor;
     scale *= scale_factor;

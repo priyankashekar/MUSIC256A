@@ -92,6 +92,7 @@ Vector3D Globals::Sienna1(255.0/255, 130.0/255, 71.0/255);
 Vector3D Globals::DarkSlateBlue(72.0/255, 61.0/255, 139.0/255);
 
 float Globals::hemiRadius = 50;
+float Globals::spreadRadius = 40;
 
 bool Globals::tabHold = false;
 bool Globals::synthOn = false;

@@ -164,6 +164,7 @@ public:
     static Vector3D DarkSlateBlue;
     
     static float hemiRadius;
+    static float spreadRadius;
 
     static bool tabHold;
     static bool synthOn;

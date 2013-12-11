@@ -22,10 +22,16 @@ void turnLeft(){
     
     Globals::viewAngle -= (2 * M_PI) / Globals::numTracks;
     Globals::lookTo.update(Vector3D(Globals::hemiRadius * sin(Globals::viewAngle), 0, Globals::hemiRadius * -cos(Globals::viewAngle)));
+    
+    Globals::activeNeb += (Globals::numTracks - 1);
+    Globals::activeNeb %= Globals::numTracks;
 }
 
 void turnRight(){
     
     Globals::viewAngle += (2 * M_PI) / Globals::numTracks;
     Globals::lookTo.update(Vector3D(Globals::hemiRadius * sin(Globals::viewAngle), 0, Globals::hemiRadius * -cos(Globals::viewAngle)));
+    
+    Globals::activeNeb++;
+    Globals::activeNeb %= Globals::numTracks;
 }

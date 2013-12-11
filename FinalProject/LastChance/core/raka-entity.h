@@ -104,7 +104,7 @@ protected:
 class NEBStarSee
 {
 public:
-    NEBStarSee(Vector3D location, Vector3D color);
+    NEBStarSee(Vector3D location, Vector3D color, float rotation);
     ~NEBStarSee();
 public:
     void update(YTimeInterval dt);
@@ -122,7 +122,7 @@ protected:
 class NEBClusterSee
 {
 public:
-    NEBClusterSee(int numStars, Vector3D center, float spreadRadius);
+    NEBClusterSee(int numStars, Vector3D center, float spreadRadius, float rotation);
     ~NEBClusterSee();
     int clickStar(int xMouse, int yMouse);
     void selectStar(int starIndex);

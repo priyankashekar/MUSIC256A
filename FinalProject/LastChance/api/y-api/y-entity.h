@@ -371,6 +371,8 @@ public:
     // set alpha
     virtual void setAlpha( GLfloat _alpha ) { alpha = alpha_actual = _alpha; }
     // virtual void setAlpha( GLfloat _alpha ) { iAlpha.update( _alpha ); alpha_actual = _alpha; }
+    
+    void setRotation(float rotation);
 
 public:
     virtual void update( YTimeInterval dt );
@@ -393,6 +395,8 @@ protected:
     double f;
     // slew
     Vector3D iAlpha;
+    
+    float rotAngle;
 };
 
 
