@@ -11,12 +11,13 @@
 
 #include <iostream>
 #include "raka-entity.h"
+#include <vector>
 
 #endif /* defined(__rakakaka__raka_audio2graphics__) */
 
 void selectStarA2G(int starIndex);
 void playStarA2G(int starIndex);
-void initA2G(NEBClusterSee *nebSee);
+void initA2G(std::vector<NEBClusterSee *> nebSee);
 
 class Audio2Graphics
 {

@@ -33,7 +33,7 @@ vector<YBokeh *> g_bokehs;
 
 SKYhemi *g_sky;
 
-NEBClusterSee *g_nebStar;
+vector<NEBClusterSee *> g_nebSee;
 
 
 //-----------------------------------------------------------------------------
@@ -342,9 +342,13 @@ void initialize_simulation()
     g_sky->init();
     Globals::sim->root().addChild(g_sky);
     
-    g_nebStar = new NEBClusterSee(2, Vector3D(0,0,-50), 40);
+    for (int i = 0; i < Globals::numTracks; i++){
+        NEBClusterSee *nextNeb = new NEBClusterSee(Globals::numStarsPerNeb, Vector3D(0,0,-50), 40);
+        g_nebSee.push_back(nextNeb);
+    }
     
-    initA2G(g_nebStar);
+    initA2G(g_nebSee);
+
     
     //Globals::sim->root().addChild(g_neb);
     
@@ -787,7 +791,7 @@ void mouseFunc( int button, int state, int x, int y )
             // down
             if( state == 0 )
             {
-                int starIndex = g_nebStar->clickStar(x, y);
+                int starIndex = g_nebSee[Globals::activeNeb]->clickStar(x, y);
                 if (starIndex > -1){
                     playStar(starIndex); //AUDIO
                     

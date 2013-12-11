@@ -7,22 +7,30 @@
 //
 
 #include "raka-audio2graphics.h"
+#include "raka-globals.h"
 
-Audio2Graphics *g_interface = new Audio2Graphics();
+
+std::vector<Audio2Graphics *> g_interface;
 
 void selectStarA2G(int starIndex){
     
-    g_interface->getNebSee()->selectStar(starIndex);
+    g_interface[Globals::activeNeb]->getNebSee()->selectStar(starIndex);
 }
 
 void playStarA2G(int starIndex){
     
-    g_interface->getNebSee()->playStar(starIndex);
+    g_interface[Globals::activeNeb]->getNebSee()->playStar(starIndex);
 }
 
-void initA2G(NEBClusterSee *nebSee){
+void initA2G(std::vector<NEBClusterSee *> nebSee){
     
-   g_interface->setNebSee(nebSee);
+    for (int i = 0; i < Globals::numTracks; i++){
+        
+        Audio2Graphics *nextInterface = new Audio2Graphics();
+        g_interface.push_back(nextInterface);
+        g_interface[i]->setNebSee(nebSee[i]);
+    }
+    
 }
 
 NEBClusterSee * Audio2Graphics::getNebSee(){

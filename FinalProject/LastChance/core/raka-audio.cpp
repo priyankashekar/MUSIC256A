@@ -33,7 +33,7 @@ int g_prog = 0;
 
 
 
-NEBClusterSound * g_neb;
+vector<NEBClusterSound *> g_nebSound;
 
 SoundObject g_3DObject;
 Binaural g_3DBinaural(MY_BUFFER_SIZE);
@@ -94,28 +94,28 @@ void raka_playNotes( float pitch, float velocity )
 
 void playStar(int starIndex){
 
-    g_neb->starOn(starIndex);
+    g_nebSound[Globals::activeNeb]->starOn(starIndex);
 }
 
 void toggleSynth(){
 
     if (!Globals::synthOn){
-        g_neb->playSynth();
+        g_nebSound[Globals::activeNeb]->playSynth();
         Globals::synthOn = true;
     } else {
-        g_neb->pauseSynth();
+        g_nebSound[Globals::activeNeb]->pauseSynth();
         Globals::synthOn = false;
     }
 }
 
 void addStarToSynth(int starIndex){
     
-    g_neb->addStarToSynth(starIndex);
+    g_nebSound[Globals::activeNeb]->addStarToSynth(starIndex);
 }
 
 void resetSynth(){
     
-    g_neb->resetSynth();
+    g_nebSound[Globals::activeNeb]->resetSynth();
 }
 
 
@@ -209,10 +209,10 @@ static void audio_callback( SAMPLE * buffer, unsigned int numFrames, void * user
         //buffer[2*i] = buffer[2*i+1]  = g_env-> tick() * g_wvIn->tick();
         //Globals::lastAudioBufferMono[i] = g_neb->play();
         //Globals::lastAudioBufferMono[i] = 1;
-        buffer[2*i] = buffer[2*i+1] = g_neb->play(); //stereo buffer
+        buffer[2*i] = buffer[2*i+1] = g_nebSound[Globals::activeNeb]->play(); //stereo buffer
   
-        g_neb->tickStarTimer();
-        g_neb->tickSynthTimer();
+        g_nebSound[Globals::activeNeb]->tickStarTimer();
+        g_nebSound[Globals::activeNeb]->tickSynthTimer();
     }
     
     
@@ -306,10 +306,13 @@ bool raka_audio_init( unsigned int srate, unsigned int frameSize, unsigned chann
 //    g_env->setTime(6);
 //    g_env->keyOn();
     
-    
-    g_neb = new NEBClusterSound();
-    g_neb->setGrainLength(1, 0.2);
-    g_neb->addStars(20);
+    for (int i = 0; i < Globals::numTracks; i++){
+        
+        NEBClusterSound *nextNeb = new NEBClusterSound();
+        g_nebSound.push_back(nextNeb);
+        g_nebSound[i]->setGrainLength(1, 0.2);
+        g_nebSound[i]->addStars(Globals::numStarsPerNeb);
+    }
  
     g_3DObject.setObjectType(SoundObject::FIXED);
 
@@ -420,7 +423,7 @@ void NEBClusterSound::playSynth(){
     //if (m_synthOn){
     if (m_synthIndex > -1){
 
-        g_neb->starOn(m_synth[m_synthIndex]);
+        g_nebSound[Globals::activeNeb]->starOn(m_synth[m_synthIndex]);
         m_synthIndex++;
         m_synthIndex %= m_synth.size();
         startSynthTimer();

@@ -167,6 +167,9 @@ public:
 
     static bool tabHold;
     static bool synthOn;
+    
+    static int activeNeb;
+    static int numStarsPerNeb;
 };
 
 

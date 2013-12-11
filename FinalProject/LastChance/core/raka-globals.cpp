@@ -96,3 +96,7 @@ float Globals::hemiRadius = 50;
 bool Globals::tabHold = false;
 bool Globals::synthOn = false;
 
+int Globals::activeNeb = 0;
+
+int Globals::numStarsPerNeb = 2;
+
