@@ -91,6 +91,8 @@ Vector3D Globals::Honeydew3(193.0/255, 205.0/255, 193.0/255);
 Vector3D Globals::Sienna1(255.0/255, 130.0/255, 71.0/255);
 Vector3D Globals::DarkSlateBlue(72.0/255, 61.0/255, 139.0/255);
 
+float Globals::starRadiusFudge = 5;
+
 float Globals::hemiRadius = 50;
 float Globals::spreadRadius = 40;
 

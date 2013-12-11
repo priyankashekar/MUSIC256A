@@ -21,7 +21,7 @@ struct SKYtrail{
 };
 
 void recoverClick(int iX, int iY, double z_distance, double &oX, double &oY);
-void recoverClickX(int iY, int iZ, double x_distance, double &oY, double &oZ);
+
 
 //-----------------------------------------------------------------------------
 // name: class RAKAJellyFish

@@ -386,30 +386,37 @@ NEBClusterSee::NEBClusterSee(int numStars, Vector3D center, float spreadRadius, 
     m_center = center;
     NEBStarSee *addStar;
     
-    if (center.x){
+    if (m_center.x != 0){
         for (int i = 0; i < numStars; i++){
         
             
             
             addStar = new NEBStarSee(Vector3D(center.x, XFun::rand2f(center.y - spreadRadius, center.y + spreadRadius), XFun::rand2f(center.z - spreadRadius, center.z + spreadRadius)), Vector3D(0,0,1), rotation);
 
+
+            m_stars.push_back(addStar);
+
         }
         
         
-        m_stars.push_back(addStar);
 
 
-    } else if (center.z){
+
+    } else if (m_center.z != 0){
         
         
         for (int i = 0; i < numStars; i++){
 
             
             addStar = new NEBStarSee(Vector3D(XFun::rand2f(center.x - spreadRadius, center.x + spreadRadius), XFun::rand2f(center.y - spreadRadius, center.y + spreadRadius), center.z), Vector3D(0,0,1), rotation);
+            
+        
+            m_stars.push_back(addStar);
+        
         }
         
         
-        m_stars.push_back(addStar);
+       
     }
     
 
@@ -423,25 +430,88 @@ int NEBClusterSee::clickStar(int xMouse, int yMouse){
     
     double xWorld;
     double yWorld;
+    double zWorld;
     
-    recoverClick(xMouse, yMouse, m_center.z, xWorld, yWorld); //CHANGE m_center.z later!
-    
-    for (int i = 0; i < m_numStars; i++){
-        Vector3D starLocation = m_stars[i]->getLocation();
+    if (m_center.x < 0){
         
-        double clickDistFromStar = (starLocation - Vector3D(xWorld, yWorld, m_center.z)).magnitude();
+        recoverClick(xMouse, yMouse, -m_center.x, zWorld, yWorld);
+        Vector3D starLocation = m_stars[1]->getLocation();
         
-        if (clickDistFromStar < 5){
+        for (int i = 0; i < m_numStars; i++){
+            Vector3D starLocation = m_stars[i]->getLocation();
             
-//            if (starMode == SELECT_STAR){
-//                m_stars[i]->select();
-//            } else if (starMode == PLAY_STAR) {
-//                m_stars[i]->play();
-//            }
+            double clickDistFromStar = (starLocation - Vector3D(m_center.x, -yWorld, zWorld)).magnitude();
             
-            return i;
+            if (clickDistFromStar < Globals::starRadiusFudge){
+                
+                return i;
+            }
+            
         }
         
+        return -1;
+        
+    }
+    
+    if (m_center.x > 0){
+        
+        recoverClick(xMouse, yMouse, -m_center.x, zWorld, yWorld);
+               Vector3D starLocation = m_stars[1]->getLocation();
+        
+        for (int i = 0; i < m_numStars; i++){
+            Vector3D starLocation = m_stars[i]->getLocation();
+            
+            double clickDistFromStar = (starLocation - Vector3D(m_center.x, yWorld, zWorld)).magnitude();
+            
+            if (clickDistFromStar < Globals::starRadiusFudge){
+                
+                return i;
+            }
+            
+        }
+        
+        return -1;
+        
+    }
+    
+    if (m_center.z < 0){
+        
+        recoverClick(xMouse, yMouse, m_center.z, xWorld, yWorld);
+               Vector3D starLocation = m_stars[1]->getLocation();
+        
+        for (int i = 0; i < m_numStars; i++){
+            Vector3D starLocation = m_stars[i]->getLocation();
+            
+            double clickDistFromStar = (starLocation - Vector3D(xWorld, yWorld, m_center.z)).magnitude();
+            
+            if (clickDistFromStar < Globals::starRadiusFudge){
+                
+                return i;
+            }
+            
+        }
+        
+        return -1;
+    }
+    
+    if (m_center.z > 0){
+        
+        recoverClick(xMouse, yMouse, -m_center.z, xWorld, yWorld);
+               Vector3D starLocation = m_stars[1]->getLocation();
+        
+        for (int i = 0; i < m_numStars; i++){
+            Vector3D starLocation = m_stars[i]->getLocation();
+            
+            double clickDistFromStar = (starLocation - Vector3D(-xWorld, yWorld, m_center.z)).magnitude();
+            
+            if (clickDistFromStar < Globals::starRadiusFudge){
+                
+                return i;
+            }
+            
+        }
+        
+        return -1;
     }
     
     return -1;
@@ -468,27 +538,3 @@ void recoverClick(int iX, int iY, double z_distance, double &oX, double &oY){
     oX = (posX1 + (posX2 - posX1) * t);
     oY = (posY1 + (posY2 - posY1) * t);
 }
-
-void recoverClickX(int iY, int iZ, double x_distance, double &oY, double &oZ){
-    // http://www.3dbuzz.com/forum/threads/191296-OpenGL-gluUnProject-ScreenCoords-to-WorldCoords-problem
-    GLdouble posX1, posY1, posZ1, posX2, posY2, posZ2, modelview[16], projection[16];
-    GLint viewport[4];
-    
-    // Get matrices
-    glGetDoublev(GL_MODELVIEW_MATRIX, modelview);
-    glGetDoublev(GL_PROJECTION_MATRIX, projection);
-    glGetIntegerv(GL_VIEWPORT, viewport);
-    
-    // Create ray
-    gluUnProject(0, iY, viewport[1] + viewport[3] - iZ, modelview, projection, viewport, &posX1, &posY1, &posZ1);  // Near plane
-    gluUnProject(1, iY, viewport[1] + viewport[3] - iZ, modelview, projection, viewport, &posX2, &posY2, &posZ2);  // Far plane
-    
-    
-    GLfloat t = (posX1 - x_distance) / (posX1 - posX2);
-    
-    // so here are the desired (x, y) coordinates
-    oY = (posY1 + (posY2 - posY1) * t);
-    oZ = (posZ1 + (posZ2 - posZ1) * t);
-}
-
-

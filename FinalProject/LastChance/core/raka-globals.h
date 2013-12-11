@@ -163,6 +163,8 @@ public:
     static Vector3D Sienna1;
     static Vector3D DarkSlateBlue;
     
+    static float starRadiusFudge;
+    
     static float hemiRadius;
     static float spreadRadius;
 
