@@ -14,7 +14,7 @@ extern float ITD_s1[216];
 extern float hrir_diff_l_s1[216][128];
 extern float hrir_diff_r_s1[216][128];
 
-extern void convolve_fft( SAMPLE * f, int fsize, SAMPLE * g, int gsize, SAMPLE * buffy, int size );
+extern void convolve_fft( SAMPLE_2 * f, int fsize, SAMPLE_2 * g, int gsize, SAMPLE_2 * buffy, int size );
 
 
 Binaural::Binaural(int bufferSize) 
@@ -35,10 +35,10 @@ Binaural::Binaural(int bufferSize)
 
   m_bufferSize = bufferSize;
 
-  m_leftDelayOut = new SAMPLE[bufferSize];
-  m_rightDelayOut = new SAMPLE[bufferSize];
-  m_leftOut = new SAMPLE[2 * bufferSize];
-  m_rightOut = new SAMPLE[2 * bufferSize]; 
+  m_leftDelayOut = new SAMPLE_2[bufferSize];
+  m_rightDelayOut = new SAMPLE_2[bufferSize];
+  m_leftOut = new SAMPLE_2[2 * bufferSize];
+  m_rightOut = new SAMPLE_2[2 * bufferSize]; 
 
   m_delayLine.setDelay(m_defaultDelay);
   m_TV_delayLine.setDelay(m_defaultDelay);
@@ -171,7 +171,7 @@ void Binaural::updateHRTF()
 
 }
 
-void Binaural::process(SAMPLE *output, unsigned int outputSize, SAMPLE *input, unsigned int inputSize)
+void Binaural::process(SAMPLE_2 *output, unsigned int outputSize, SAMPLE_2 *input, unsigned int inputSize)
 {
   //fprintf( stderr, "." );
   
@@ -196,8 +196,8 @@ void Binaural::process(SAMPLE *output, unsigned int outputSize, SAMPLE *input, u
     // left channel
     //
     // backup the previous output
-    SAMPLE prevOut[NUMS_FILTER_COEF];
-    memcpy(&prevOut,&(m_leftOut[inputSize]), sizeof(SAMPLE) * (NUMS_FILTER_COEF-1) );
+    SAMPLE_2 prevOut[NUMS_FILTER_COEF];
+    memcpy(&prevOut,&(m_leftOut[inputSize]), sizeof(SAMPLE_2) * (NUMS_FILTER_COEF-1) );
     
     // perform FFT
     convolve_fft(m_leftDelayOut, inputSize, HRIR_left, NUMS_FILTER_COEF,
@@ -217,7 +217,7 @@ void Binaural::process(SAMPLE *output, unsigned int outputSize, SAMPLE *input, u
     // right channel
     //
     // backup the previous output
-    memcpy(&prevOut, &(m_rightOut[inputSize]), sizeof(SAMPLE) * (NUMS_FILTER_COEF-1) );
+    memcpy(&prevOut, &(m_rightOut[inputSize]), sizeof(SAMPLE_2) * (NUMS_FILTER_COEF-1) );
 
     // perform FFT
     convolve_fft(m_rightDelayOut, inputSize, HRIR_right, NUMS_FILTER_COEF, 

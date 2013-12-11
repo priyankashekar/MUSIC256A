@@ -79,8 +79,8 @@ public:
     static std::string version;
     
     // last audio buffer
-    static SAMPLE * lastAudioBuffer;
-    static SAMPLE * lastAudioBufferMono;
+    static double * lastAudioBuffer;
+    static double * lastAudioBufferMono;
     static SAMPLE * audioBufferWindow;
     static unsigned int lastAudioBufferFrames;
     static unsigned int lastAudioBufferChannels;

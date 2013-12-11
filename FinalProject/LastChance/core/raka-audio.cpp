@@ -206,15 +206,18 @@ static void audio_callback( SAMPLE * buffer, unsigned int numFrames, void * user
         g_mutex.acquire();
     
     for (int i = 0; i < numFrames; i++){ //numFrames = 1024
-        //buffer[2*i] = buffer[2*i+1]  = g_env-> tick() * g_wvIn->tick();
-        //Globals::lastAudioBufferMono[i] = g_neb->play();
+
+        Globals::lastAudioBufferMono[i] = g_nebSound[Globals::activeNeb]->play();
+        
         //Globals::lastAudioBufferMono[i] = 1;
-        buffer[2*i] = buffer[2*i+1] = g_nebSound[Globals::activeNeb]->play(); //stereo buffer
+
+        //buffer[2*i] = buffer[2*i+1] = g_nebSound[Globals::activeNeb]->play(); //stereo buffer
   
         g_nebSound[Globals::activeNeb]->tickStarTimer();
         g_nebSound[Globals::activeNeb]->tickSynthTimer();
     }
     
+  
     
     float azi, ele, r;
     azi = g_3DObject.getAzi();
@@ -227,10 +230,13 @@ static void audio_callback( SAMPLE * buffer, unsigned int numFrames, void * user
     //memset(buffer, 0, 2 * numFrames * sizeof(SAMPLE));
     
     
-    //g_3DBinaural.process(buffer, numFrames, Globals::lastAudioBufferMono, numFrames);
+    g_3DBinaural.process(Globals::lastAudioBuffer, numFrames, Globals::lastAudioBufferMono, numFrames);
     
+    for (int i = 0; i < 2 * numFrames; i++){
+        buffer[i] = (SAMPLE)Globals::lastAudioBuffer[i];
+    }
     // release lock
-        g_mutex.release();
+    g_mutex.release();
 }
 
 
@@ -272,9 +278,9 @@ bool raka_audio_init( unsigned int srate, unsigned int frameSize, unsigned chann
 //    g_note = makeNote( 0, 60, .9, .5, 0 );
     
     // allocate
-    Globals::lastAudioBuffer = new SAMPLE[frameSize*channels];
+    Globals::lastAudioBuffer = new double[frameSize*channels];
     // allocate mono buffer
-    Globals::lastAudioBufferMono = new SAMPLE[frameSize];
+    Globals::lastAudioBufferMono = new double[frameSize];
     // allocate window buffer
     Globals::audioBufferWindow = new SAMPLE[frameSize];
     // set frame size (could have changed in XAudioIO::init())

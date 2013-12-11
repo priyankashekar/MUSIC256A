@@ -20,7 +20,7 @@ class Binaural
   ~Binaural();
   
   void setPosition( float distance, float azimuth, float elevation);
-  void process(SAMPLE *output, unsigned int outputSize, SAMPLE *input, unsigned int inputSize);
+  void process(SAMPLE_2 *output, unsigned int outputSize, SAMPLE_2 *input, unsigned int inputSize);
   
   void enableOverlapAdd(bool enable);
 
@@ -34,14 +34,14 @@ class Binaural
   // pointer to HRTF
   float *HRIR_left_ptr;
   float *HRIR_right_ptr;
-  SAMPLE HRIR_left[NUMS_FILTER_COEF];
-  SAMPLE HRIR_right[NUMS_FILTER_COEF];
+  SAMPLE_2 HRIR_left[NUMS_FILTER_COEF];
+  SAMPLE_2 HRIR_right[NUMS_FILTER_COEF];
 
   // buffer
-  SAMPLE * m_leftDelayOut;  
-  SAMPLE * m_rightDelayOut;
-  SAMPLE * m_leftOut;
-  SAMPLE * m_rightOut;
+  SAMPLE_2 * m_leftDelayOut;  
+  SAMPLE_2 * m_rightDelayOut;
+  SAMPLE_2 * m_leftOut;
+  SAMPLE_2 * m_rightOut;
 
   // Delayline
   stk::DelayL m_TV_delayLine;

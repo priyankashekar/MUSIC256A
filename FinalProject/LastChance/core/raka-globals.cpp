@@ -23,8 +23,8 @@ GLsizei Globals::windowHeight = DEFAULT_WINDOW_HEIGHT;
 GLsizei Globals::lastWindowWidth = Globals::windowWidth;
 GLsizei Globals::lastWindowHeight = Globals::windowHeight;
 
-SAMPLE * Globals::lastAudioBuffer = NULL;
-SAMPLE * Globals::lastAudioBufferMono = NULL;
+double * Globals::lastAudioBuffer = NULL;
+double * Globals::lastAudioBufferMono = NULL;
 SAMPLE * Globals::audioBufferWindow = NULL;
 unsigned int Globals::lastAudioBufferFrames = 0;
 unsigned int Globals::lastAudioBufferChannels = 0;

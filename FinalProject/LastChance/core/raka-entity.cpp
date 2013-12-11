@@ -469,3 +469,26 @@ void recoverClick(int iX, int iY, double z_distance, double &oX, double &oY){
     oY = (posY1 + (posY2 - posY1) * t);
 }
 
+void recoverClickX(int iY, int iZ, double x_distance, double &oY, double &oZ){
+    // http://www.3dbuzz.com/forum/threads/191296-OpenGL-gluUnProject-ScreenCoords-to-WorldCoords-problem
+    GLdouble posX1, posY1, posZ1, posX2, posY2, posZ2, modelview[16], projection[16];
+    GLint viewport[4];
+    
+    // Get matrices
+    glGetDoublev(GL_MODELVIEW_MATRIX, modelview);
+    glGetDoublev(GL_PROJECTION_MATRIX, projection);
+    glGetIntegerv(GL_VIEWPORT, viewport);
+    
+    // Create ray
+    gluUnProject(0, iY, viewport[1] + viewport[3] - iZ, modelview, projection, viewport, &posX1, &posY1, &posZ1);  // Near plane
+    gluUnProject(1, iY, viewport[1] + viewport[3] - iZ, modelview, projection, viewport, &posX2, &posY2, &posZ2);  // Far plane
+    
+    
+    GLfloat t = (posX1 - x_distance) / (posX1 - posX2);
+    
+    // so here are the desired (x, y) coordinates
+    oY = (posY1 + (posY2 - posY1) * t);
+    oZ = (posZ1 + (posZ2 - posZ1) * t);
+}
+
+

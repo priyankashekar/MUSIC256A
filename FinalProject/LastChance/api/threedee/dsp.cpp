@@ -35,7 +35,7 @@ unsigned long next_power_2( unsigned long n )
 // name: convolve_fft()
 // desc: compute FFT using FFTW library
 //-----------------------------------------------------------------------------
-void convolve_fft( SAMPLE * f, int fsize, SAMPLE * g, int gsize, SAMPLE * buffy, int size )
+void convolve_fft( SAMPLE_2 * f, int fsize, SAMPLE_2 * g, int gsize, SAMPLE_2 * buffy, int size )
 {
   // determine FFT size
   unsigned int fftsize = next_power_2( fsize + gsize - 1 );
@@ -49,11 +49,11 @@ void convolve_fft( SAMPLE * f, int fsize, SAMPLE * g, int gsize, SAMPLE * buffy,
   fftw_complex *outFFT = (fftw_complex*) fftw_malloc(sizeof(fftw_complex) * fftsize);
 
   // initialize
-  memset( in, 0, sizeof(SAMPLE) * fftsize );
-  memset( h, 0, sizeof(SAMPLE) * fftsize );
-  memset( out, 0, sizeof(SAMPLE) * fftsize );
-  memcpy( in, f, sizeof(SAMPLE) * fsize );
-  memcpy( h, g, sizeof(SAMPLE) * gsize );
+  memset( in, 0, sizeof(SAMPLE_2) * fftsize );
+  memset( h, 0, sizeof(SAMPLE_2) * fftsize );
+  memset( out, 0, sizeof(SAMPLE_2) * fftsize );
+  memcpy( in, f, sizeof(SAMPLE_2) * fsize );
+  memcpy( h, g, sizeof(SAMPLE_2) * gsize );
 
   // set FFT
   fftw_plan p1, p2, ip;
@@ -75,7 +75,7 @@ void convolve_fft( SAMPLE * f, int fsize, SAMPLE * g, int gsize, SAMPLE * buffy,
   fftw_execute(ip);
 
   // copy the restul to output
-  memcpy( buffy, out, sizeof(SAMPLE) * size );
+  memcpy( buffy, out, sizeof(SAMPLE_2) * size );
 
   // free memory
   fftw_destroy_plan(p1);
@@ -89,7 +89,7 @@ void convolve_fft( SAMPLE * f, int fsize, SAMPLE * g, int gsize, SAMPLE * buffy,
 
 #if 0
 // convolve in freq domain
-void convolve_fft( SAMPLE * f, int fsize, SAMPLE * g, int gsize, SAMPLE * buffy, int size )
+void convolve_fft( SAMPLE_2 * f, int fsize, SAMPLE_2 * g, int gsize, SAMPLE_2 * buffy, int size )
 {
   // sanity check
   //assert( (fsize + gsize - 1) == size );
@@ -98,18 +98,18 @@ void convolve_fft( SAMPLE * f, int fsize, SAMPLE * g, int gsize, SAMPLE * buffy,
   unsigned int fftsize = next_power_2( fsize + gsize - 1 );
 
   // do it
-  SAMPLE * fbuf = new SAMPLE[fftsize];
-  SAMPLE * gbuf = new SAMPLE[fftsize];
-  SAMPLE * result = new SAMPLE[fftsize];
+  SAMPLE_2 * fbuf = new SAMPLE_2[fftsize];
+  SAMPLE_2 * gbuf = new SAMPLE_2[fftsize];
+  SAMPLE_2 * result = new SAMPLE_2[fftsize];
 
   // clear
-  memset( fbuf, 0, sizeof(SAMPLE) * fftsize );
-  memset( gbuf, 0, sizeof(SAMPLE) * fftsize );
-  memset( result, 0, sizeof(SAMPLE) * fftsize );
+  memset( fbuf, 0, sizeof(SAMPLE_2) * fftsize );
+  memset( gbuf, 0, sizeof(SAMPLE_2) * fftsize );
+  memset( result, 0, sizeof(SAMPLE_2) * fftsize );
   
   // copy in
-  memcpy( fbuf, f, sizeof(SAMPLE) * fsize );
-  memcpy( gbuf, g, sizeof(SAMPLE) * gsize );
+  memcpy( fbuf, f, sizeof(SAMPLE_2) * fsize );
+  memcpy( gbuf, g, sizeof(SAMPLE_2) * gsize );
   
   // take fft
   rfft( fbuf, fftsize/2, FFT_FORWARD );
@@ -138,7 +138,7 @@ void convolve_fft( SAMPLE * f, int fsize, SAMPLE * g, int gsize, SAMPLE * buffy,
   rfft( result, fftsize/2, FFT_INVERSE );
 
   // copy into buffy
-  memcpy( buffy, result, sizeof(SAMPLE) * size );
+  memcpy( buffy, result, sizeof(SAMPLE_2) * size );
   
   //printf("%f\n", result[0]*1000);
 

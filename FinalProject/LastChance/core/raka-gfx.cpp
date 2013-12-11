@@ -799,6 +799,8 @@ void mouseFunc( int button, int state, int x, int y )
             if( state == 0 )
             {
                 int starIndex = g_nebSee[Globals::activeNeb]->clickStar(x, y);
+                
+                
                 if (starIndex > -1){
                     playStar(starIndex); //AUDIO
                     
