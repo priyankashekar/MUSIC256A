@@ -16,7 +16,7 @@
 #include "raka-audio2graphics.h"
 #include <iostream>
 #include "SoundObject.h"
-//#include "Binaural.h"
+#include "Binaural.h"
 
 
 #include "x-fun.h"
@@ -33,10 +33,10 @@ int g_prog = 0;
 
 
 
-NEBClusterSound *g_neb;
+NEBClusterSound * g_neb;
 
 SoundObject g_3DObject;
-//Binaural g_3DBinaural();
+Binaural g_3DBinaural(MY_BUFFER_SIZE);
 
 // basic note struct
 struct Note
@@ -126,8 +126,7 @@ void resetSynth(){
 //-----------------------------------------------------------------------------
 static void audio_callback( SAMPLE * buffer, unsigned int numFrames, void * userData )
 {
-    
-        //cerr << "numFrames" << numFrames << endl;
+  
     // keep track of current time in samples
 //    g_now += numFrames;
     
@@ -201,6 +200,21 @@ static void audio_callback( SAMPLE * buffer, unsigned int numFrames, void * user
     //g_echo->synthesize2( buffer, numFrames );
     
     //g_now += numFrames;
+   
+    
+    // lock (to protect vector)
+        g_mutex.acquire();
+    
+    for (int i = 0; i < numFrames; i++){ //numFrames = 1024
+        //buffer[2*i] = buffer[2*i+1]  = g_env-> tick() * g_wvIn->tick();
+        //Globals::lastAudioBufferMono[i] = g_neb->play();
+        //Globals::lastAudioBufferMono[i] = 1;
+        buffer[2*i] = buffer[2*i+1] = g_neb->play(); //stereo buffer
+  
+        g_neb->tickStarTimer();
+        g_neb->tickSynthTimer();
+    }
+    
     
     float azi, ele, r;
     azi = g_3DObject.getAzi();
@@ -208,15 +222,12 @@ static void audio_callback( SAMPLE * buffer, unsigned int numFrames, void * user
     r = g_3DObject.getDistance();
     g_3DObject.updatePos();
     
-    // lock (to protect vector)
-        g_mutex.acquire();
+    g_3DBinaural.setPosition(r, azi, ele);
     
-    for (int i = 0; i < numFrames; i++){
-        //buffer[2*i] = buffer[2*i+1]  = g_env-> tick() * g_wvIn->tick();
-        buffer[2*i] = buffer[2*i+1] = g_neb->play();
-        g_neb->tickStarTimer();
-        g_neb->tickSynthTimer();
-    }
+    //memset(buffer, 0, 2 * numFrames * sizeof(SAMPLE));
+    
+    
+    //g_3DBinaural.process(buffer, numFrames, Globals::lastAudioBufferMono, numFrames);
     
     // release lock
         g_mutex.release();
@@ -231,7 +242,6 @@ static void audio_callback( SAMPLE * buffer, unsigned int numFrames, void * user
 //-----------------------------------------------------------------------------
 bool raka_audio_init( unsigned int srate, unsigned int frameSize, unsigned channels )
 {
-    //cerr << "FrameSize" << frameSize << endl;
     
     // initialize
     if( !XAudioIO::init( 0, 0, srate, frameSize, channels, audio_callback, NULL ) )
