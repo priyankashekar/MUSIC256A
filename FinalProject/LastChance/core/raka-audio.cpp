@@ -15,6 +15,8 @@
 #include "y-echo.h"
 #include "raka-audio2graphics.h"
 #include <iostream>
+#include "SoundObject.h"
+#include "Binaural.h"
 
 
 #include "x-fun.h"
@@ -32,6 +34,9 @@ int g_prog = 0;
 
 
 NEBClusterSound *g_neb;
+
+SoundObject g_3DObject;
+//Binaural g_3DBinaural();
 
 // basic note struct
 struct Note
@@ -121,6 +126,8 @@ void resetSynth(){
 //-----------------------------------------------------------------------------
 static void audio_callback( SAMPLE * buffer, unsigned int numFrames, void * userData )
 {
+    
+        //cerr << "numFrames" << numFrames << endl;
     // keep track of current time in samples
 //    g_now += numFrames;
     
@@ -195,7 +202,11 @@ static void audio_callback( SAMPLE * buffer, unsigned int numFrames, void * user
     
     //g_now += numFrames;
     
-    
+    float azi, ele, r;
+    azi = g_3DObject.getAzi();
+    ele = g_3DObject.getEle();
+    r = g_3DObject.getDistance();
+    g_3DObject.updatePos();
     
     // lock (to protect vector)
         g_mutex.acquire();
@@ -220,6 +231,8 @@ static void audio_callback( SAMPLE * buffer, unsigned int numFrames, void * user
 //-----------------------------------------------------------------------------
 bool raka_audio_init( unsigned int srate, unsigned int frameSize, unsigned channels )
 {
+    //cerr << "FrameSize" << frameSize << endl;
+    
     // initialize
     if( !XAudioIO::init( 0, 0, srate, frameSize, channels, audio_callback, NULL ) )
     {
@@ -287,8 +300,8 @@ bool raka_audio_init( unsigned int srate, unsigned int frameSize, unsigned chann
     g_neb = new NEBClusterSound();
     g_neb->setGrainLength(1, 0.2);
     g_neb->addStars(20);
-
-
+ 
+    g_3DObject.setObjectType(SoundObject::FIXED);
 
 
     
