@@ -166,6 +166,7 @@ public:
     static float hemiRadius;
 
     static bool tabHold;
+    static bool synthOn;
 };
 
 

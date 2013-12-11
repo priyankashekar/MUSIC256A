@@ -49,7 +49,17 @@
 		9994E613184D2CFE007354D4 /* Delay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9994E60D184D2CFE007354D4 /* Delay.cpp */; };
 		9994E614184D2CFE007354D4 /* DelayL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9994E60F184D2CFE007354D4 /* DelayL.cpp */; };
 		9994E615184D2CFE007354D4 /* MidiFileIn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9994E611184D2CFE007354D4 /* MidiFileIn.cpp */; };
-		99964C4218578A90008B5159 /* filter_table.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 99964C3D18578A90008B5159 /* filter_table.cpp */; };
+		999568571857DE9100A4C44F /* Binaural.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 999568501857DE9100A4C44F /* Binaural.cpp */; };
+		999568581857DE9100A4C44F /* dsp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 999568521857DE9100A4C44F /* dsp.cpp */; };
+		999568591857DE9100A4C44F /* filter_table.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 999568531857DE9100A4C44F /* filter_table.cpp */; };
+		9995685A1857DE9100A4C44F /* SoundObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 999568551857DE9100A4C44F /* SoundObject.cpp */; };
+		9995685C1857DF3B00A4C44F /* libsndfile.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9995685B1857DF3B00A4C44F /* libsndfile.1.dylib */; };
+		999568611857E25A00A4C44F /* libfftw3.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9995685D1857DF7400A4C44F /* libfftw3.3.dylib */; };
+		999568621857E25A00A4C44F /* libfftw3.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9995685D1857DF7400A4C44F /* libfftw3.3.dylib */; };
+		999568671857E25A00A4C44F /* libfftw3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 999568631857E25A00A4C44F /* libfftw3.a */; };
+		999568681857E25A00A4C44F /* libfftw3_threads.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 999568641857E25A00A4C44F /* libfftw3_threads.3.dylib */; };
+		999568691857E25A00A4C44F /* libfftw3_threads.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 999568651857E25A00A4C44F /* libfftw3_threads.a */; };
+		9995686A1857E25A00A4C44F /* libfftw3_threads.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 999568661857E25A00A4C44F /* libfftw3_threads.3.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -175,10 +185,20 @@
 		9994E610184D2CFE007354D4 /* DelayL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DelayL.h; sourceTree = "<group>"; };
 		9994E611184D2CFE007354D4 /* MidiFileIn.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MidiFileIn.cpp; sourceTree = "<group>"; };
 		9994E612184D2CFE007354D4 /* MidiFileIn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MidiFileIn.h; sourceTree = "<group>"; };
-		99964C3B18578A90008B5159 /* Binaural.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Binaural.h; sourceTree = "<group>"; };
-		99964C3D18578A90008B5159 /* filter_table.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = filter_table.cpp; sourceTree = "<group>"; };
-		99964C3F18578A90008B5159 /* SoundObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundObject.h; sourceTree = "<group>"; };
-		99964C4418578B17008B5159 /* global.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = global.h; sourceTree = "<group>"; };
+		999568501857DE9100A4C44F /* Binaural.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Binaural.cpp; sourceTree = "<group>"; };
+		999568511857DE9100A4C44F /* Binaural.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Binaural.h; sourceTree = "<group>"; };
+		999568521857DE9100A4C44F /* dsp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dsp.cpp; sourceTree = "<group>"; };
+		999568531857DE9100A4C44F /* filter_table.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = filter_table.cpp; sourceTree = "<group>"; };
+		999568541857DE9100A4C44F /* global.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = global.h; sourceTree = "<group>"; };
+		999568551857DE9100A4C44F /* SoundObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SoundObject.cpp; sourceTree = "<group>"; };
+		999568561857DE9100A4C44F /* SoundObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundObject.h; sourceTree = "<group>"; };
+		9995685B1857DF3B00A4C44F /* libsndfile.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsndfile.1.dylib; path = /usr/local/Cellar/libsndfile/1.0.25/lib/libsndfile.1.dylib; sourceTree = "<absolute>"; };
+		9995685D1857DF7400A4C44F /* libfftw3.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfftw3.3.dylib; path = /usr/local/Cellar/fftw/3.3.3/lib/libfftw3.3.dylib; sourceTree = "<absolute>"; };
+		9995685F1857E11600A4C44F /* libfftw3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfftw3.a; path = /usr/local/lib/libfftw3.a; sourceTree = "<absolute>"; };
+		999568631857E25A00A4C44F /* libfftw3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfftw3.a; path = /usr/local/Cellar/fftw/3.3.3/lib/libfftw3.a; sourceTree = "<absolute>"; };
+		999568641857E25A00A4C44F /* libfftw3_threads.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfftw3_threads.3.dylib; path = /usr/local/Cellar/fftw/3.3.3/lib/libfftw3_threads.3.dylib; sourceTree = "<absolute>"; };
+		999568651857E25A00A4C44F /* libfftw3_threads.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfftw3_threads.a; path = /usr/local/Cellar/fftw/3.3.3/lib/libfftw3_threads.a; sourceTree = "<absolute>"; };
+		999568661857E25A00A4C44F /* libfftw3_threads.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfftw3_threads.3.dylib; path = /usr/local/Cellar/fftw/3.3.3/lib/libfftw3_threads.3.dylib; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,16 +206,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				999568671857E25A00A4C44F /* libfftw3.a in Frameworks */,
+				999568681857E25A00A4C44F /* libfftw3_threads.3.dylib in Frameworks */,
+				999568691857E25A00A4C44F /* libfftw3_threads.a in Frameworks */,
+				9995686A1857E25A00A4C44F /* libfftw3_threads.3.dylib in Frameworks */,
+				999568611857E25A00A4C44F /* libfftw3.3.dylib in Frameworks */,
+				999568621857E25A00A4C44F /* libfftw3.3.dylib in Frameworks */,
+				9995685C1857DF3B00A4C44F /* libsndfile.1.dylib in Frameworks */,
 				9980E942184BCE9900581841 /* libfluidsynth.dylib in Frameworks */,
+				9980E941184BCE9900581841 /* libfluidsynth.1.dylib in Frameworks */,
+				9980E940184BCE9900581841 /* libfluidsynth.1.5.2.dylib in Frameworks */,
 				8642B3E8183448B400CF7375 /* CoreAudio.framework in Frameworks */,
 				86A7FA741831A5A500E7FBC9 /* AppKit.framework in Frameworks */,
 				86A7FA721831A58F00E7FBC9 /* ApplicationServices.framework in Frameworks */,
 				86A7FA701831A57F00E7FBC9 /* GLUT.framework in Frameworks */,
 				86A7FA6E1831A57200E7FBC9 /* OpenGL.framework in Frameworks */,
 				86A7FA6C1831A55F00E7FBC9 /* CoreGraphics.framework in Frameworks */,
-				9980E940184BCE9900581841 /* libfluidsynth.1.5.2.dylib in Frameworks */,
 				86A7FA6A1831A54C00E7FBC9 /* CFNetwork.framework in Frameworks */,
-				9980E941184BCE9900581841 /* libfluidsynth.1.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -233,7 +260,7 @@
 		86A7FA1F1831A4EC00E7FBC9 /* api */ = {
 			isa = PBXGroup;
 			children = (
-				99964C3918578A90008B5159 /* threedee */,
+				9995684F1857DE9100A4C44F /* threedee */,
 				9980E944184BDAE700581841 /* CImg.h */,
 				9980E943184BDA4700581841 /* rgb_hsv_hsl.hpp */,
 				9980E918184BCE9900581841 /* fsynth */,
@@ -331,6 +358,13 @@
 		86A7FA751831A5BE00E7FBC9 /* frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				999568631857E25A00A4C44F /* libfftw3.a */,
+				999568641857E25A00A4C44F /* libfftw3_threads.3.dylib */,
+				999568651857E25A00A4C44F /* libfftw3_threads.a */,
+				999568661857E25A00A4C44F /* libfftw3_threads.3.dylib */,
+				9995685F1857E11600A4C44F /* libfftw3.a */,
+				9995685D1857DF7400A4C44F /* libfftw3.3.dylib */,
+				9995685B1857DF3B00A4C44F /* libsndfile.1.dylib */,
 				8642B3E7183448B400CF7375 /* CoreAudio.framework */,
 				86A7FA731831A5A500E7FBC9 /* AppKit.framework */,
 				86A7FA711831A58F00E7FBC9 /* ApplicationServices.framework */,
@@ -463,13 +497,16 @@
 			path = man1;
 			sourceTree = "<group>";
 		};
-		99964C3918578A90008B5159 /* threedee */ = {
+		9995684F1857DE9100A4C44F /* threedee */ = {
 			isa = PBXGroup;
 			children = (
-				99964C4418578B17008B5159 /* global.h */,
-				99964C3B18578A90008B5159 /* Binaural.h */,
-				99964C3D18578A90008B5159 /* filter_table.cpp */,
-				99964C3F18578A90008B5159 /* SoundObject.h */,
+				999568501857DE9100A4C44F /* Binaural.cpp */,
+				999568511857DE9100A4C44F /* Binaural.h */,
+				999568521857DE9100A4C44F /* dsp.cpp */,
+				999568531857DE9100A4C44F /* filter_table.cpp */,
+				999568541857DE9100A4C44F /* global.h */,
+				999568551857DE9100A4C44F /* SoundObject.cpp */,
+				999568561857DE9100A4C44F /* SoundObject.h */,
 			);
 			path = threedee;
 			sourceTree = "<group>";
@@ -526,6 +563,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				992BF5A2184FFB12007946E6 /* raka-navigation.cpp in Sources */,
+				999568571857DE9100A4C44F /* Binaural.cpp in Sources */,
 				9994E613184D2CFE007354D4 /* Delay.cpp in Sources */,
 				86A7FA661831A4EC00E7FBC9 /* y-particle.cpp in Sources */,
 				86A7FA671831A4EC00E7FBC9 /* y-score-reader.cpp in Sources */,
@@ -542,7 +580,7 @@
 				86A7FA611831A4EC00E7FBC9 /* y-charting.cpp in Sources */,
 				86A7FA531831A4EC00E7FBC9 /* RtAudio.cpp in Sources */,
 				86A7FA581831A4EC00E7FBC9 /* x-audio.cpp in Sources */,
-				99964C4218578A90008B5159 /* filter_table.cpp in Sources */,
+				999568591857DE9100A4C44F /* filter_table.cpp in Sources */,
 				86A7FA5C1831A4EC00E7FBC9 /* x-loadlum.cpp in Sources */,
 				86A7FA631831A4EC00E7FBC9 /* y-entity.cpp in Sources */,
 				86A7FA591831A4EC00E7FBC9 /* x-buffer.cpp in Sources */,
@@ -552,8 +590,10 @@
 				9980E94A184C1E4F00581841 /* FileWvIn.cpp in Sources */,
 				86A7FA811831A69100E7FBC9 /* raka-globals.cpp in Sources */,
 				86A7FA7F1831A69100E7FBC9 /* raka-audio.cpp in Sources */,
+				9995685A1857DE9100A4C44F /* SoundObject.cpp in Sources */,
 				9994E60C184D2C20007354D4 /* Stk.cpp in Sources */,
 				86A7FA5A1831A4EC00E7FBC9 /* x-fun.cpp in Sources */,
+				999568581857DE9100A4C44F /* dsp.cpp in Sources */,
 				8642B3E61834471600CF7375 /* y-fluidsynth.cpp in Sources */,
 				86A7FA821831A69100E7FBC9 /* raka-sim.cpp in Sources */,
 				86A7FA621831A4EC00E7FBC9 /* y-echo.cpp in Sources */,
@@ -595,6 +635,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/usr/local/include,
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -627,6 +672,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/usr/local/include,
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				SDKROOT = macosx;
 			};

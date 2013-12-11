@@ -63,7 +63,7 @@ public:
 public:
     //SAMPLE playStar(int starIndex);
     void addStars(int numStars);
-    void setGrainLength(int grainLengthSecs);
+    void setGrainLength(int grainLengthSecs, float synthRestSecs);
     
     void starOn(int starIndex);
     void starOff();
@@ -78,6 +78,9 @@ public:
     void startStarTimer();
     void tickStarTimer();
     
+    void startSynthTimer();
+    void tickSynthTimer();
+    
     
 protected:
     int m_fileLength;
@@ -89,6 +92,11 @@ protected:
     double m_timeNow;
     bool m_timerOn;
     std::vector<int> m_synth;
+    double m_synthTimeNow;
+    bool m_synthTimerOn;
+    int m_synthRest;
+    int m_synthIndex;
+
     
 };
 

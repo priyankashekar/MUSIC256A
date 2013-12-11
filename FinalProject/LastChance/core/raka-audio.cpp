@@ -93,8 +93,12 @@ void playStar(int starIndex){
 
 void toggleSynth(){
 
-    //boool
-    g_neb->playSynth();
+    if (Globals::synthOn){
+        g_neb->playSynth();
+    } else {
+        g_neb->pauseSynth();
+        Globals::synthOn = false;
+    }
 }
 
 void addStarToSynth(int starIndex){
@@ -198,6 +202,7 @@ static void audio_callback( SAMPLE * buffer, unsigned int numFrames, void * user
         //buffer[2*i] = buffer[2*i+1]  = g_env-> tick() * g_wvIn->tick();
         buffer[2*i] = buffer[2*i+1] = g_neb->play();
         g_neb->tickStarTimer();
+        g_neb->tickSynthTimer();
     }
     
     // release lock
@@ -278,7 +283,7 @@ bool raka_audio_init( unsigned int srate, unsigned int frameSize, unsigned chann
     
     
     g_neb = new NEBClusterSound();
-    g_neb->setGrainLength(1);
+    g_neb->setGrainLength(1, 0.2);
     g_neb->addStars(20);
 
 
@@ -325,11 +330,17 @@ NEBClusterSound::NEBClusterSound(){
     m_timeNow = 0;
     m_timerOn = false;
     
+    m_synthTimeNow = 0;
+    m_synthTimerOn = false;
+    
+    //m_synthOn = false;
+    
 }
 
-void NEBClusterSound::setGrainLength(int grainLengthSecs){
+void NEBClusterSound::setGrainLength(int grainLengthSecs, float synthRestSecs){
     
     m_grainLength = grainLengthSecs * RAKA_SRATE;
+    m_synthRest = synthRestSecs * RAKA_SRATE;
 }
 
 void NEBClusterSound::addStars(int numStars){
@@ -358,11 +369,6 @@ int NEBStarSound::getGrainStart(){
 }
 
 
-//SAMPLE NEBStarSound::play(){
-//    
-//   
-//}
-
 void NEBClusterSound::starOn(int starIndex){
     
     wvIn->reset();
@@ -384,14 +390,41 @@ void NEBClusterSound::starOff(){
 
 void NEBClusterSound::playSynth(){
     
-    for (int i = 0; i < m_synth.size(); i++){
-        g_neb->starOn(i);
+    //if (m_synthOn){
+    if (m_synthIndex > -1){
+
+        g_neb->starOn(m_synthIndex);
+        m_synthIndex++;
+        m_synthIndex %= m_synth.size();
+        startSynthTimer();
+        
     }
     
 }
 
+void NEBClusterSound::startSynthTimer(){
+    
+    m_synthTimeNow = 0;
+    m_synthTimerOn = true;
+}
+
+void NEBClusterSound::tickSynthTimer(){
+    
+    if (m_synthTimerOn){ //IS THIS varialbe NEEDED?
+        
+        if (m_synthTimeNow > (m_grainLength + m_synthRest)){
+            playSynth();
+        }
+        
+        m_synthTimeNow++;
+    }
+}
+
+
+
 void NEBClusterSound::pauseSynth(){
     
+    m_synthTimerOn = false;
     
 }
 
@@ -417,12 +450,14 @@ void NEBClusterSound::pauseSynth(){
 void NEBClusterSound::addStarToSynth(int starIndex){
    
     m_synth.push_back(starIndex);
+    m_synthIndex = 0;
 }
 
 
 void NEBClusterSound::resetSynth(){
     
     m_synth.clear();
+    m_synthIndex = -1;
 }
 
 

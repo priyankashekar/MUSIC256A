@@ -94,4 +94,5 @@ Vector3D Globals::DarkSlateBlue(72.0/255, 61.0/255, 139.0/255);
 float Globals::hemiRadius = 50;
 
 bool Globals::tabHold = false;
+bool Globals::synthOn = true;
 
