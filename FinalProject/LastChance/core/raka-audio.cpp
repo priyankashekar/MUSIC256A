@@ -352,6 +352,8 @@ bool raka_audio_start()
 //-----------------------------------------------------------------------------
 NEBClusterSound::NEBClusterSound(){
     
+    setTrackTitleA2G("skins");
+    
     wvIn = new stk::FileWvIn("data/sound/skins.wav");
     wvIn->setRate(1);
     m_fileLength = wvIn->getSize();

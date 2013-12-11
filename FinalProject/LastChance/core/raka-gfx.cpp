@@ -345,6 +345,7 @@ void initialize_simulation()
     //for (int i = 0; i < Globals::numTracks; i++){
     NEBClusterSee *nextNeb = new NEBClusterSee(Globals::numStarsPerNeb, Vector3D(0,0,-Globals::hemiRadius), Globals::spreadRadius, 0);
     g_nebSee.push_back(nextNeb);
+    Globals::sim->root().addChild(nextNeb);
     
     nextNeb = new NEBClusterSee(Globals::numStarsPerNeb, Vector3D(Globals::hemiRadius,0,0), Globals::spreadRadius, 90);
     g_nebSee.push_back(nextNeb);

@@ -370,7 +370,10 @@ void NEBClusterSee::playStar(int starIndex){
 ////    //glow
 }
 
-
+void NEBClusterSee::setTrackTitle(string trackTitle){
+    
+    m_trackTitle = trackTitle;
+}
 
 Vector3D NEBStarSee::getLocation(){
     return m_location;
@@ -380,11 +383,25 @@ YBokeh * NEBStarSee::getStar(){
     return m_star;
 }
 
+void NEBClusterSee::render()
+{
+    
+    glTranslatef(m_center.x, m_center.y, m_center.z / 10);
+    glColor4f(1, 1, 1, 1);
+    glRasterPos3f(0, 0, 0);
+    
+    for (int i = 0; i < m_trackTitle.length(); i++){
+        glutBitmapCharacter (GLUT_BITMAP_HELVETICA_18, m_trackTitle[i]);
+    }
+
+}
+
 NEBClusterSee::NEBClusterSee(int numStars, Vector3D center, float spreadRadius, float rotation){
     
     m_numStars = numStars;
     m_center = center;
     NEBStarSee *addStar;
+
     
     if (m_center.x != 0){
         for (int i = 0; i < numStars; i++){

@@ -397,6 +397,8 @@ protected:
     Vector3D iAlpha;
     
     float rotAngle;
+    
+
 };
 
 

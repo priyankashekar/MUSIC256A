@@ -11,6 +11,7 @@
 #include "y-entity.h"
 #include "x-buffer.h"
 #include <vector>
+#include <string>
 
 struct SKYtrail{
     float yPos;
@@ -120,7 +121,7 @@ protected:
     
 };
 
-class NEBClusterSee
+class NEBClusterSee : public YEntity
 {
 public:
     NEBClusterSee(int numStars, Vector3D center, float spreadRadius, float rotation);
@@ -128,10 +129,13 @@ public:
     int clickStar(int xMouse, int yMouse);
     void selectStar(int starIndex);
     void playStar(int starIndex);
+    void setTrackTitle(std::string trackTitle);
+    void render();
 protected:
     Vector3D m_center;
     int m_numStars;
     std::vector<NEBStarSee *> m_stars;
+    std::string m_trackTitle;
     
 };
 

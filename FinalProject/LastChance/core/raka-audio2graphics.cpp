@@ -33,6 +33,11 @@ void initA2G(std::vector<NEBClusterSee *> nebSee){
     
 }
 
+void setTrackTitleA2G(std::string trackTitle){
+    
+    g_interface[Globals::activeNeb]->getNebSee()->setTrackTitle(trackTitle);
+}
+
 NEBClusterSee * Audio2Graphics::getNebSee(){
    
     return m_nebSee;
