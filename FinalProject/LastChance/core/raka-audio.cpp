@@ -13,6 +13,7 @@
 #include "y-waveform.h"
 #include "y-fluidsynth.h"
 #include "y-echo.h"
+#include "raka-audio2graphics.h"
 #include <iostream>
 
 
@@ -93,8 +94,9 @@ void playStar(int starIndex){
 
 void toggleSynth(){
 
-    if (Globals::synthOn){
+    if (!Globals::synthOn){
         g_neb->playSynth();
+        Globals::synthOn = true;
     } else {
         g_neb->pauseSynth();
         Globals::synthOn = false;
@@ -378,6 +380,8 @@ void NEBClusterSound::starOn(int starIndex){
     env->keyOn();
     
     startStarTimer();
+    
+    playStarA2G(starIndex);
 }
 
 void NEBClusterSound::starOff(){
@@ -393,7 +397,7 @@ void NEBClusterSound::playSynth(){
     //if (m_synthOn){
     if (m_synthIndex > -1){
 
-        g_neb->starOn(m_synthIndex);
+        g_neb->starOn(m_synth[m_synthIndex]);
         m_synthIndex++;
         m_synthIndex %= m_synth.size();
         startSynthTimer();
@@ -425,6 +429,7 @@ void NEBClusterSound::tickSynthTimer(){
 void NEBClusterSound::pauseSynth(){
     
     m_synthTimerOn = false;
+    m_synthIndex = 0;
     
 }
 
@@ -451,6 +456,8 @@ void NEBClusterSound::addStarToSynth(int starIndex){
    
     m_synth.push_back(starIndex);
     m_synthIndex = 0;
+    
+    selectStarA2G(starIndex);
 }
 
 

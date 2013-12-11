@@ -107,11 +107,10 @@ public:
     NEBStarSee(Vector3D location, Vector3D color);
     ~NEBStarSee();
 public:
-    void select();
-    void play();
     void update(YTimeInterval dt);
     void render();
     Vector3D getLocation();
+    YBokeh *getStar();
 protected:
     Vector3D m_location;
     Vector3D m_color;
@@ -125,7 +124,9 @@ class NEBClusterSee
 public:
     NEBClusterSee(int numStars, Vector3D center, float spreadRadius);
     ~NEBClusterSee();
-    int clickStar(int xMouse, int yMouse, int starMode);
+    int clickStar(int xMouse, int yMouse);
+    void selectStar(int starIndex);
+    void playStar(int starIndex);
 protected:
     Vector3D m_center;
     int m_numStars;

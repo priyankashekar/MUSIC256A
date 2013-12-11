@@ -357,21 +357,26 @@ NEBStarSee::NEBStarSee(Vector3D location, Vector3D color){
 
  
 }
+//
+void NEBClusterSee::selectStar(int starIndex){
+//    //change color
+    m_stars[starIndex]->getStar()->sca.set( 5, 5, 5 );
 
-void NEBStarSee::select(){
-    
-    m_star->sca.set( 5, 5, 5 );
-    
+//    
 }
 
-void NEBStarSee::play(){
-    
+void NEBClusterSee::playStar(int starIndex){
+////    //glow
 }
 
 
 
 Vector3D NEBStarSee::getLocation(){
     return m_location;
+}
+
+YBokeh * NEBStarSee::getStar(){
+    return m_star;
 }
 
 NEBClusterSee::NEBClusterSee(int numStars, Vector3D center, float spreadRadius){
@@ -390,7 +395,9 @@ NEBClusterSee::NEBClusterSee(int numStars, Vector3D center, float spreadRadius){
 }
 
 
-int NEBClusterSee::clickStar(int xMouse, int yMouse, int starMode){
+
+
+int NEBClusterSee::clickStar(int xMouse, int yMouse){
     
     double xWorld;
     double yWorld;
@@ -400,15 +407,15 @@ int NEBClusterSee::clickStar(int xMouse, int yMouse, int starMode){
     for (int i = 0; i < m_numStars; i++){
         Vector3D starLocation = m_stars[i]->getLocation();
         
-        double blah = (starLocation - Vector3D(xWorld, yWorld, m_center.z)).magnitude();
+        double clickDistFromStar = (starLocation - Vector3D(xWorld, yWorld, m_center.z)).magnitude();
         
-        if (blah < 5){
+        if (clickDistFromStar < 5){
             
-            if (starMode == SELECT_STAR){
-                m_stars[i]->select();
-            } else if (starMode == PLAY_STAR) {
-                m_stars[i]->play();
-            }
+//            if (starMode == SELECT_STAR){
+//                m_stars[i]->select();
+//            } else if (starMode == PLAY_STAR) {
+//                m_stars[i]->play();
+//            }
             
             return i;
         }

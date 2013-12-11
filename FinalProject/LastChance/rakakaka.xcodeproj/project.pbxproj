@@ -60,6 +60,7 @@
 		999568681857E25A00A4C44F /* libfftw3_threads.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 999568641857E25A00A4C44F /* libfftw3_threads.3.dylib */; };
 		999568691857E25A00A4C44F /* libfftw3_threads.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 999568651857E25A00A4C44F /* libfftw3_threads.a */; };
 		9995686A1857E25A00A4C44F /* libfftw3_threads.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 999568661857E25A00A4C44F /* libfftw3_threads.3.dylib */; };
+		9995686D1857F58600A4C44F /* raka-audio2graphics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9995686B1857F58600A4C44F /* raka-audio2graphics.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -199,6 +200,8 @@
 		999568641857E25A00A4C44F /* libfftw3_threads.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfftw3_threads.3.dylib; path = /usr/local/Cellar/fftw/3.3.3/lib/libfftw3_threads.3.dylib; sourceTree = "<absolute>"; };
 		999568651857E25A00A4C44F /* libfftw3_threads.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfftw3_threads.a; path = /usr/local/Cellar/fftw/3.3.3/lib/libfftw3_threads.a; sourceTree = "<absolute>"; };
 		999568661857E25A00A4C44F /* libfftw3_threads.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfftw3_threads.3.dylib; path = /usr/local/Cellar/fftw/3.3.3/lib/libfftw3_threads.3.dylib; sourceTree = "<absolute>"; };
+		9995686B1857F58600A4C44F /* raka-audio2graphics.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "raka-audio2graphics.cpp"; path = "core/raka-audio2graphics.cpp"; sourceTree = "<group>"; };
+		9995686C1857F58600A4C44F /* raka-audio2graphics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "raka-audio2graphics.h"; path = "core/raka-audio2graphics.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -383,6 +386,8 @@
 				992BF5A1184FFB12007946E6 /* raka-navigation.h */,
 				86A7FA771831A69100E7FBC9 /* raka-audio.cpp */,
 				86A7FA781831A69100E7FBC9 /* raka-audio.h */,
+				9995686B1857F58600A4C44F /* raka-audio2graphics.cpp */,
+				9995686C1857F58600A4C44F /* raka-audio2graphics.h */,
 				86A7FA831831A91300E7FBC9 /* raka-entity.cpp */,
 				86A7FA841831A91300E7FBC9 /* raka-entity.h */,
 				86A7FA791831A69100E7FBC9 /* raka-gfx.cpp */,
@@ -576,6 +581,7 @@
 				86A7FA5E1831A4EC00E7FBC9 /* x-network.mm in Sources */,
 				9980E949184C1E4F00581841 /* Envelope.cpp in Sources */,
 				86A7FA851831A91300E7FBC9 /* raka-entity.cpp in Sources */,
+				9995686D1857F58600A4C44F /* raka-audio2graphics.cpp in Sources */,
 				86A7FA641831A4EC00E7FBC9 /* y-fft.cpp in Sources */,
 				86A7FA611831A4EC00E7FBC9 /* y-charting.cpp in Sources */,
 				86A7FA531831A4EC00E7FBC9 /* RtAudio.cpp in Sources */,

@@ -15,6 +15,7 @@
 #include "x-loadlum.h"
 #include "x-vector3d.h"
 #include "raka-navigation.h"
+#include "raka-audio2graphics.h"
 
 #include <iostream>
 #include <vector>
@@ -341,7 +342,10 @@ void initialize_simulation()
     g_sky->init();
     Globals::sim->root().addChild(g_sky);
     
-    g_nebStar = new NEBClusterSee(10, Vector3D(0,0,-50), 40);
+    g_nebStar = new NEBClusterSee(2, Vector3D(0,0,-50), 40);
+    
+    initA2G(g_nebStar);
+    
     //Globals::sim->root().addChild(g_neb);
     
 }
@@ -783,15 +787,17 @@ void mouseFunc( int button, int state, int x, int y )
             // down
             if( state == 0 )
             {
-                int starIndex = g_nebStar->clickStar(x, y, SELECT_STAR);
-                
+                int starIndex = g_nebStar->clickStar(x, y);
                 if (starIndex > -1){
-                    playStar(starIndex);
-                }
-             
-                if (Globals::tabHold){
-                    addStarToSynth(starIndex);
-                    Globals::tabHold = false;
+                    playStar(starIndex); //AUDIO
+                    
+                    
+                    
+                    if (Globals::tabHold){
+                        addStarToSynth(starIndex); //AUDIO
+                        
+                        Globals::tabHold = false;
+                    }
                 }
 
                 
