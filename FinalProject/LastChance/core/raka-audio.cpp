@@ -364,7 +364,7 @@ bool raka_audio_init( unsigned int srate, unsigned int frameSize, unsigned chann
     
     for (int i = 0; i < Globals::numTracks; i++){
         
-        NEBClusterSound *nextNeb = new NEBClusterSound(Globals::trackPaths[i], Globals::trackTitles[i]);
+        NEBClusterSound *nextNeb = new NEBClusterSound(Globals::trackPaths[i], Globals::trackTitles[i], i);
         g_nebSound.push_back(nextNeb);
         g_nebSound[i]->setGrainLength(0.5 , 0.2);
         g_nebSound[i]->addStars(Globals::numStarsPerNeb);
@@ -401,9 +401,9 @@ bool raka_audio_start()
 // name: vq_audio_start()
 // desc: start audio system
 //-----------------------------------------------------------------------------
-NEBClusterSound::NEBClusterSound(std::string trackPath, std::string trackTitle){
+NEBClusterSound::NEBClusterSound(std::string trackPath, std::string trackTitle, int nebIndex){
     
-    setTrackTitleA2G(trackTitle);
+    setTrackTitleA2G(trackTitle, nebIndex);
     
     wvIn = new stk::FileWvIn(trackPath);
     wvIn->setRate(1);

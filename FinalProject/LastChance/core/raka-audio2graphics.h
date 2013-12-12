@@ -21,7 +21,7 @@ void deselectStarA2G(int nebIndex);
 void playStarA2G(int starIndex, int nebIndex);
 void stopStarA2G(int nebIndex);
 void initA2G(std::vector<NEBClusterSee *> nebSee);
-void setTrackTitleA2G(std::string trackTitle);
+void setTrackTitleA2G(std::string trackTitle, int nebIndex);
 
 class Audio2Graphics
 {

@@ -455,9 +455,11 @@ YBokeh * NEBStarSee::getStar(){
 
 void NEBClusterSee::render()
 {
-    
-    glTranslatef(m_center.x, m_center.y, m_center.z / 10);
+ 
     glColor4f(1, 1, 1, 1);
+    glTranslatef(m_center.x, m_center.y, m_center.z);
+ 
+    glScalef(10, 10, 10);
     glRasterPos3f(0, 0, 0);
     
     for (int i = 0; i < m_trackTitle.length(); i++){
