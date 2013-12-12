@@ -145,7 +145,7 @@ protected:
     
 };
 
-class INTROScreen : public YEntity
+class INTROScreen //: public YEntity
 {
 public:
 

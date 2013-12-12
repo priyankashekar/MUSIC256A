@@ -360,7 +360,7 @@ void initialize_simulation()
     
     initA2G(g_nebSee);
     
-//    g_intro = new INTROScreen();
+    g_intro = new INTROScreen();
 //    Globals::sim->root().addChild(g_intro);
     
 }
@@ -917,8 +917,8 @@ void displayFunc( )
     
 
     //    // draw any HUD here
-    
-
+    g_intro->render();
+   
     //    Globals::hud->project();
     //    Globals::hud->updateAll( Globals::sim->delta() );
     //    Globals::hud->drawAll();
