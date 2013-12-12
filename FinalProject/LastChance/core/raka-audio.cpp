@@ -253,8 +253,8 @@ static void audio_callback( SAMPLE * buffer, unsigned int numFrames, void * user
         } else {
             buffer[2*i] = buffer[2*i+1] = g_nebSound[Globals::activeNeb]->play();
             
-            if (g_masterIndex > -1){
-                buffer[2*i] = buffer[2*i+1] = g_nebSound[g_masterSynth[g_masterIndex]]->play();
+            if (g_masterIndex > -1 && Globals::activeNeb != g_masterSynth[g_masterIndex]){
+                buffer[2*i] = buffer[2*i+1] += g_nebSound[g_masterSynth[g_masterIndex]]->play();
             }
         }
 
