@@ -108,7 +108,7 @@ bool raka_gfx_init( int argc, const char ** argv )
     // set the window postion
     glutInitWindowPosition( 100, 100 );
     // create the window
-    glutCreateWindow( "RAKAKAKAKAKAKA!!!!!");
+    glutCreateWindow( "HELVETICA & NEBULAE");
     // full screen
     if( Globals::fullscreen )
         glutFullScreen();

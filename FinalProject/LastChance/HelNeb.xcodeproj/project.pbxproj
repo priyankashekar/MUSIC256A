@@ -79,7 +79,7 @@
 		8642B3E41834471600CF7375 /* y-fluidsynth.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "y-fluidsynth.cpp"; sourceTree = "<group>"; };
 		8642B3E51834471600CF7375 /* y-fluidsynth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "y-fluidsynth.h"; sourceTree = "<group>"; };
 		8642B3E7183448B400CF7375 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
-		86A7FA0F1831A3A200E7FBC9 /* rakakaka */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = rakakaka; sourceTree = BUILT_PRODUCTS_DIR; };
+		86A7FA0F1831A3A200E7FBC9 /* HelNeb */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = HelNeb; sourceTree = BUILT_PRODUCTS_DIR; };
 		86A7FA1C1831A46B00E7FBC9 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		86A7FA1D1831A46B00E7FBC9 /* rakakaka.1 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.man; path = rakakaka.1; sourceTree = "<group>"; };
 		86A7FA211831A4EC00E7FBC9 /* RtAudio.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RtAudio.cpp; sourceTree = "<group>"; };
@@ -246,7 +246,7 @@
 		86A7FA101831A3A200E7FBC9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				86A7FA0F1831A3A200E7FBC9 /* rakakaka */,
+				86A7FA0F1831A3A200E7FBC9 /* HelNeb */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -519,9 +519,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		86A7FA0E1831A3A200E7FBC9 /* rakakaka */ = {
+		86A7FA0E1831A3A200E7FBC9 /* HelNeb */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 86A7FA181831A3A200E7FBC9 /* Build configuration list for PBXNativeTarget "rakakaka" */;
+			buildConfigurationList = 86A7FA181831A3A200E7FBC9 /* Build configuration list for PBXNativeTarget "HelNeb" */;
 			buildPhases = (
 				86A7FA0B1831A3A200E7FBC9 /* Sources */,
 				86A7FA0C1831A3A200E7FBC9 /* Frameworks */,
@@ -531,9 +531,9 @@
 			);
 			dependencies = (
 			);
-			name = rakakaka;
+			name = HelNeb;
 			productName = rakakaka;
-			productReference = 86A7FA0F1831A3A200E7FBC9 /* rakakaka */;
+			productReference = 86A7FA0F1831A3A200E7FBC9 /* HelNeb */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -545,7 +545,7 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Ge Wang";
 			};
-			buildConfigurationList = 86A7FA0A1831A3A200E7FBC9 /* Build configuration list for PBXProject "rakakaka" */;
+			buildConfigurationList = 86A7FA0A1831A3A200E7FBC9 /* Build configuration list for PBXProject "HelNeb" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -557,7 +557,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				86A7FA0E1831A3A200E7FBC9 /* rakakaka */,
+				86A7FA0E1831A3A200E7FBC9 /* HelNeb */,
 			);
 		};
 /* End PBXProject section */
@@ -705,7 +705,7 @@
 				);
 				OTHER_CFLAGS = "-D__MACOSX_CORE__";
 				OTHER_LDFLAGS = "-lfluidsynth";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = HelNeb;
 			};
 			name = Debug;
 		};
@@ -726,14 +726,14 @@
 				);
 				OTHER_CFLAGS = "-D__MACOSX_CORE__";
 				OTHER_LDFLAGS = "-lfluidsynth";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = HelNeb;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		86A7FA0A1831A3A200E7FBC9 /* Build configuration list for PBXProject "rakakaka" */ = {
+		86A7FA0A1831A3A200E7FBC9 /* Build configuration list for PBXProject "HelNeb" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				86A7FA161831A3A200E7FBC9 /* Debug */,
@@ -742,7 +742,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		86A7FA181831A3A200E7FBC9 /* Build configuration list for PBXNativeTarget "rakakaka" */ = {
+		86A7FA181831A3A200E7FBC9 /* Build configuration list for PBXNativeTarget "HelNeb" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				86A7FA191831A3A200E7FBC9 /* Debug */,

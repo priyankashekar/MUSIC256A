@@ -16,8 +16,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "86A7FA0E1831A3A200E7FBC9"
                BuildableName = "rakakaka"
-               BlueprintName = "rakakaka"
-               ReferencedContainer = "container:rakakaka.xcodeproj">
+               BlueprintName = "HelNeb"
+               ReferencedContainer = "container:HelNeb.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -34,8 +34,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "86A7FA0E1831A3A200E7FBC9"
             BuildableName = "rakakaka"
-            BlueprintName = "rakakaka"
-            ReferencedContainer = "container:rakakaka.xcodeproj">
+            BlueprintName = "HelNeb"
+            ReferencedContainer = "container:HelNeb.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -54,8 +54,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "86A7FA0E1831A3A200E7FBC9"
             BuildableName = "rakakaka"
-            BlueprintName = "rakakaka"
-            ReferencedContainer = "container:rakakaka.xcodeproj">
+            BlueprintName = "HelNeb"
+            ReferencedContainer = "container:HelNeb.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -72,8 +72,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "86A7FA0E1831A3A200E7FBC9"
             BuildableName = "rakakaka"
-            BlueprintName = "rakakaka"
-            ReferencedContainer = "container:rakakaka.xcodeproj">
+            BlueprintName = "HelNeb"
+            ReferencedContainer = "container:HelNeb.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

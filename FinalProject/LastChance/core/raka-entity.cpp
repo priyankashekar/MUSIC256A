@@ -384,7 +384,7 @@ void NEBClusterSee::playStar(int starIndex){
                                                   //                              // freq
                                                   70,
                                                   //                              // time step
-                                                  5,
+                                                  4,
                                                   //                              // location
                                                   m_stars[starIndex]->getLocation(),
                                                   //                              // color
