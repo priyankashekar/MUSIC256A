@@ -24,6 +24,7 @@ using namespace std;
 #define SPACE_KEY 32
 #define DELETE_KEY 127
 #define TAB_KEY 9
+#define ENTER_KEY 13
 
 // jellyfish
 RAKAJellyFish * g_jellyfish = NULL;
@@ -361,7 +362,8 @@ void initialize_simulation()
     initA2G(g_nebSee);
     
     g_intro = new INTROScreen();
-//    Globals::sim->root().addChild(g_intro);
+
+
     
 }
 
@@ -562,13 +564,16 @@ void keyboardFunc( unsigned char key, int x, int y )
         case TAB_KEY:
             Globals::tabHold = true;
             break;
+        case ENTER_KEY:
+            diveIntro();
+            break;
         case 'q':
         {
             exit( 0 );
             break;
         }
         case '1':
-            diveIntro();
+
             break;
             
         case '2':
@@ -1011,7 +1016,7 @@ void loadTextures()
     maxFilter = GL_LINEAR;
     
     // load tng flares
-    for( i = RAKA_TEX_FLARE_TNG_1; i <= RAKA_TEX_FLARE_TNG_5; i++ )
+    for( i = RAKA_TEX_FLARE_TNG_1; i <= RAKA_TEX_FLARE_TNG_6; i++ )
     {
         glGenTextures( 1, &(Globals::textures[i]) );
         sprintf( filename, "%sflare-tng-%d.bw", Globals::datapath.c_str(), i - RAKA_TEX_FLARE_TNG_1 + 1 );

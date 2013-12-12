@@ -63,7 +63,7 @@ public:
 public:
     //SAMPLE playStar(int starIndex);
     void addStars(int numStars);
-    void setGrainLength(int grainLengthSecs, float synthRestSecs);
+    void setGrainLength(float grainLengthSecs, float synthRestSecs);
     
     void starOn(int starIndex);
     void starOff();

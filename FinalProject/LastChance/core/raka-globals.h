@@ -42,7 +42,9 @@ enum BokehTextureNames
     RAKA_TEX_FLARE_TNG_3,
     RAKA_TEX_FLARE_TNG_4,
     RAKA_TEX_FLARE_TNG_5,
+    RAKA_TEX_FLARE_TNG_6,
     RAKA_TEX_JELLY_BODY
+
 };
 
 

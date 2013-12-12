@@ -332,11 +332,12 @@ NEBStarSee::NEBStarSee(Vector3D location, Vector3D color, float rotation){
     
 
     m_color = color;
+    m_fixedColor = color;
     m_location = location;
     
     m_star = new YBokeh();
-    m_star->set( 1.0f, 1.0f, 1.0f, 1.0f, RAKA_TEX_FLARE_TNG_1 );
-            m_star->sca.set( 10, 10, 10 );
+    m_star->set( 1.0f, 1.0f, 1.0f, 1.0f, RAKA_TEX_FLARE_TNG_6 );
+            m_star->sca.set( 4, 4, 4 );
     //        // set bokeh
     m_star->setBokehParams( // initial time
                                   20,
@@ -362,8 +363,18 @@ NEBStarSee::NEBStarSee(Vector3D location, Vector3D color, float rotation){
 void NEBClusterSee::selectStar(int starIndex){
     
     Vector3D curColor = m_stars[starIndex]->getColor();
-    m_stars[starIndex]->setColor(Vector3D(0, 0, curColor.z));
+    m_stars[starIndex]->setColor(Vector3D(1.5-curColor.x, 1.5-curColor.y, 1.5-curColor.z));
 
+}
+
+
+void NEBClusterSee::deselectStar(){
+    
+    for (int i = 0; i < m_numStars; i++){
+        //m_stars[i]->setColor(m_stars[i]->getFixedColor());
+        m_stars[i]->setColor(Vector3D(0,0,0));
+    }
+    
 }
 
 void NEBClusterSee::playStar(int starIndex){
@@ -409,6 +420,10 @@ Vector3D NEBStarSee::getLocation(){
 
 Vector3D NEBStarSee::getColor(){
     return m_color;
+}
+
+Vector3D NEBStarSee::getFixedColor(){
+    return m_fixedColor;
 }
 
 void NEBStarSee::setColor(Vector3D color){

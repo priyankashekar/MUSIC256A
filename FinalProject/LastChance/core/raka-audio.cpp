@@ -315,7 +315,7 @@ bool raka_audio_init( unsigned int srate, unsigned int frameSize, unsigned chann
         
         NEBClusterSound *nextNeb = new NEBClusterSound();
         g_nebSound.push_back(nextNeb);
-        g_nebSound[i]->setGrainLength(1, 0.2);
+        g_nebSound[i]->setGrainLength(0.5 , 0.2);
         g_nebSound[i]->addStars(Globals::numStarsPerNeb);
     }
  
@@ -372,7 +372,7 @@ NEBClusterSound::NEBClusterSound(){
     
 }
 
-void NEBClusterSound::setGrainLength(int grainLengthSecs, float synthRestSecs){
+void NEBClusterSound::setGrainLength(float grainLengthSecs, float synthRestSecs){
     
     m_grainLength = grainLengthSecs * RAKA_SRATE;
     m_synthRest = synthRestSecs * RAKA_SRATE;
@@ -500,6 +500,8 @@ void NEBClusterSound::resetSynth(){
     
     m_synth.clear();
     m_synthIndex = -1;
+    
+    deselectStarA2G();
 }
 
 

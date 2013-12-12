@@ -94,7 +94,7 @@ Vector3D Globals::SeaGreen4(46.0/255, 139.0/255, 87.0/255);
 Vector3D Globals::MediumBlue(0.0/255, 0.0/255, 205.0/255);
 Vector3D Globals::MediumOrchid4(122.0/255, 55.0/255, 139.0/255);
 
-float Globals::starRadiusFudge = 5;
+float Globals::starRadiusFudge = 1.8;
 
 float Globals::hemiRadius = 50;
 float Globals::spreadRadius = 40;
@@ -105,7 +105,7 @@ bool Globals::binauralOn = false;
 
 int Globals::activeNeb = 0;
 
-int Globals::numStarsPerNeb = 20;
+int Globals::numStarsPerNeb = 25;
 
 
 

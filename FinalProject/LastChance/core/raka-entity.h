@@ -113,12 +113,14 @@ public:
     void render();
     Vector3D getLocation();
     Vector3D getColor();
+    Vector3D getFixedColor();
     void setColor(Vector3D color);
  
     YBokeh *getStar();
 protected:
     Vector3D m_location;
     Vector3D m_color;
+    Vector3D m_fixedColor;
     YBokeh *m_star;
  
 
@@ -132,6 +134,7 @@ public:
     ~NEBClusterSee();
     int clickStar(int xMouse, int yMouse);
     void selectStar(int starIndex);
+    void deselectStar();
     void playStar(int starIndex);
     void stopStar();
     void setTrackTitle(std::string trackTitle);
