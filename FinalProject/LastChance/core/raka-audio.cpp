@@ -423,6 +423,8 @@ void NEBClusterSound::starOff(){
     //wvIn->setRate(0);
     
     env->keyOff();
+    
+    stopStarA2G();
 }
 
 void NEBClusterSound::playSynth(){

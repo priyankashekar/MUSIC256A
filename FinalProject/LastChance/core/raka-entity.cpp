@@ -222,18 +222,18 @@ void SKYhemi::update(YTimeInterval dt)
 void SKYhemi::render()
 {
     
-    
-    // enable lighting
-    glEnable( GL_LIGHTING );
-    
-    for (int i = 0; i < sizeof(stars) / sizeof(*stars); i++){
-        DrawArc(0, 0, stars[i].radius, stars[i].startingAngle, trailAngle, 500, stars[i].yPos, stars[i].alpha, stars[i].lineWidth);
-    }
-    
-    //glColor4f( col.x, col.y, col.z, alpha );
-    //glutSolidSphere(50, 100, 100);
-    
-    glDisable( GL_LIGHTING );
+//    
+//    // enable lighting
+//    glEnable( GL_LIGHTING );
+//    
+//    for (int i = 0; i < sizeof(stars) / sizeof(*stars); i++){
+//        DrawArc(0, 0, stars[i].radius, stars[i].startingAngle, trailAngle, 500, stars[i].yPos, stars[i].alpha, stars[i].lineWidth);
+//    }
+//    
+//    //glColor4f( col.x, col.y, col.z, alpha );
+//    //glutSolidSphere(50, 100, 100);
+//    
+//    glDisable( GL_LIGHTING );
 }
 
 //-----------------------------------------------------------------------------
@@ -341,7 +341,7 @@ NEBStarSee::NEBStarSee(Vector3D location, Vector3D color, float rotation){
     m_star->setBokehParams( // initial time
                                   20,
     //                              // freq
-                                  20,
+                                  0,
     //                              // time step
                                   5,
     //                              // location
@@ -360,14 +360,66 @@ NEBStarSee::NEBStarSee(Vector3D location, Vector3D color, float rotation){
 }
 //
 void NEBClusterSee::selectStar(int starIndex){
-//    //change color
-    m_stars[starIndex]->getStar()->sca.set( 5, 5, 5 );
 
-//    
+    m_stars[starIndex]->getStar()->setBokehParams( // initial time
+                           20,
+                           //                              // freq
+                           0,
+                           //                              // time step
+                           5,
+                           //                              // location
+                           m_stars[starIndex]->getLocation(),
+                           //                              // color
+                           Vector3D(1,0,0));
+   
 }
 
 void NEBClusterSee::playStar(int starIndex){
-////    //glow
+
+    m_stars[starIndex]->getStar()->setBokehParams( // initial time
+                                                  20,
+                                                  //                              // freq
+                                                  50,
+                                                  //                              // time step
+                                                  5,
+                                                  //                              // location
+                                                  m_stars[starIndex]->getLocation(),
+                                                  //                              // color
+                                                  Vector3D(0,0,1));
+
+    
+    
+//    int prevStarIndex = 0;
+//    
+//  
+//    
+//    
+//    m_starScale.interp(XGfx::delta());
+//    
+//    for (int i = 0; i < m_numStars; i++){
+//        m_stars[i]->getStar()->sca.set( 20, 20, 20 );
+//    }
+//    
+//    prevStarIndex = starIndex;
+//    
+//    //m_starScale.update(20);
+    
+}
+
+void NEBClusterSee::stopStar(){
+    
+    for (int i = 0; i < m_numStars; i++){
+        m_stars[i]->getStar()->setBokehParams( // initial time
+                                                  20,
+                                                  //                              // freq
+                                                  0,
+                                                  //                              // time step
+                                                  5,
+                                                  //                              // location
+                                                  m_stars[i]->getLocation(),
+                                                  //                              // color
+                                                  Vector3D(0,0,1));
+    }
 }
 
 void NEBClusterSee::setTrackTitle(string trackTitle){
@@ -393,6 +445,8 @@ void NEBClusterSee::render()
     for (int i = 0; i < m_trackTitle.length(); i++){
         glutBitmapCharacter (GLUT_BITMAP_HELVETICA_18, m_trackTitle[i]);
     }
+    
+  
 
 }
 
@@ -401,7 +455,7 @@ NEBClusterSee::NEBClusterSee(int numStars, Vector3D center, float spreadRadius, 
     m_numStars = numStars;
     m_center = center;
     NEBStarSee *addStar;
-
+    m_starScale.set(10, 10, 0.5);
     
     if (m_center.x != 0){
         for (int i = 0; i < numStars; i++){

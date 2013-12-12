@@ -917,6 +917,7 @@ void displayFunc( )
     
 
     //    // draw any HUD here
+    
 
     //    Globals::hud->project();
     //    Globals::hud->updateAll( Globals::sim->delta() );

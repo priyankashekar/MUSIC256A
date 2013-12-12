@@ -129,6 +129,7 @@ public:
     int clickStar(int xMouse, int yMouse);
     void selectStar(int starIndex);
     void playStar(int starIndex);
+    void stopStar();
     void setTrackTitle(std::string trackTitle);
     void render();
 protected:
@@ -136,6 +137,7 @@ protected:
     int m_numStars;
     std::vector<NEBStarSee *> m_stars;
     std::string m_trackTitle;
+    Vector3D m_starScale;
     
 };
 

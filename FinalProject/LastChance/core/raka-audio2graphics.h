@@ -18,6 +18,7 @@
 
 void selectStarA2G(int starIndex);
 void playStarA2G(int starIndex);
+void stopStarA2G();
 void initA2G(std::vector<NEBClusterSee *> nebSee);
 void setTrackTitleA2G(std::string trackTitle);
 

@@ -22,6 +22,11 @@ void playStarA2G(int starIndex){
     g_interface[Globals::activeNeb]->getNebSee()->playStar(starIndex);
 }
 
+void stopStarA2G(){
+    
+     g_interface[Globals::activeNeb]->getNebSee()->stopStar();
+}
+
 void initA2G(std::vector<NEBClusterSee *> nebSee){
     
     for (int i = 0; i < Globals::numTracks; i++){
