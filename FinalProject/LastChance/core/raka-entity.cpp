@@ -362,7 +362,12 @@ NEBStarSee::NEBStarSee(Vector3D location, Vector3D color, float rotation){
 //
 void NEBClusterSee::selectStar(int starIndex){
     
+    
+    
     Vector3D curColor = m_stars[starIndex]->getColor();
+    
+    
+    
     m_stars[starIndex]->setColor(Vector3D(1.5-curColor.x, 1.5-curColor.y, 1.5-curColor.z));
 
 }

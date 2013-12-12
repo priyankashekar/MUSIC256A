@@ -141,6 +141,13 @@ void resetMasterSynth(){
     
     g_masterSynth.clear();
     g_masterIndex = -1;
+    
+    for (int i = 0; i < Globals::numTracks; i++){
+        g_nebSound[i]->resetSynth();
+        deselectStarA2G(i);
+    }
+    
+    
 }
 
 
@@ -596,7 +603,7 @@ void NEBClusterSound::addStarToSynth(int starIndex){
         g_masterSynth.push_back(Globals::activeNeb);
     }
     
-    selectStarA2G(starIndex, g_masterSynth[g_masterIndex]);
+    selectStarA2G(starIndex, Globals::activeNeb);
 }
 
 
@@ -612,7 +619,7 @@ void NEBClusterSound::resetSynth(){
     }
 
     
-    deselectStarA2G(g_masterSynth[g_masterIndex]);
+    deselectStarA2G(Globals::activeNeb);
 }
 
 
