@@ -370,10 +370,28 @@ void NEBClusterSee::selectStar(int starIndex){
 
 void NEBClusterSee::deselectStar(){
     
+    Vector3D fixedColor = m_stars[0]->getFixedColor();
+    
     for (int i = 0; i < m_numStars; i++){
-        //m_stars[i]->setColor(m_stars[i]->getFixedColor());
-        m_stars[i]->setColor(Vector3D(0,0,0));
+
+        
+        m_stars[i]->getStar()->setBokehParams( // initial time
+                                                      20,
+                                                      //                              // freq
+                                                      0,
+                                                      //                              // time step
+                                                      5,
+                                                      //                              // location
+                                                      m_stars[i]->getLocation(),
+                                                      //                              // color
+                                                      fixedColor);
+        
+        
+        
     }
+    
+    
+    
     
 }
 
@@ -382,9 +400,9 @@ void NEBClusterSee::playStar(int starIndex){
     m_stars[starIndex]->getStar()->setBokehParams( // initial time
                                                   20,
                                                   //                              // freq
-                                                  70,
+                                                  65,
                                                   //                              // time step
-                                                  4,
+                                                  5,
                                                   //                              // location
                                                   m_stars[starIndex]->getLocation(),
                                                   //                              // color

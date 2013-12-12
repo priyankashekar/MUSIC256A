@@ -17,9 +17,9 @@ void selectStarA2G(int starIndex, int nebIndex){
     g_interface[nebIndex]->getNebSee()->selectStar(starIndex);
 }
 
-void deselectStarA2G(){
+void deselectStarA2G(int nebIndex){
  
-    // g_interface[Globals::activeNeb]->getNebSee()->deselectStar();
+    g_interface[nebIndex]->getNebSee()->deselectStar();
 }
 
 void playStarA2G(int starIndex, int nebIndex){

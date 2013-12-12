@@ -17,7 +17,7 @@
 #endif /* defined(__rakakaka__raka_audio2graphics__) */
 
 void selectStarA2G(int starIndex, int nebIndex);
-void deselectStarA2G();
+void deselectStarA2G(int nebIndex);
 void playStarA2G(int starIndex, int nebIndex);
 void stopStarA2G(int nebIndex);
 void initA2G(std::vector<NEBClusterSee *> nebSee);

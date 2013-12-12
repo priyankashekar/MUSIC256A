@@ -612,7 +612,7 @@ void NEBClusterSound::resetSynth(){
     }
 
     
-    deselectStarA2G();
+    deselectStarA2G(g_masterSynth[g_masterIndex]);
 }
 
 
