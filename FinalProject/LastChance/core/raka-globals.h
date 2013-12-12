@@ -20,6 +20,7 @@
 #include <map>
 #include <vector>
 #include <utility>
+#include <string>
 
 // defines
 #define RAKA_SRATE        44100
@@ -178,7 +179,8 @@ public:
     static int activeNeb;
     static int numStarsPerNeb;
     
-
+    static std::vector<std::string> trackPaths;
+    static std::vector<std::string> trackTitles;
 };
 
 

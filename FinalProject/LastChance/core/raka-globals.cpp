@@ -107,5 +107,8 @@ int Globals::activeNeb = 0;
 
 int Globals::numStarsPerNeb = 25;
 
+std::vector<std::string> Globals::trackPaths;
+std::vector<std::string> Globals::trackTitles;
+
 
 

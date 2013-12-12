@@ -377,8 +377,19 @@ void initialize_simulation()
 bool initialize_data()
 {
     // maybe read in MIDI files and such here...
+    
+    //std::vector<std::string> Globals::trackPaths;
+    
+    Globals::trackPaths.push_back("data/sound/skins.wav");
+    Globals::trackPaths.push_back("data/sound/skins2.wav");
+    Globals::trackPaths.push_back("data/sound/skins3.wav");
+    Globals::trackPaths.push_back("data/sound/skins4.wav");
 
-    // done
+    Globals::trackTitles.push_back("skins");
+    Globals::trackTitles.push_back("skins2");
+    Globals::trackTitles.push_back("skins3");
+    Globals::trackTitles.push_back("skins4");
+
     return true;
 }
 

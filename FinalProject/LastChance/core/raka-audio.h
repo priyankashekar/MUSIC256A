@@ -59,7 +59,7 @@ protected:
 class NEBClusterSound
 {
 public:
-    NEBClusterSound();
+    NEBClusterSound(std::string trackPath, std::string trackTitle);
     ~NEBClusterSound();
 public:
     //SAMPLE playStar(int starIndex);
