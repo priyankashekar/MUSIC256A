@@ -43,8 +43,8 @@ Vector3D Globals::fov( 80, 100, .2f );
 
 Vector3D Globals::fadeInAlpha(1, 0, 0.5);
 
-iSlew3D Globals::lookFrom(100, 50, 100);
-iSlew3D Globals::lookTo(0, 0, 200);
+iSlew3D Globals::lookFrom(80, 50, 100);
+iSlew3D Globals::lookTo(0, 0, 0);
 
 const Vector3D Globals::upVector(0, 1, 0);
 Vector3D Globals::lastLookTo(0, 0, 0);
@@ -81,18 +81,18 @@ std::string Globals::relpath = "data/texture/";
 std::string Globals::datapath = "";
 std::string Globals::version = DEFAULT_VERSION;
 
-Vector3D Globals::LightSteelBlue3(162.0/255, 181.0/255, 205.0/255);
-Vector3D Globals::MediumPurple3(137.0/255, 104.0/255, 205.0/255);
 Vector3D Globals::MidnightBlue(25.0/255, 25.0/255, 112.0/255);
-Vector3D Globals::Plum2(238.0/255, 174.0/255, 238.0/255);
-Vector3D Globals::Lavender(230.0/255, 230.0/255, 230.0/255);
-Vector3D Globals::Turquoise(64.0/255, 224.0/255, 208.0/255);
-Vector3D Globals::RosyBrown(188.0/255, 143.0/255, 143.0/255);
-Vector3D Globals::Wheat(245.0/255, 222.0/255, 179.0/255);
-Vector3D Globals::LemonChiffon1(255.0/255, 250.0/255, 205.0/255);
-Vector3D Globals::Honeydew3(193.0/255, 205.0/255, 193.0/255);
-Vector3D Globals::Sienna1(255.0/255, 130.0/255, 71.0/255);
+Vector3D Globals::Black(0.0/255, 0.0/255, 0.0/255);
 Vector3D Globals::DarkSlateBlue(72.0/255, 61.0/255, 139.0/255);
+Vector3D Globals::DarkSlateGray(47.0/255, 79.0/255, 79.0/255);
+Vector3D Globals::Turquoise4(0.0/255, 134.0/255, 139.0/255);
+Vector3D Globals::RosyBrown4(139.0/255, 105.0/255, 105.0/255);
+Vector3D Globals::HotPink4(139.0/255, 58.0/255, 98.0/255);
+Vector3D Globals::Purple4(85.0/255, 26.0/255, 139.0/255);
+Vector3D Globals::DarkGoldenRod4(139.0/255, 101.0/255, 8.0/255);
+Vector3D Globals::SeaGreen4(46.0/255, 139.0/255, 87.0/255);
+Vector3D Globals::MediumBlue(0.0/255, 0.0/255, 205.0/255);
+Vector3D Globals::MediumOrchid4(122.0/255, 55.0/255, 139.0/255);
 
 float Globals::starRadiusFudge = 5;
 

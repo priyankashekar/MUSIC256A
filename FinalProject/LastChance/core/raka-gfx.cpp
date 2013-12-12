@@ -360,8 +360,8 @@ void initialize_simulation()
     
     initA2G(g_nebSee);
     
-    g_intro = new INTROScreen();
-    Globals::sim->root().addChild(g_intro);
+//    g_intro = new INTROScreen();
+//    Globals::sim->root().addChild(g_intro);
     
 }
 

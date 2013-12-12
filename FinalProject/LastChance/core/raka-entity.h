@@ -95,7 +95,7 @@ protected:
     void DrawArc(float cx, float cz, float r, float start_angle, float arc_angle, int num_segments, float y, float alpha, float lineWidth);
     
 protected:
-    Vector3D palette[23];
+    Vector3D palette[24];
     GLfloat trailAngle;
     SKYtrail stars[10];
     
@@ -112,11 +112,15 @@ public:
     void update(YTimeInterval dt);
     void render();
     Vector3D getLocation();
+    Vector3D getColor();
+    void setColor(Vector3D color);
+ 
     YBokeh *getStar();
 protected:
     Vector3D m_location;
     Vector3D m_color;
     YBokeh *m_star;
+ 
 
     
 };

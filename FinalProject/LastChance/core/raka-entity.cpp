@@ -244,29 +244,29 @@ void SKYhemi::init()
 {
     
     palette[0] = Globals::MidnightBlue;
-    palette[1] = Globals::Plum2;
-    palette[2] = Globals::LightSteelBlue3;
-    palette[3] = Globals::MediumPurple3;
-    palette[4] = Globals::Lavender;
-    palette[5] = Globals::Turquoise;
-    palette[6] = Globals::RosyBrown;
-    palette[7] = Globals::Wheat;
-    palette[8] = Globals::LemonChiffon1;
-    palette[9] = Globals::Honeydew3;
-    palette[10] = Globals::Sienna1;
-    palette[11] = Globals::DarkSlateBlue;
+    palette[1] = Globals::Black;
+    palette[2] = Globals::DarkSlateBlue;
+    palette[3] = Globals::DarkSlateGray;
+    palette[4] = Globals::Turquoise4;
+    palette[5] = Globals::RosyBrown4;
+    palette[6] = Globals::HotPink4;
+    palette[7] = Globals::Purple4;
+    palette[8] = Globals::DarkGoldenRod4;
+    palette[9] = Globals::SeaGreen4;
+    palette[10] = Globals::MediumBlue;
+    palette[11] = Globals::MediumOrchid4;
     palette[12] = Globals::MidnightBlue;
-    palette[13] = Globals::Plum2;
-    palette[14] = Globals::LightSteelBlue3;
-    palette[15] = Globals::MediumPurple3;
-    palette[16] = Globals::Lavender;
-    palette[17] = Globals::Turquoise;
-    palette[18] = Globals::RosyBrown;
-    palette[19] = Globals::Wheat;
-    palette[20] = Globals::LemonChiffon1;
-    palette[21] = Globals::Honeydew3;
-    palette[22] = Globals::Sienna1;
-    palette[23] = Globals::MediumPurple3;
+    palette[13] = Globals::Black;
+    palette[14] = Globals::DarkSlateBlue;
+    palette[15] = Globals::DarkSlateGray;
+    palette[16] = Globals::Turquoise4;
+    palette[17] = Globals::RosyBrown4;
+    palette[18] = Globals::HotPink4;
+    palette[19] = Globals::Purple4;
+    palette[20] = Globals::DarkGoldenRod4;
+    palette[21] = Globals::SeaGreen4;
+    palette[22] = Globals::MediumBlue;
+    palette[23] = Globals::MediumOrchid4;
     
     trailAngle = 0.00001;
     
@@ -349,7 +349,7 @@ NEBStarSee::NEBStarSee(Vector3D location, Vector3D color, float rotation){
     //                              // color
                                   color);
     //        // alpha
-            m_star->setAlpha( 1 );
+            m_star->setAlpha(1);
     m_star->setRotation(rotation);
     //        // add to simulation
             Globals::sim->root().addChild(m_star);
@@ -360,18 +360,10 @@ NEBStarSee::NEBStarSee(Vector3D location, Vector3D color, float rotation){
 }
 //
 void NEBClusterSee::selectStar(int starIndex){
+    
+    Vector3D curColor = m_stars[starIndex]->getColor();
+    m_stars[starIndex]->setColor(Vector3D(0, 0, curColor.z));
 
-    m_stars[starIndex]->getStar()->setBokehParams( // initial time
-                           20,
-                           //                              // freq
-                           0,
-                           //                              // time step
-                           5,
-                           //                              // location
-                           m_stars[starIndex]->getLocation(),
-                           //                              // color
-                           Vector3D(1,0,0));
-   
 }
 
 void NEBClusterSee::playStar(int starIndex){
@@ -379,30 +371,14 @@ void NEBClusterSee::playStar(int starIndex){
     m_stars[starIndex]->getStar()->setBokehParams( // initial time
                                                   20,
                                                   //                              // freq
-                                                  50,
+                                                  70,
                                                   //                              // time step
                                                   5,
                                                   //                              // location
                                                   m_stars[starIndex]->getLocation(),
                                                   //                              // color
-                                                  Vector3D(0,0,1));
+                                                  m_stars[starIndex]->getColor());
 
-    
-    
-//    int prevStarIndex = 0;
-//    
-//  
-//    
-//    
-//    m_starScale.interp(XGfx::delta());
-//    
-//    for (int i = 0; i < m_numStars; i++){
-//        m_stars[i]->getStar()->sca.set( 20, 20, 20 );
-//    }
-//    
-//    prevStarIndex = starIndex;
-//    
-//    //m_starScale.update(20);
     
 }
 
@@ -418,7 +394,7 @@ void NEBClusterSee::stopStar(){
                                                   //                              // location
                                                   m_stars[i]->getLocation(),
                                                   //                              // color
-                                                  Vector3D(0,0,1));
+                                                  m_stars[i]->getColor());
     }
 }
 
@@ -430,6 +406,15 @@ void NEBClusterSee::setTrackTitle(string trackTitle){
 Vector3D NEBStarSee::getLocation(){
     return m_location;
 }
+
+Vector3D NEBStarSee::getColor(){
+    return m_color;
+}
+
+void NEBStarSee::setColor(Vector3D color){
+    m_color = color;
+}
+
 
 YBokeh * NEBStarSee::getStar(){
     return m_star;
@@ -457,29 +442,41 @@ NEBClusterSee::NEBClusterSee(int numStars, Vector3D center, float spreadRadius, 
     NEBStarSee *addStar;
     m_starScale.set(10, 10, 0.5);
     
-    if (m_center.x != 0){
+    Vector3D inverseColor = Vector3D(1 - Globals::bgColor.actual().x, 1 - Globals::bgColor.actual().y, 1 - Globals::bgColor.actual().z);
+    
+    if (m_center.x < 0){
         for (int i = 0; i < numStars; i++){
         
+           
             
-            
-            addStar = new NEBStarSee(Vector3D(center.x, XFun::rand2f(center.y - spreadRadius, center.y + spreadRadius), XFun::rand2f(center.z - spreadRadius, center.z + spreadRadius)), Vector3D(0,0,1), rotation);
+            addStar = new NEBStarSee(Vector3D(center.x, XFun::rand2f(center.y - spreadRadius, center.y + spreadRadius), XFun::rand2f(center.z - spreadRadius, center.z + spreadRadius)), Vector3D(0, inverseColor.y, inverseColor.z), rotation);
 
 
             m_stars.push_back(addStar);
-
         }
+
+        } else if (m_center.x > 0){
+            for (int i = 0; i < numStars; i++){
+                
+                
+                
+                addStar = new NEBStarSee(Vector3D(center.x, XFun::rand2f(center.y - spreadRadius, center.y + spreadRadius), XFun::rand2f(center.z - spreadRadius, center.z + spreadRadius)), Vector3D(inverseColor.x, 0, inverseColor.z), rotation);
+                
+                
+                m_stars.push_back(addStar);
+                
+            }
         
-        
 
 
 
-    } else if (m_center.z != 0){
+    } else if (m_center.z < 0){
         
         
         for (int i = 0; i < numStars; i++){
 
             
-            addStar = new NEBStarSee(Vector3D(XFun::rand2f(center.x - spreadRadius, center.x + spreadRadius), XFun::rand2f(center.y - spreadRadius, center.y + spreadRadius), center.z), Vector3D(0,0,1), rotation);
+            addStar = new NEBStarSee(Vector3D(XFun::rand2f(center.x - spreadRadius, center.x + spreadRadius), XFun::rand2f(center.y - spreadRadius, center.y + spreadRadius), center.z), inverseColor, rotation);
             
         
             m_stars.push_back(addStar);
@@ -488,7 +485,22 @@ NEBClusterSee::NEBClusterSee(int numStars, Vector3D center, float spreadRadius, 
         
         
        
-    }
+    } else if (m_center.z > 0){
+            
+            
+            for (int i = 0; i < numStars; i++){
+                
+                
+                addStar = new NEBStarSee(Vector3D(XFun::rand2f(center.x - spreadRadius, center.x + spreadRadius), XFun::rand2f(center.y - spreadRadius, center.y + spreadRadius), center.z), Vector3D(inverseColor.x, inverseColor.y, 0), rotation);
+                
+                
+                m_stars.push_back(addStar);
+                
+            }
+            
+            
+            
+        }
     
 
   

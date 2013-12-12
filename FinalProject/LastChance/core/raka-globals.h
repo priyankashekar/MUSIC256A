@@ -151,18 +151,18 @@ public:
     static Vector3D ourPurple;
     
     //color chart from http://gucky.uni-muenster.de/cgi-bin/rgbtab-en
-    static Vector3D LightSteelBlue3;
-    static Vector3D MediumPurple3;
     static Vector3D MidnightBlue;
-    static Vector3D Plum2;
-    static Vector3D Lavender;
-    static Vector3D Turquoise;
-    static Vector3D RosyBrown;
-    static Vector3D Wheat;
-    static Vector3D LemonChiffon1;
-    static Vector3D Honeydew3;
-    static Vector3D Sienna1;
+    static Vector3D Black;
     static Vector3D DarkSlateBlue;
+    static Vector3D DarkSlateGray;
+    static Vector3D Turquoise4;
+    static Vector3D RosyBrown4;
+    static Vector3D HotPink4;
+    static Vector3D Purple4;
+    static Vector3D DarkGoldenRod4;
+    static Vector3D SeaGreen4;
+    static Vector3D MediumBlue;
+    static Vector3D MediumOrchid4;
     
     static float starRadiusFudge;
     

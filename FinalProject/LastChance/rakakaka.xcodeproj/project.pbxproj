@@ -61,7 +61,6 @@
 		999568691857E25A00A4C44F /* libfftw3_threads.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 999568651857E25A00A4C44F /* libfftw3_threads.a */; };
 		9995686A1857E25A00A4C44F /* libfftw3_threads.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 999568661857E25A00A4C44F /* libfftw3_threads.3.dylib */; };
 		9995686D1857F58600A4C44F /* raka-audio2graphics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9995686B1857F58600A4C44F /* raka-audio2graphics.cpp */; };
-		99A0870A18592423002CFEC8 /* RgbImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 99A0870818592423002CFEC8 /* RgbImage.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -203,8 +202,6 @@
 		999568661857E25A00A4C44F /* libfftw3_threads.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfftw3_threads.3.dylib; path = /usr/local/Cellar/fftw/3.3.3/lib/libfftw3_threads.3.dylib; sourceTree = "<absolute>"; };
 		9995686B1857F58600A4C44F /* raka-audio2graphics.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "raka-audio2graphics.cpp"; path = "core/raka-audio2graphics.cpp"; sourceTree = "<group>"; };
 		9995686C1857F58600A4C44F /* raka-audio2graphics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "raka-audio2graphics.h"; path = "core/raka-audio2graphics.h"; sourceTree = "<group>"; };
-		99A0870818592423002CFEC8 /* RgbImage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RgbImage.cpp; sourceTree = "<group>"; };
-		99A0870918592423002CFEC8 /* RgbImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RgbImage.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -266,7 +263,6 @@
 		86A7FA1F1831A4EC00E7FBC9 /* api */ = {
 			isa = PBXGroup;
 			children = (
-				99A0870718592423002CFEC8 /* rgbimage */,
 				9995684F1857DE9100A4C44F /* threedee */,
 				9980E944184BDAE700581841 /* CImg.h */,
 				9980E943184BDA4700581841 /* rgb_hsv_hsl.hpp */,
@@ -520,15 +516,6 @@
 			path = threedee;
 			sourceTree = "<group>";
 		};
-		99A0870718592423002CFEC8 /* rgbimage */ = {
-			isa = PBXGroup;
-			children = (
-				99A0870818592423002CFEC8 /* RgbImage.cpp */,
-				99A0870918592423002CFEC8 /* RgbImage.h */,
-			);
-			path = rgbimage;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -613,7 +600,6 @@
 				9994E60C184D2C20007354D4 /* Stk.cpp in Sources */,
 				86A7FA5A1831A4EC00E7FBC9 /* x-fun.cpp in Sources */,
 				999568581857DE9100A4C44F /* dsp.cpp in Sources */,
-				99A0870A18592423002CFEC8 /* RgbImage.cpp in Sources */,
 				8642B3E61834471600CF7375 /* y-fluidsynth.cpp in Sources */,
 				86A7FA821831A69100E7FBC9 /* raka-sim.cpp in Sources */,
 				86A7FA621831A4EC00E7FBC9 /* y-echo.cpp in Sources */,
