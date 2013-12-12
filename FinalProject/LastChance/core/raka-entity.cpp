@@ -204,9 +204,9 @@ void SKYhemi::update(YTimeInterval dt)
 
     hsl_to_rgb( interpHSL.x, interpHSL.y, interpHSL.z, interpR, interpG, interpB);
     
-    //Globals::bgColor.updateSet(Vector3D(interpR / 255.0, interpG / 255.0, interpB / 255.0));
+    Globals::bgColor.updateSet(Vector3D(interpR / 255.0, interpG / 255.0, interpB / 255.0));
     
-    Globals::bgColor.updateSet(Vector3D(0, 0, 0));
+    //Globals::bgColor.updateSet(Vector3D(0, 0, 0));
     
     
     //angle = ((float)t2 / CLOCKS_PER_SEC) / (60 * 60) * M_PI * 2;
@@ -554,4 +554,27 @@ void recoverClick(int iX, int iY, double z_distance, double &oX, double &oY){
     // so here are the desired (x, y) coordinates
     oX = (posX1 + (posX2 - posX1) * t);
     oY = (posY1 + (posY2 - posY1) * t);
+}
+
+void INTROScreen::render(){
+    
+    glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
+    glEnable( GL_BLEND );
+    
+    glTranslatef(100, 50, 100.1);
+    glColor4f( 0.0f, 0.0f, 0.0f, Globals::fadeInAlpha.x);
+    
+    glScalef(100, 100, 100);
+    
+    //iSlew3D Globals::lookFrom(100, 50, 100);
+    //iSlew3D Globals::lookTo(0, 0, 200);
+
+    glBegin(GL_QUADS);
+    glVertex3f(-1.0f, 1.0f, 0.0f);              // Top Left
+    glVertex3f( 1.0f, 1.0f, 0.0f);              // Top Right
+    glVertex3f( 1.0f,-1.0f, 0.0f);              // Bottom Right
+    glVertex3f(-1.0f,-1.0f, 0.0f);
+    glEnd();
+    
+    glDisable(GL_BLEND);
 }

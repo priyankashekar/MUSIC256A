@@ -33,6 +33,8 @@ vector<YBokeh *> g_bokehs;
 
 SKYhemi *g_sky;
 
+INTROScreen *g_intro;
+
 vector<NEBClusterSee *> g_nebSee;
 
 
@@ -357,8 +359,9 @@ void initialize_simulation()
     g_nebSee.push_back(nextNeb);
     
     initA2G(g_nebSee);
-
-    //Globals::sim->root().addChild(g_neb);
+    
+    g_intro = new INTROScreen();
+    Globals::sim->root().addChild(g_intro);
     
 }
 
@@ -510,6 +513,7 @@ void look( )
 {
     // go
     //Globals::fov.interp( XGfx::delta() );
+    //Globals::lookFrom.interp(XGfx::delta());
     // set the matrix mode to project
     glMatrixMode( GL_PROJECTION );
     // load the identity matrix
@@ -529,7 +533,7 @@ void look( )
               0.0f, 0.0f, 0.0f,
               0.0f, ( cos( Globals::viewEyeY.x ) < 0 ? -1.0f : 1.0f ), 0.0f );*/
     
-    gluLookAt(Globals::lookFrom.x, Globals::lookFrom.y, Globals::lookFrom.z, Globals::lookTo.actual().x, Globals::lookTo.actual().y, Globals::lookTo.actual().z, Globals::upVector.x, Globals::upVector.y, Globals::upVector.z);
+    gluLookAt(Globals::lookFrom.actual().x, Globals::lookFrom.actual().y, Globals::lookFrom.actual().z, Globals::lookTo.actual().x, Globals::lookTo.actual().y, Globals::lookTo.actual().z, Globals::upVector.x, Globals::upVector.y, Globals::upVector.z);
     
     // set the position of the lights
     glLightfv( GL_LIGHT0, GL_POSITION, Globals::light0_pos );
@@ -564,7 +568,7 @@ void keyboardFunc( unsigned char key, int x, int y )
             break;
         }
         case '1':
-            g_jellyfish->bloat( 5, 1 );
+            diveIntro();
             break;
             
         case '2':
@@ -899,6 +903,10 @@ void displayFunc( )
     Globals::viewRadius.interp( XGfx::delta() );
     
     Globals::lookTo.interp(XGfx::delta());
+    Globals::lookFrom.interp(XGfx::delta());
+    
+    Globals::fadeInAlpha.interp(XGfx::delta());
+    
     look();
     
     // cascade simulation
@@ -907,7 +915,9 @@ void displayFunc( )
     // pop state
     glPopMatrix();
     
+
     //    // draw any HUD here
+
     //    Globals::hud->project();
     //    Globals::hud->updateAll( Globals::sim->delta() );
     //    Globals::hud->drawAll();

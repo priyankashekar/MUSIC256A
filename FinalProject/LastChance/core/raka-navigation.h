@@ -15,5 +15,6 @@ void turnUp();
 void turnDown();
 void turnLeft();
 void turnRight();
+void diveIntro();
 
 #endif /* defined(__rakakaka__raka_navigation__) */

@@ -139,6 +139,12 @@ protected:
     
 };
 
+class INTROScreen : public YEntity
+{
+public:
+
+    void render();
+};
 
 
 #endif

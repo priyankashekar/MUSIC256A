@@ -109,7 +109,7 @@ public:
     static Vector3D viewRadius;
     static Vector3D viewEyeY;
     
-    static Vector3D lookFrom;
+    static iSlew3D lookFrom;
     static iSlew3D lookTo;
     static const Vector3D upVector;
     static Vector3D lastLookTo;
@@ -117,6 +117,7 @@ public:
     static int numTracks;
     static GLfloat viewAngle;
     
+    static Vector3D fadeInAlpha;
     
     static Vector3D fov;
     

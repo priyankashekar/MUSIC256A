@@ -41,8 +41,11 @@ Vector3D Globals::viewRadius( 5, 2, 1 );
 Vector3D Globals::viewEyeY( 2, 0, 1.5f );
 Vector3D Globals::fov( 80, 100, .2f );
 
-Vector3D Globals::lookFrom(0, 0, 0);
-iSlew3D Globals::lookTo(0, 0, -hemiRadius);
+Vector3D Globals::fadeInAlpha(1, 0, 0.5);
+
+iSlew3D Globals::lookFrom(100, 50, 100);
+iSlew3D Globals::lookTo(0, 0, 200);
+
 const Vector3D Globals::upVector(0, 1, 0);
 Vector3D Globals::lastLookTo(0, 0, 0);
 
@@ -102,7 +105,7 @@ bool Globals::binauralOn = false;
 
 int Globals::activeNeb = 0;
 
-int Globals::numStarsPerNeb = 2;
+int Globals::numStarsPerNeb = 20;
 
 
 

@@ -9,6 +9,8 @@
 #include "raka-navigation.h"
 #include "raka-globals.h"
 
+float g_a = 0;
+
 void turnUp(){
     Globals::lastLookTo = Globals::lookTo.actual();
     Globals::lookTo.update(Vector3D(0, Globals::hemiRadius, 1)); //NOTE 1 HERE!
@@ -34,4 +36,11 @@ void turnRight(){
     
     Globals::activeNeb++;
     Globals::activeNeb %= Globals::numTracks;
+}
+
+void diveIntro(){
+    
+    Globals::lookFrom.update(Vector3D(0, 0, 0));
+    Globals::lookTo.update(Vector3D(0, 0, -Globals::hemiRadius));
+   
 }
