@@ -580,13 +580,9 @@ void keyboardFunc( unsigned char key, int x, int y )
             g_jellyfish->shrink( 1, 1 );
             break;
         case 'r':
+        case 'R':
         {
-            for( int i = 0; i < g_bokehs.size(); i++ )
-            {
-                YBokeh * bokeh = g_bokehs[i];
-                bokeh->iLoc.update( Vector3D(XFun::rand2f(-2,2),XFun::rand2f(-1,1), XFun::rand2f(-1,1) ) );
-                bokeh->iRGB.update( Vector3D(XFun::rand2f(0,.3),XFun::rand2f(0,.3), XFun::rand2f(0,.3)) );
-            }
+            resetMasterSynth();
             break;
         }
         case 'a':

@@ -25,6 +25,7 @@ void playStar(int starIndex);
 void toggleSynth();
 void addStarToSynth(int starIndex);
 void resetSynth();
+void resetMasterSynth();
 
 
 //-----------------------------------------------------------------------------
@@ -72,6 +73,7 @@ public:
     void resetSynth();
     void playSynth();
     void pauseSynth();
+    
     
     SAMPLE play();
     

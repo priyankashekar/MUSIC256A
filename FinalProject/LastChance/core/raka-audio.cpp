@@ -33,7 +33,10 @@ int g_prog = 0;
 
 
 
+
 vector<NEBClusterSound *> g_nebSound;
+vector<int> g_masterSynth;
+int g_masterIndex = -1;
 
 SoundObject g_3DObject;
 Binaural g_3DBinaural(MY_BUFFER_SIZE);
@@ -97,13 +100,29 @@ void playStar(int starIndex){
     g_nebSound[Globals::activeNeb]->starOn(starIndex);
 }
 
-void toggleSynth(){
+//void toggleSynth(){
+//
+//    if (!Globals::synthOn){
+//        g_nebSound[Globals::activeNeb]->playSynth();
+//        Globals::synthOn = true;
+//    } else {
+//        g_nebSound[Globals::activeNeb]->pauseSynth();
+//        Globals::synthOn = false;
+//    }
+//}
 
+void toggleSynth(){
+    
     if (!Globals::synthOn){
-        g_nebSound[Globals::activeNeb]->playSynth();
+        //for (int i = 0; i < g_masterSynth.size(); i++){
+        if (g_masterIndex > -1){
+            g_nebSound[g_masterSynth[g_masterIndex]]->playSynth();
+        }
         Globals::synthOn = true;
     } else {
-        g_nebSound[Globals::activeNeb]->pauseSynth();
+        for (int i = 0; i < g_masterSynth.size(); i++){
+            g_nebSound[g_masterSynth[i]]->pauseSynth();
+        }
         Globals::synthOn = false;
     }
 }
@@ -118,6 +137,11 @@ void resetSynth(){
     g_nebSound[Globals::activeNeb]->resetSynth();
 }
 
+void resetMasterSynth(){
+    
+    g_masterSynth.clear();
+    g_masterIndex = -1;
+}
 
 
 //-----------------------------------------------------------------------------
@@ -217,13 +241,40 @@ static void audio_callback( SAMPLE * buffer, unsigned int numFrames, void * user
     for (int i = 0; i < numFrames; i++){ //numFrames = 1024
 
         if (Globals::binauralOn){
+            
+
             Globals::lastAudioBufferMono[i] = g_nebSound[Globals::activeNeb]->play();
+            
+            if (g_masterIndex > -1){
+
+            Globals::lastAudioBufferMono[i] = g_nebSound[g_masterSynth[g_masterIndex]]->play();
+            }
+         
         } else {
             buffer[2*i] = buffer[2*i+1] = g_nebSound[Globals::activeNeb]->play();
+            
+            if (g_masterIndex > -1){
+                buffer[2*i] = buffer[2*i+1] = g_nebSound[g_masterSynth[g_masterIndex]]->play();
+            }
         }
 
+       
         g_nebSound[Globals::activeNeb]->tickStarTimer();
-        g_nebSound[Globals::activeNeb]->tickSynthTimer();
+
+        
+        if (g_masterIndex > -1){
+           
+            
+               g_nebSound[g_masterSynth[g_masterIndex]]->tickSynthTimer();
+            
+            if (Globals::activeNeb != g_masterSynth[g_masterIndex]){
+             
+                 g_nebSound[g_masterSynth[g_masterIndex]]->tickStarTimer();
+            }
+        }
+        
+        
+        
     }
     
     if (Globals::binauralOn){
@@ -414,7 +465,15 @@ void NEBClusterSound::starOn(int starIndex){
     
     startStarTimer();
     
-    playStarA2G(starIndex);
+    int nebIndex;
+    
+    if (g_masterIndex == -1){
+        nebIndex = Globals::activeNeb;
+    } else {
+        nebIndex = g_masterSynth[g_masterIndex];
+    }
+    
+    playStarA2G(starIndex, nebIndex);
 }
 
 void NEBClusterSound::starOff(){
@@ -424,21 +483,58 @@ void NEBClusterSound::starOff(){
     
     env->keyOff();
     
-    stopStarA2G();
+    int nebIndex;
+    
+    if (g_masterIndex == -1){
+        nebIndex = Globals::activeNeb;
+    } else {
+        nebIndex = g_masterSynth[g_masterIndex];
+    }
+    
+    stopStarA2G(nebIndex);
 }
+
+//void NEBClusterSound::playSynth(){
+//    
+//    //if (m_synthOn){
+//    if (m_synthIndex > -1){
+//
+//        g_nebSound[Globals::activeNeb]->starOn(m_synth[m_synthIndex]);
+//        m_synthIndex++;
+//        m_synthIndex %= m_synth.size();
+//        startSynthTimer();
+//        
+//    }
+//    
+//}
 
 void NEBClusterSound::playSynth(){
     
-    //if (m_synthOn){
     if (m_synthIndex > -1){
-
-        g_nebSound[Globals::activeNeb]->starOn(m_synth[m_synthIndex]);
-        m_synthIndex++;
-        m_synthIndex %= m_synth.size();
-        startSynthTimer();
         
-    }
+        if (m_synthIndex < m_synth.size()){
+            
+            starOn(m_synth[m_synthIndex]);
+            //g_nebSound[g_masterSynth[g_masterIndex]]->starOn(m_synth[m_synthIndex]);
+            m_synthIndex++;
+            startSynthTimer();
+            
+         
+            
+        } else {
+        
+            pauseSynth();
+            g_masterIndex++;
+            g_masterIndex %= g_masterSynth.size();
+            
+            //cerr << g_masterIndex << endl;
+            
+            int blah = g_masterSynth[g_masterIndex];
+            g_nebSound[blah]->playSynth();
+        }
     
+    }
+  
 }
 
 void NEBClusterSound::startSynthTimer(){
@@ -449,10 +545,13 @@ void NEBClusterSound::startSynthTimer(){
 
 void NEBClusterSound::tickSynthTimer(){
     
-    if (m_synthTimerOn){ //IS THIS varialbe NEEDED?
+    if (m_synthTimerOn){
         
         if (m_synthTimeNow > (m_grainLength + m_synthRest)){
+
+            
             playSynth();
+
         }
         
         m_synthTimeNow++;
@@ -491,8 +590,13 @@ void NEBClusterSound::addStarToSynth(int starIndex){
    
     m_synth.push_back(starIndex);
     m_synthIndex = 0;
+    g_masterIndex = 0;
     
-    selectStarA2G(starIndex);
+    if (m_synth.size() == 1){
+        g_masterSynth.push_back(Globals::activeNeb);
+    }
+    
+    selectStarA2G(starIndex, g_masterSynth[g_masterIndex]);
 }
 
 
@@ -500,6 +604,13 @@ void NEBClusterSound::resetSynth(){
     
     m_synth.clear();
     m_synthIndex = -1;
+    
+    for (int i = 0; i < g_masterSynth.size(); i++){
+        if (g_masterSynth[i] == Globals::activeNeb){
+            g_masterSynth.erase(g_masterSynth.begin() + i);
+        }
+    }
+
     
     deselectStarA2G();
 }

@@ -12,24 +12,24 @@
 
 std::vector<Audio2Graphics *> g_interface;
 
-void selectStarA2G(int starIndex){
+void selectStarA2G(int starIndex, int nebIndex){
     
-    g_interface[Globals::activeNeb]->getNebSee()->selectStar(starIndex);
+    g_interface[nebIndex]->getNebSee()->selectStar(starIndex);
 }
 
 void deselectStarA2G(){
  
-     g_interface[Globals::activeNeb]->getNebSee()->deselectStar();
+    // g_interface[Globals::activeNeb]->getNebSee()->deselectStar();
 }
 
-void playStarA2G(int starIndex){
+void playStarA2G(int starIndex, int nebIndex){
     
-    g_interface[Globals::activeNeb]->getNebSee()->playStar(starIndex);
+    g_interface[nebIndex]->getNebSee()->playStar(starIndex);
 }
 
-void stopStarA2G(){
+void stopStarA2G(int nebIndex){
     
-     g_interface[Globals::activeNeb]->getNebSee()->stopStar();
+     g_interface[nebIndex]->getNebSee()->stopStar();
 }
 
 void initA2G(std::vector<NEBClusterSee *> nebSee){
